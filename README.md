@@ -1,14 +1,4 @@
 # Docchi
-Dochi is a voting app that allows users to create public polls. 
-
-Unit 8: Group Milestone - README Example
-===
-
-:::info
-**Below is an example** of what your **Group Project README** should include and how it should be structured for the **Unit 8 Group Milestone Submission**.
-:::
-
-# TUNIN
 
 ## Table of Contents
 1. [Overview](#Overview)
@@ -17,15 +7,15 @@ Unit 8: Group Milestone - README Example
 
 ## Overview
 ### Description
-Tracks what music an individual listens to, and pairs them with others based on that music. Could be potentially used as a dating app, or just meeting new friends with similar music tastes.
+Docchi is a voting app that lets users to create public polls. It will let users create quick large scale surveys and polls to make decisions. All votes on this platform will be anonymous.
 
 ### App Evaluation
-- **Category:** Social Networking / Music
-- **Mobile:** This app would be primarily developed for mobile but would perhaps be just as viable on a computer, such as tinder or other similar apps. Functionality wouldn't be limited to mobile devices, however mobile version could potentially have more features.
-- **Story:** Analyzes users music choices, and connects them to other users with similar choices. The user can then decide to message this person and befriend them if wanted.
+- **Category:** Social Networking and Survey
+- **Mobile:** Docchi would be primarily developed for mobile as it would allow users to use their camera, take a picture, and add it to their poll. However, a web counterpart can also be developed like many other apps.
+- **Story:** A user who is working implementing a new feature, shopping, or needs advice can quickly create a poll to assist them make a decision.
 - **Market:** Any individual could choose to use this app, and to keep it a safe environment, people would be organized into age groups.
-- **Habit:** This app could be used as often or unoften as the user wanted depending on how deep their social life is, and what exactly they're looking for.
-- **Scope:** First we would start with pairing people based on music taste, then perhaps this could evolve into a music sharing application as well to broaden its usage. Large potential for use with spotify, apple music, or other music streaming applications.
+- **Habit:** This app could be used anytime a user is needs an option, or if they want to assist anyone else make a decision.
+- **Scope:** We will start with allowing users to create create a poll and share it with the entire Docchi community. In the future, we will let users create groups so that they can only get advice from certain people, categorize polls, and add augment reality features.
 
 ## Product Spec
 ### 1. User Stories (Required and Optional)
