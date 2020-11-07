@@ -7,7 +7,7 @@
 
 ## Overview
 ### Description
-Docchi is a voting app that lets users to create public polls. It will let users create quick large scale surveys and polls to make decisions. All votes on this platform will be anonymous.
+Docchi is a voting app that lets users to create public polls. It will let users create quick large scale surveys and polls to make decisions. All votes on our platform will be anonymous.
 
 ### App Evaluation
 - **Category:** Social Networking and Survey
