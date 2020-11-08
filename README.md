@@ -73,7 +73,7 @@ Optional:
 <img src="https://github.com/DocchiAndroid/Docchi/blob/main/wireframe.PNG" width=800><br>
 
 ### [BONUS] Digital Wireframes & Mockups
-<img src="https://github.com/DocchiAndroid/Docchi/blob/main/digitalwireframe.png" height=500 width=700>
+<img src="https://github.com/DocchiAndroid/Docchi/blob/main/digitalwireframe.png" width=500 >
 
 ### [BONUS] Interactive Prototype
-<img src="https://github.com/DocchiAndroid/Docchi/blob/main/DocchiDigitalWireframe1.gif" width=200>
+<img src="https://github.com/DocchiAndroid/Docchi/blob/main/DocchiDigitalWireframe1.gif" height=500>
