@@ -47,7 +47,7 @@ Docchi is a voting app that lets users to create public polls. It will let users
 *  Login Screen
    * User can login 
 * Register Screen
-   * User can create a account
+   * User can create an account
 * Home Timeline Screen
    * User can view their timeline
    * User can vote
