@@ -23,7 +23,7 @@ Docchi is a voting app that lets users to create public polls. It will let users
 **Required Must-have Stories**
 
 * User can login 
-* User can create a account
+* User can create an account
 * User can view their timeline
 * User can scroll through the posts (infinite scroll)
 * User can create a post
