@@ -82,7 +82,7 @@ Optional:
 * Settings -> Toggle settings
 
 ## Wireframes
-<img src="https://github.com/DocchiAndroid/Docchi/blob/main/WireFrameDrawing.jpg" width=800><br>
+<img src="https://github.com/DocchiAndroid/Docchi/blob/main/digitalwireframedrawing.png" width=800><br>
 
 ### [BONUS] Digital Wireframes & Mockups
 <img src="https://github.com/DocchiAndroid/Docchi/blob/main/Digital%20Wireframes.png" width=500 >
