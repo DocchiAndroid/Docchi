@@ -66,18 +66,19 @@ Docchi is a voting app that lets users to create public polls. It will let users
 
 **Tab Navigation** (Tab to Screen)
 
-* Music selection
+* Posts
+* New Post
 * Profile
-* Settings
+  * Settings
 
 Optional:
-* Music/Encounter Queue
-* Discover (Top Choices)
+* AR Camera
 
 **Flow Navigation** (Screen to Screen)
-* Forced Log-in -> Account creation if no log in is available
-* Music Selection (Or Queue if Optional) -> Jumps to Chat
-* Profile -> Text field to be modified. 
+* Log-in -> Account creation if no log in is available
+* Posts Timeline -> New Post
+* Posts Timeline -> Profile
+* Profile -> Settings. 
 * Settings -> Toggle settings
 
 ## Wireframes
