@@ -29,6 +29,7 @@ Docchi is a voting app that lets users to create public polls. It will let users
 * User can create a post
 * User can vote
 * User can view their own posts 
+* User can view profile details by clicking on profile picture.
 * User can change their personal information
 * User can view help screen
 * User can view about screen
@@ -56,6 +57,8 @@ Docchi is a voting app that lets users to create public polls. It will let users
    * User can create a post
 * Profile Screen 
    * User can view their own posts 
+* Profile Detail Screen
+   * User can view profile details by clicking on profile picture.
 * Settings Screen
    * User can change their personal information
    * User can view help screen
