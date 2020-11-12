@@ -9,8 +9,23 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
+        android:fontFamily="@font/dekko"
+        android:text="Docchi"
         android:textColor="#FFFFFF"
-        tools:layout_editor_absoluteX="141dp"
-        tools:layout_editor_absoluteY="184dp" />
+        android:textSize="60sp"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="112dp"
+        tools:layout_editor_absoluteY="123dp" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
+        tools:layout_editor_absoluteX="152dp"
+        tools:layout_editor_absoluteY="382dp"
+        tools:text="SIGN IN"
+        tools:ignore="MissingConstraints" />
 </androidx.constraintlayout.widget.ConstraintLayout>

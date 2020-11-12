@@ -10,7 +10,21 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"
+        android:textSize="16sp"
         android:textColor="#FFFFFF"
         tools:layout_editor_absoluteX="175dp"
-        tools:layout_editor_absoluteY="194dp" />
+        tools:layout_editor_absoluteY="194dp"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/dekko"
+        android:text="Welcome!"
+        android:textColor="#FFFFFF"
+        android:textSize="30sp"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="74dp"
+        tools:layout_editor_absoluteY="121dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
