@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Docchi</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="logging_in_please_wait">Logging in. Please Wait.</string>
 </resources>
