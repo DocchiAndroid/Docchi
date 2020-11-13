@@ -22,6 +22,7 @@ public class LoginActivity extends AppCompatActivity {
     private EditText etEmail;
     private EditText etUsername;
     private Button btnLogin;
+    private Button btnRegister;
     private AlertDialog alertDialog;
     private AlertDialog.Builder dialogBuilder;
 
@@ -38,6 +39,7 @@ public class LoginActivity extends AppCompatActivity {
         etEmail = findViewById(R.id.etLoginEmail);
         etUsername = findViewById(R.id.etLoginUsername);
         btnLogin = findViewById(R.id.btnLogin);
+        btnRegister = findViewById(R.id.btnRegister);
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -47,6 +49,14 @@ public class LoginActivity extends AppCompatActivity {
                 loginUser(email, username);
             }
         });
+
+      btnRegister.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+          Intent intent = new Intent(getApplicationContext(), SignUpActivity.class);
+          startActivity(intent);
+        }
+      });
     }
 
     private void loginUser(String email, String username) {
