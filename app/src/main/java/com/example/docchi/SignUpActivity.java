@@ -44,7 +44,7 @@ public class SignUpActivity extends AppCompatActivity {
         String username = etUsername.getText().toString();
         String password = etPassword.getText().toString();
 
-        userSignUp(firstName,lastName,email,username,password);
+        userSignUp(firstName, lastName, email, username, password);
 
 
       }
@@ -56,8 +56,9 @@ public class SignUpActivity extends AppCompatActivity {
     // store these values to parse
 
 
-            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-            startActivity(intent);
+    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+    startActivity(intent);
+    finish();
 
   }
 }

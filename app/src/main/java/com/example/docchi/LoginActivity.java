@@ -6,10 +6,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.parse.LogInCallback;
@@ -19,10 +19,10 @@ import com.parse.ParseUser;
 public class LoginActivity extends AppCompatActivity {
 
     private ActionBar actionBar;
-    private EditText etEmail;
     private EditText etUsername;
-    private Button btnLogin;
-    private Button btnRegister;
+    private EditText etPassword;
+    private TextView btnLogin;
+    private TextView btnSignup;
     private AlertDialog alertDialog;
     private AlertDialog.Builder dialogBuilder;
 
@@ -36,36 +36,36 @@ public class LoginActivity extends AppCompatActivity {
             actionBar.hide();
         }
 
-        etEmail = findViewById(R.id.etLoginEmail);
         etUsername = findViewById(R.id.etLoginUsername);
+        etPassword = findViewById(R.id.etLoginPassword);
         btnLogin = findViewById(R.id.btnLogin);
-        btnRegister = findViewById(R.id.btnRegister);
+        btnSignup = findViewById(R.id.btnSignUpLoginAct);
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String email = etEmail.getText().toString();
                 String username = etUsername.getText().toString();
-                loginUser(email, username);
+                String password = etPassword.getText().toString();
+                loginUser(username, password);
             }
         });
 
-      btnRegister.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-          Intent intent = new Intent(getApplicationContext(), SignUpActivity.class);
-          startActivity(intent);
-        }
-      });
+        btnSignup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), SignUpActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
-    private void loginUser(String email, String username) {
-        if(email.isEmpty() || username.isEmpty()){
+    private void loginUser(String username, String password) {
+        if (username.isEmpty() || password.isEmpty()) {
             Toast.makeText(LoginActivity.this, "Username or Password cannot be empty", Toast.LENGTH_SHORT).show();
             return;
         }
         showDialogProgressBar();
-        ParseUser.logInInBackground(email, username, new LogInCallback() {
+        ParseUser.logInInBackground(username, password, new LogInCallback() {
             @Override
             public void done(ParseUser user, ParseException e) {
                 alertDialog.dismiss();

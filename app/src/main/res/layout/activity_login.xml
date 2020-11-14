@@ -4,14 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#31BFDB">
+    android:background="#31BFDB"
+    tools:context=".LoginActivity">
+
 
     <LinearLayout
         android:id="@+id/layoutLoginName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@+id/layoutLoginEditText"
-        android:layout_marginBottom="10dp"
         android:orientation="vertical">
 
         <TextView
@@ -40,53 +41,71 @@
 
     </LinearLayout>
 
+
     <LinearLayout
         android:id="@+id/layoutLoginEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="20dp"
         android:orientation="vertical">
 
         <EditText
-            android:id="@+id/etLoginEmail"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
+            android:id="@+id/etLoginUsername"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center_horizontal"
+            android:autofillHints=""
+            android:background="@drawable/et_rounded"
             android:hint="@string/email"
             android:inputType="textEmailAddress"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
             android:textColor="#FFFFFF"
-            tools:layout_editor_absoluteY="322dp"
-            tools:text="Email"
-            android:autofillHints="" />
+            tools:text="Email" />
+
 
         <EditText
-            android:id="@+id/etLoginUsername"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:id="@+id/etLoginPassword"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp"
             android:autofillHints=""
-            android:ems="10"
+            android:background="@drawable/et_rounded"
             android:hint="@string/password"
             android:inputType="textPassword"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
             android:textColor="#FFFFFF"
-            tools:layout_editor_absoluteX="91dp"
-            tools:layout_editor_absoluteY="397dp"
             tools:text="Password" />
     </LinearLayout>
 
-    <Button
+    <TextView
         android:id="@+id/btnLogin"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
         android:layout_below="@+id/layoutLoginEditText"
-        android:layout_marginTop="10dp"
-        android:text="@string/login" />
-    <Button
-            android:id="@+id/btnRegister"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/btnLogin"
-            android:layout_marginTop="10dp"
-            android:text="@string/signUp" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/btn_rounded"
+        android:clickable="true"
+        android:gravity="center"
+        android:text="@string/login"
+        android:textColor="@color/white"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/btnSignUpLoginAct"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/btnLogin"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/btn_rounded"
+        android:gravity="center"
+        android:text="@string/signUp"
+        android:textColor="@color/white"
+        android:textSize="20sp" />
 
 </RelativeLayout>
