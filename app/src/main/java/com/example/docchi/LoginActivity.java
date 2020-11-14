@@ -31,6 +31,8 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        checkLogin();
+
         actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.hide();
@@ -57,6 +59,14 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    private void checkLogin() {
+        if (ParseUser.getCurrentUser() != null) {
+            Intent i = new Intent(this, MainActivity.class);
+            startActivity(i);
+            finish();
+        }
     }
 
     private void loginUser(String username, String password) {
