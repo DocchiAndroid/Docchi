@@ -31,18 +31,22 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        //if logged in, go to main activity
         checkLogin();
 
+        //hide actionbar
         actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.hide();
         }
 
+        //find views
         etUsername = findViewById(R.id.etLoginUsername);
         etPassword = findViewById(R.id.etLoginPassword);
         btnLogin = findViewById(R.id.btnLogin);
         btnSignup = findViewById(R.id.btnSignUpLoginAct);
 
+        //Login button click listener
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -52,6 +56,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+        //Signup button click listener
         btnSignup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -70,20 +75,24 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void loginUser(String username, String password) {
+
         if (username.isEmpty() || password.isEmpty()) {
             Toast.makeText(LoginActivity.this, "Username or Password cannot be empty", Toast.LENGTH_SHORT).show();
             return;
         }
-        showDialogProgressBar();
+
+        showDialogProgressBar(); //show the progress dialog
         ParseUser.logInInBackground(username, password, new LogInCallback() {
             @Override
             public void done(ParseUser user, ParseException e) {
-                alertDialog.dismiss();
+                alertDialog.dismiss(); //login success/fail dismiss progress dialog
                 if (e != null) {
+                    //Login failed
                     Toast.makeText(LoginActivity.this, "Error Logging in, Try Again.", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                alertDialog.dismiss();
+
+                //Login success, start main activity
                 Intent i = new Intent(LoginActivity.this, MainActivity.class);
                 startActivity(i);
                 finish();
