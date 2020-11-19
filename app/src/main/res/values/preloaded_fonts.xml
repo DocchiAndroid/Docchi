@@ -2,6 +2,7 @@
 <resources>
     <array name="preloaded_fonts" translatable="false">
         <item>@font/alef</item>
+        <item>@font/atma_semibold</item>
         <item>@font/dekko</item>
         <item>@font/fjalla_one</item>
         <item>@font/fredoka_one</item>
