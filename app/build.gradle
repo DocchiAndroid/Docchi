@@ -41,6 +41,10 @@ dependencies {
     implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.19'
     implementation 'com.jaeger.statusbarutil:library:1.4.0'
 
+    implementation "com.github.parse-community.Parse-SDK-Android:parse:1.18.5"
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.8.1'
+}
+
 
 
 }
@@ -50,3 +54,4 @@ repositories {
     jcenter()
     maven { url 'https://jitpack.io' }
 }
+
