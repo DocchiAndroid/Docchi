@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#31BFDB"
-    tools:context=".LoginActivity">
+    tools:context=".LoginActivity"
+    android:background="@drawable/gradient">
 
 
     <LinearLayout
@@ -15,30 +15,30 @@
         android:layout_above="@+id/layoutLoginEditText"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="match_parent"
+        <pl.droidsonroids.gif.GifImageView
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/dekko"
-            android:text="@string/app_name"
-            android:textAlignment="center"
-            android:textColor="#FFFFFF"
-            android:textSize="60sp"
-            tools:layout_editor_absoluteX="128dp"
-            tools:layout_editor_absoluteY="115dp" />
 
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="sans-serif"
-            android:text="@string/login"
-            android:textAlignment="center"
-            android:textColor="#FFFFFF"
-            android:textSize="24sp"
-            tools:layout_editor_absoluteX="163dp"
-            tools:layout_editor_absoluteY="250dp" />
+            />
 
+
+        <EditText
+            android:id="@+id/etLoginUsername"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center_horizontal"
+            android:autofillHints=""
+            android:background="@drawable/et_rounded"
+            android:backgroundTint="#4BFFFFFF"
+            android:drawableLeft="@drawable/ic_outline_email_24"
+            android:drawablePadding="15dp"
+            android:drawableTint="#FFFFFF"
+            android:hint="@string/email"
+            android:inputType="textEmailAddress"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:textColorHint="#FFFFFF"
+            tools:text="Email Address" />
     </LinearLayout>
 
 
@@ -50,54 +50,31 @@
         android:layout_marginTop="20dp"
         android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/etLoginUsername"
-            android:layout_width="300dp"
-            android:layout_height="50dp"
-            android:layout_gravity="center_horizontal"
-            android:autofillHints=""
-            android:background="@drawable/et_rounded"
-            android:hint="@string/email"
-            android:inputType="textEmailAddress"
-            android:paddingStart="20dp"
-            android:paddingEnd="20dp"
-            android:textColor="#FFFFFF"
-            tools:text="Email" />
-
 
         <EditText
             android:id="@+id/etLoginPassword"
             android:layout_width="300dp"
             android:layout_height="50dp"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:autofillHints=""
             android:background="@drawable/et_rounded"
+            android:backgroundTint="#4DFFFFFF"
+            android:drawableLeft="@drawable/ic_baseline_person_outline_24"
+            android:drawablePadding="10dp"
             android:hint="@string/password"
             android:inputType="textPassword"
             android:paddingStart="20dp"
             android:paddingEnd="20dp"
             android:textColor="#FFFFFF"
+            android:textColorHint="#FFFFFF"
             tools:text="Password" />
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/btnLogin"
-        android:layout_width="150dp"
-        android:layout_height="50dp"
-        android:layout_below="@+id/layoutLoginEditText"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/btn_rounded"
-        android:clickable="true"
-        android:gravity="center"
-        android:text="@string/login"
-        android:textColor="@color/white"
-        android:textSize="20sp" />
 
     <TextView
         android:id="@+id/btnSignUpLoginAct"
-        android:layout_width="150dp"
+        android:layout_width="300dp"
         android:layout_height="50dp"
         android:layout_below="@+id/btnLogin"
         android:layout_centerHorizontal="true"
@@ -107,5 +84,72 @@
         android:text="@string/signUp"
         android:textColor="@color/white"
         android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/btnLogin"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/layoutLoginEditText"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="71dp"
+        android:background="@drawable/btn_rounded"
+        android:clickable="true"
+        android:gravity="center"
+        android:text="@string/login"
+        android:textColor="@color/white"
+        android:textSize="20sp" />
+
+
+    <!--    <ImageView-->
+    <!--        android:id="@+id/imageView2"-->
+    <!--        android:layout_width="255dp"-->
+    <!--        android:layout_height="211dp"-->
+    <!--        android:layout_above="@+id/layoutLoginName"-->
+    <!--        android:layout_alignParentStart="true"-->
+    <!--        android:layout_alignParentTop="true"-->
+    <!--        android:layout_centerHorizontal="true"-->
+    <!--        android:layout_marginStart="76dp"-->
+    <!--        android:layout_marginTop="32dp"-->
+    <!--        android:layout_marginBottom="23dp"-->
+    <!--        android:forceHasOverlappingRendering="false"-->
+    <!--        app:srcCompat="@drawable/circle" />-->
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="100sp"
+        android:layout_height="100sp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="6dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="-7dp"
+        android:fontFamily="@font/dekko"
+        android:text="@string/app_name"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textSize="90sp"
+        tools:layout_editor_absoluteX="128dp"
+        tools:layout_editor_absoluteY="115dp" />
+
+    <pl.droidsonroids.gif.GifImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="305dp"
+        android:layout_marginTop="27dp"
+        android:layout_marginEnd="7dp"
+        android:src="@drawable/vote2" />
+
+    <!--    <pl.droidsonroids.gif.GifImageView-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_above="@+id/layoutLoginName"-->
+    <!--        android:layout_alignParentEnd="true"-->
+    <!--        android:layout_marginBottom="-1dp"-->
+    <!--        android:src="@drawable/kira" />-->
 
 </RelativeLayout>
