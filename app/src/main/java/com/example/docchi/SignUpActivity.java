@@ -55,6 +55,7 @@ public class SignUpActivity extends AppCompatActivity {
         // store these values to parse
 
 
+
         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
         startActivity(intent);
         finish();
