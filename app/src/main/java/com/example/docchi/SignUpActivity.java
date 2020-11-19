@@ -55,24 +55,24 @@ public class SignUpActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                String firstName = etFirstName.getText().toString();
-                String lastName = etLastName.getText().toString();
+                String firstname = etFirstName.getText().toString();
+                String lastname = etLastName.getText().toString();
                 String email = etEmail.getText().toString();
                 String username = etUsername.getText().toString();
                 String password = etPassword.getText().toString();
-//        userSignup(firstName, lastName,email,username,password);
+
 
 
                 //Creating a new user account is the process of constructing a ParseUser object and calling signUpInBackground:
-                if (firstName.isEmpty() || lastName.isEmpty() || email.isEmpty() || username.isEmpty() || password.isEmpty()) {
+                if (firstname.isEmpty() || lastname.isEmpty() || email.isEmpty() || username.isEmpty() || password.isEmpty()) {
                     Toast.makeText(SignUpActivity.this, "Field cannot be empty", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
 
                 ParseUser user = new ParseUser();
-                user.put("firstName", etFirstName.getText().toString());
-                user.put("lastName", etLastName.getText().toString());
+                user.put("firstname", etFirstName.getText().toString());
+                user.put("lastname", etLastName.getText().toString());
                 user.setEmail(etEmail.getText().toString());
                 user.setUsername(etUsername.getText().toString());
                 user.setPassword(etPassword.getText().toString());
@@ -83,7 +83,7 @@ public class SignUpActivity extends AppCompatActivity {
                     public void done(ParseException e) {
                         if (e.getMessage()  == null) {
                             Log.d("SignUpActivity", "successfully registered");
-                            userSignup(firstName, lastName, email, username, password);
+
 
 
                         } else {
@@ -99,8 +99,8 @@ public class SignUpActivity extends AppCompatActivity {
                 });
             }
 
-            private void userSignup(String firstName, String lastName, String username, String email, String password) {
-                Log.i(TAG, "create account" + firstName + lastName + username + email + password);
+            private void userSignup(String firstname, String lastname, String username, String email, String password) {
+                Log.i(TAG, "create account" + firstname + lastname + username + email + password);
 
 //                      Intent intent = new Intent(getApplicationContext(), MainActivity.class);
 //            startActivity(intent);
