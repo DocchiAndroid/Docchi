@@ -131,3 +131,24 @@ Optional:
    | voteCount    | Number   | number of votes for the post |
    | createdAt     | DateTime | date when post is created (default field) |
    | updatedAt     | DateTime | date when post is last updated (default field) |
+   
+   ### Networking
+#### List of network requests by screen
+   - Login Screen
+      - (POST) Username and password
+      - (Read/GET) User authentication token
+   - Signup Screen
+      - (Create/Post) Create new user object
+   - Home Feed Screen
+      - (Read/GET) Query all recent posts
+      - (Create/POST) Create a new vote on a post
+      - (Delete) Delete existing vote
+   - Create Post Screen
+      - (Create/POST) Create a new post object
+   - Profile Screen
+      - (Read/GET) Query logged in user object
+      - (Read/Get) Query all posts where user is the author
+      - (Update/PUT) Update username, password
+      - (Update/PUT) Update user profile image
+      - 
+
