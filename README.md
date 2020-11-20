@@ -132,20 +132,69 @@ Optional:
    | createdAt     | DateTime | date when post is created (default field) |
    | updatedAt     | DateTime | date when post is last updated (default field) |
    
-   ### Networking
-#### List of network requests by screen
+
+### Networking
+   #### List of network requests by screen
    - Login Screen
       - (POST) Username and password
       - (Read/GET) User authentication token
+```java
+ParseUser.logInInBackground(username, password, new LogInCallback() {
+    @Override
+    public void done(ParseUser user, ParseException e) {
+        if (e != null) {
+            //Login failed
+            return;
+        }
+        //Login success, start main activity
+    }
+});
+```
    - Signup Screen
       - (Create/Post) Create new user object
+```java
+user.signUpInBackground(new SignUpCallback() {
+    @Override
+    public void done(ParseException e) {
+        if (e.getMessage()  == null) {
+            //signup success
+        } else {
+            //Sign up didn't succeed. Look at the ParseException
+        }
+    }
+});
+```
    - Home Feed Screen
       - (Read/GET) Query all recent posts
       - (Create/POST) Create a new vote on a post
       - (Delete) Delete existing vote
-   - Create Post Screen
-      - (Create/POST) Create a new post object
-   - Profile Screen
+```java
+private void queryPosts() {
+    ParseQuery<Post> query = ParseQuery.getQuery(Post.class);
+    try {
+        posts = query.find();
+    } catch (ParseException e) {
+        e.printStackTrace();
+    }
+}
+```
+- Create Post Screen
+     - (Create/POST) Create a new post object
+```java
+private void savePost() {
+    Post post = new Post();
+    post.saveInBackground(new SaveCallback() {
+        @Override
+        public void done(ParseException e) {
+            if (e != null) {
+                //error
+            }
+            //success
+        }
+    });
+}
+```
+ - Profile Screen
       - (Read/GET) Query logged in user object
       - (Read/Get) Query all posts where user is the author
       - (Update/PUT) Update username, password
