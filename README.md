@@ -100,9 +100,8 @@ Optional:
    | objectId      | String   | unique id for the user post (default field) |
    | user	   | Pointer to User| image author |
    | image         | File     | image that user posts |
-
    | description   | String   | image caption by author |
-   | voteCount    | Number   | number of votes for the post |
+   | voteCount     | Number   | number of votes for the post |
    | createdAt     | DateTime | date when post is created (default field) |
    | updatedAt     | DateTime | date when post is last updated (default field) |
 
