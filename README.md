@@ -150,5 +150,3 @@ Optional:
       - (Read/Get) Query all posts where user is the author
       - (Update/PUT) Update username, password
       - (Update/PUT) Update user profile image
-      - 
-
