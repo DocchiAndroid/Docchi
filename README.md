@@ -177,6 +177,21 @@ private void queryPosts() {
         e.printStackTrace();
     }
 }
+public void increaseVote() {
+    ParseQuery<ParseObject> query = ParseQuery.getQuery("Post");
+
+    // Retrieve the object by id
+    query.getInBackground("<PARSE_OBJECT_ID>", new GetCallback<ParseObject>() {
+        public void done(ParseObject post, ParseException e) {
+            if (e == null) {
+                // Update the fields we want to
+                post.put("votes", entity.getVotes()+1);
+                // All other fields will remain the same
+                post.saveInBackground();
+            }
+        }
+    });
+}
 ```
 - Create Post Screen
      - (Create/POST) Create a new post object
@@ -195,7 +210,34 @@ private void savePost() {
 }
 ```
  - Profile Screen
-      - (Read/GET) Query logged in user object
       - (Read/Get) Query all posts where user is the author
       - (Update/PUT) Update username, password
       - (Update/PUT) Update user profile image
+```java
+private void queryPosts() {
+    ParseQuery<Post> query = ParseQuery.getQuery(Post.class);
+    query.include(Post.KEY_USER);
+    query.whereEqualTo("user", ParseUser.getCurrentUser());
+    query.setLimit(20);
+    try {
+        posts.addAll(query.find());
+    } catch (ParseException e) {
+        e.printStackTrace();
+    }
+}
+public void updateUser() {
+    ParseUser currentUser = ParseUser.getCurrentUser();
+    if (currentUser != null) {
+        currentUser.put("username", "newUsername");
+        currentUser.put("password", "newPassword");
+        currentUser.put("image", new ParseFile());
+        //the SaveCallback is totally optional!
+        currentUser.saveInBackground(new SaveCallback() {
+            @Override
+            public void done(ParseException e) {
+                // Here you can handle errors, if thrown. Otherwise, "e" should be null
+            }
+        });
+    }
+}
+```
