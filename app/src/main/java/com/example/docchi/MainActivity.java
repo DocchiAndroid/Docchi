@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        btnLogOut = findViewById(R.id.logout);
+        btnLogOut = findViewById(R.id.btnLogOut);
         // if not logged in, go to Login Activity
         checkLogin();
 
