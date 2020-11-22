@@ -1,48 +1,59 @@
 package com.example.docchi;
 
+import android.os.Bundle;
+import android.view.MenuItem;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.Toast;
-
-import com.parse.ParseUser;
+import com.example.docchi.fragments.CreateVoteFragment;
+import com.example.docchi.fragments.ProfileFragment;
+import com.example.docchi.fragments.TimelineFragment;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
-
-    public Button btnLogOut;
+    final FragmentManager fragmentManager = getSupportFragmentManager();
+    BottomNavigationView bottomNavigationView;
+    ActionBar actionBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        btnLogOut = findViewById(R.id.btnLogOut);
-        // if not logged in, go to Login Activity
-        checkLogin();
+        actionBar = getSupportActionBar();
+        actionBar.hide();
 
-        btnLogOut.setOnClickListener(new View.OnClickListener() {
+        bottomNavigationView = findViewById(R.id.bottomNavigation);
+
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
-            public void onClick(View v) {
-                ParseUser.logOut();
-                checkLogin();
-                Toast.makeText(MainActivity.this, "", Toast.LENGTH_SHORT).show();
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                Fragment fragment;
+                switch (menuItem.getItemId()) {
+                    case R.id.action_home:
+                        fragment = new TimelineFragment();
+                        break;
+                    case R.id.action_vote:
+                        fragment = new CreateVoteFragment();
+                        break;
+                    case R.id.action_profile:
 
+                        fragment = new ProfileFragment();
+                        break;
+                    default:
+                        return true;
+                }
+
+                fragmentManager.beginTransaction().replace(R.id.flContainer, fragment).commit();
+                return true;
             }
         });
 
+        bottomNavigationView.setSelectedItemId(R.id.action_home);
 
     }
-
-    private void checkLogin() {
-        if (ParseUser.getCurrentUser() == null) {
-            Intent i = new Intent(this, LoginActivity.class);
-            startActivity(i);
-            finish();
-        }
-    }
-
 }
