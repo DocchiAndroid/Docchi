@@ -11,6 +11,9 @@ public class DocchiApplication extends Application {
     public void onCreate() {
         super.onCreate();
 
+        // Register your parse models
+        ParseObject.registerSubclass(Post.class);
+
         Parse.initialize(new Parse.Configuration.Builder(this)
                 .applicationId("M0vZHfDXtFzMQng8gZEQdDa4OthaJenROvGoUmR5")
                 .clientKey("V5gos2kxi7uJr7lU01Yp7mqAKWTxMGrVxR5Nz7Lq")
