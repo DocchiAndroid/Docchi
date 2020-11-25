@@ -1,7 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="back4app_server_url">https://parseapi.back4app.com/</string>
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar"></style>
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+
+    </style>
+
+
+
+    <!-- Toolbar title font type and color-->
+    <style name="ToolbarThemeOverlay" parent="@style/ThemeOverlay.AppCompat.Light">
+        <item name="android:fontFamily">@font/dekko</item>
+        <item name="android:textColorPrimary">@color/blue</item>
+    </style>
+
+    <!-- Toolbar title font size and style-->
+    <style name="Toolbar.TitleText" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <item name="android:textSize">20sp</item>
+    </style>
+
 
     <!-- Change the following strings as required -->
     <string name="back4app_app_id">M0vZHfDXtFzMQng8gZEQdDa4OthaJenROvGoUmR5</string>
