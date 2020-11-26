@@ -47,7 +47,7 @@ public class ProfileFragment extends Fragment {
 
   query.findInBackground(new FindCallback<Post>(){
     @Override
-    public void done (List < Post > posts, ParseException e){
+    public void done (List <Post> posts, ParseException e){
 //
 //    allPosts.addAll(posts);
 //    adapter.notifyDataSetChanged();
