@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient"
+    android:orientation="vertical"
+    tools:context=".fragments.CreatePollFragment">
+
+    <LinearLayout
+        android:id="@+id/btnLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/btnCaptureImageCreatePoll"
+            android:layout_width="match_parent"
+            android:layout_height="75dp"
+            android:background="#27FFFFFF"
+            android:src="@drawable/ic_baseline_photo_camera_24" />
+
+        <ImageButton
+            android:id="@+id/btnSelectImageCreatePoll"
+            android:layout_width="match_parent"
+            android:layout_height="75dp"
+            android:background="#27FFFFFF"
+            android:src="@android:drawable/ic_menu_gallery" />
+    </LinearLayout>
+
+    <!-- viewpager to show images -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/etDescriptionCreatePoll"
+        android:layout_below="@+id/btnLayout"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:orientation="horizontal">
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/viewPagerCreatePoll"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="5dp"
+            android:scrollbarStyle="insideOverlay"
+            android:scrollbars="horizontal">
+
+        </androidx.viewpager.widget.ViewPager>
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/etDescriptionCreatePoll"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_above="@+id/btnPostCreatePoll"
+        android:layout_marginBottom="10dp"
+        android:autofillHints=""
+        android:backgroundTint="#4BFFFFFF"
+        android:drawablePadding="15dp"
+        android:drawableTint="#FFFFFF"
+        android:ems="10"
+        android:hint="Description"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#FFFFFF" />
+
+    <TextView
+        android:id="@+id/btnPostCreatePoll"
+        android:layout_width="350dp"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/btn_rounded"
+        android:clickable="true"
+        android:gravity="center"
+        android:text="Post"
+        android:textColor="@color/white"
+        android:textSize="20sp" />
+
+</RelativeLayout>

@@ -9,9 +9,9 @@
         app:showAsAction="always" />
 
     <item
-        android:id="@+id/action_vote"
+        android:id="@+id/action_newPoll"
         android:icon="@drawable/ic_baseline_create_24"
-        android:title="Vote"
+        android:title="New Poll"
         app:showAsAction="always" />
 
     <item
