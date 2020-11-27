@@ -13,7 +13,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -21,12 +20,15 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
 import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
+import androidx.viewpager.widget.ViewPager;
 
 import com.example.docchi.MainActivity;
 import com.example.docchi.Post;
 import com.example.docchi.R;
+import com.example.docchi.adapters.ViewPagerAdapter;
 import com.parse.ParseException;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
@@ -46,14 +48,17 @@ public class CreatePollFragment extends Fragment {
     public static final String TAG = "CreatePollFragment";
     public static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 42;
     public final static int PICK_PHOTO_CODE = 328;
-    private EditText etDescription;
     private ImageButton btnCaptureImage;
     private ImageButton btnSelectImage;
-    private LinearLayout imageLayout;
-    private ProgressBar pbProgress;
+    private ViewPager viewPager;
+    private ViewPagerAdapter viewPagerAdapter;
+    private EditText etDescription;
     private TextView btnPost;
     private ArrayList<File> photoFiles;
     public String photoFileName = "docchi_img";
+    private AlertDialog alertDialog;
+    private AlertDialog.Builder dialogBuilder;
+
 
     public CreatePollFragment() {
         // Required empty public constructor
@@ -74,11 +79,14 @@ public class CreatePollFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         btnCaptureImage = view.findViewById(R.id.btnCaptureImageCreatePoll);
         btnSelectImage = view.findViewById(R.id.btnSelectImageCreatePoll);
-        imageLayout = view.findViewById(R.id.imageLayoutCreatePost);
+        viewPager = view.findViewById(R.id.viewPagerCreatePoll);
         etDescription = view.findViewById(R.id.etDescriptionCreatePoll);
         btnPost = view.findViewById(R.id.btnPostCreatePoll);
-        pbProgress = view.findViewById(R.id.pbProgress);
         photoFiles = new ArrayList<>();
+
+
+        viewPagerAdapter = new ViewPagerAdapter((MainActivity) getContext(), photoFiles);
+        viewPager.setAdapter(viewPagerAdapter);
 
         //resize certain UI components
         fixUI();
@@ -99,7 +107,7 @@ public class CreatePollFragment extends Fragment {
             }
         });
 
-        //submit
+        //post
         btnPost.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -119,7 +127,7 @@ public class CreatePollFragment extends Fragment {
     }
 
     private void savePost(String description, ParseUser currentUser, ArrayList<File> photoFiles) {
-        pbProgress.setVisibility(ProgressBar.VISIBLE);
+        showDialogProgressBar();
         Post post = new Post();
         post.setDescription(description);
         post.setUser(currentUser);
@@ -131,11 +139,10 @@ public class CreatePollFragment extends Fragment {
                     Log.e(TAG, "Error while saving.....", e);
                     Toast.makeText(getContext(), "Error while posting", Toast.LENGTH_SHORT).show();
                 }
-                pbProgress.setVisibility(View.INVISIBLE);
+                alertDialog.dismiss();
                 ((MainActivity) getActivity()).setHome();
             }
         });
-
 
     }
 
@@ -185,6 +192,10 @@ public class CreatePollFragment extends Fragment {
                 // RESIZE BITMAP, see section below
                 // Load the taken image into a preview
                 //ivPostImage.setImageBitmap(takenImage);
+
+                //display the image on screen
+                viewPagerAdapter.notifyDataSetChanged();
+
             } else { // Result was a failure
                 Toast.makeText(getContext(), "Picture wasn't taken!", Toast.LENGTH_SHORT).show();
             }
@@ -196,6 +207,9 @@ public class CreatePollFragment extends Fragment {
             // Load the image located at photoUri into selectedImage
             File selectedImage = loadFromUri(photoUri);
             photoFiles.add(selectedImage);
+
+            //display the image on screen
+            viewPagerAdapter.notifyDataSetChanged();
 
             //Bitmap takenImage = BitmapFactory.decodeFile(selectedImage.getAbsolutePath());
             //ivPostImage.setImageBitmap(takenImage);
@@ -254,10 +268,10 @@ public class CreatePollFragment extends Fragment {
 
         actionBar.setTitle("New Poll");
 
-        //resize linear layout to hold images
-        ViewGroup.LayoutParams imageLayoutParams = imageLayout.getLayoutParams();
-        imageLayoutParams.height = imageLayoutParams.width;
-        imageLayout.setLayoutParams(imageLayoutParams);
+        //resize viewpager to hold images
+        ViewGroup.LayoutParams viewPagerParams = viewPager.getLayoutParams();
+        viewPagerParams.height = viewPagerParams.width;
+        viewPager.setLayoutParams(viewPagerParams);
 
         //resize camera button to cover half of screen width
         ViewGroup.LayoutParams btnCaptureImageLayoutParams = btnCaptureImage.getLayoutParams();
@@ -268,5 +282,18 @@ public class CreatePollFragment extends Fragment {
         ViewGroup.LayoutParams btnSelectImageLayoutParams = btnSelectImage.getLayoutParams();
         btnSelectImageLayoutParams.width = width / 2;
         btnSelectImage.setLayoutParams(btnSelectImageLayoutParams);
+    }
+
+    public void showDialogProgressBar() {
+
+        dialogBuilder = new AlertDialog.Builder((MainActivity) getContext());
+        dialogBuilder.setTitle("");
+        final View v = getLayoutInflater().inflate(R.layout.progress_dialog, null);
+        TextView t = v.findViewById(R.id.text_progress_bar);
+        t.setText("Uploading.....");
+        dialogBuilder.setView(v);
+        dialogBuilder.setCancelable(false);
+        alertDialog = dialogBuilder.create();
+        alertDialog.show();
     }
 }

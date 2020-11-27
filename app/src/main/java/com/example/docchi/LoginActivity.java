@@ -105,7 +105,7 @@ public class LoginActivity extends AppCompatActivity {
 
         dialogBuilder = new AlertDialog.Builder(LoginActivity.this);
         dialogBuilder.setTitle("");
-        final View v = getLayoutInflater().inflate(R.layout.progress_login, null);
+        final View v = getLayoutInflater().inflate(R.layout.progress_dialog, null);
         dialogBuilder.setView(v);
         dialogBuilder.setCancelable(false);
         alertDialog = dialogBuilder.create();
