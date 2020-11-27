@@ -1,28 +1,18 @@
 package com.example.docchi.fragments;
 
 import android.content.Intent;
-import android.database.Cursor;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.ImageDecoder;
 import android.icu.text.SimpleDateFormat;
 import android.net.Uri;
-import android.nfc.Tag;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
-import android.os.FileUtils;
 import android.provider.MediaStore;
-import android.text.Layout;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -31,16 +21,12 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.FileProvider;
-import androidx.core.*;
-import androidx.core.net.UriCompat;
 import androidx.fragment.app.Fragment;
 
-import com.example.docchi.Images;
 import com.example.docchi.MainActivity;
 import com.example.docchi.Post;
 import com.example.docchi.R;
 import com.parse.ParseException;
-import com.parse.ParseFile;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
@@ -48,17 +34,15 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Date;
 
 import static android.app.Activity.RESULT_OK;
 
 
-public class CreatePostFragment extends Fragment {
+public class CreatePollFragment extends Fragment {
 
-    public static final String TAG = "CreatePostFragment";
+    public static final String TAG = "CreatePollFragment";
     public static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 42;
     public final static int PICK_PHOTO_CODE = 328;
     private EditText etDescription;
@@ -66,11 +50,11 @@ public class CreatePostFragment extends Fragment {
     private ImageButton btnSelectImage;
     private LinearLayout imageLayout;
     private ProgressBar pbProgress;
-    private TextView btnSubmit;
+    private TextView btnPost;
     private ArrayList<File> photoFiles;
     public String photoFileName = "docchi_img";
 
-    public CreatePostFragment() {
+    public CreatePollFragment() {
         // Required empty public constructor
     }
 
@@ -78,7 +62,7 @@ public class CreatePostFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_create_post, container, false);
+        return inflater.inflate(R.layout.fragment_create_poll, container, false);
     }
 
 
@@ -87,11 +71,11 @@ public class CreatePostFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        btnCaptureImage = view.findViewById(R.id.btnCaptureImageCreatePost);
-        btnSelectImage = view.findViewById(R.id.btnSelectImageCreatePost);
+        btnCaptureImage = view.findViewById(R.id.btnCaptureImageCreatePoll);
+        btnSelectImage = view.findViewById(R.id.btnSelectImageCreatePoll);
         imageLayout = view.findViewById(R.id.imageLayoutCreatePost);
-        etDescription = view.findViewById(R.id.etDescription);
-        btnSubmit = view.findViewById(R.id.btnSubmit);
+        etDescription = view.findViewById(R.id.etDescriptionCreatePoll);
+        btnPost = view.findViewById(R.id.btnPostCreatePoll);
         pbProgress = view.findViewById(R.id.pbProgress);
         photoFiles = new ArrayList<>();
 
@@ -115,7 +99,7 @@ public class CreatePostFragment extends Fragment {
         });
 
         //submit
-        btnSubmit.setOnClickListener(new View.OnClickListener() {
+        btnPost.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String description = etDescription.getText().toString();

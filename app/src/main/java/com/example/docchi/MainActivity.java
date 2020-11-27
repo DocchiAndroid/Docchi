@@ -8,7 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
-import com.example.docchi.fragments.CreatePostFragment;
+import com.example.docchi.fragments.CreatePollFragment;
 import com.example.docchi.fragments.ProfileFragment;
 import com.example.docchi.fragments.TimelineFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -36,8 +36,8 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.action_home:
                         fragment = new TimelineFragment();
                         break;
-                    case R.id.action_vote:
-                        fragment = new CreatePostFragment();
+                    case R.id.action_newPoll:
+                        fragment = new CreatePollFragment();
                         break;
                     case R.id.action_profile:
 

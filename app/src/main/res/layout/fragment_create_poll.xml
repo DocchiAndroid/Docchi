@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/gradient"
     android:orientation="vertical"
-    tools:context=".fragments.CreatePostFragment">
+    tools:context=".fragments.CreatePollFragment">
 
     <LinearLayout
         android:id="@+id/btnLayout"
@@ -15,14 +15,14 @@
         android:orientation="horizontal">
 
         <ImageButton
-            android:id="@+id/btnCaptureImageCreatePost"
+            android:id="@+id/btnCaptureImageCreatePoll"
             android:layout_width="match_parent"
             android:layout_height="75dp"
             android:background="#27FFFFFF"
             android:src="@drawable/ic_baseline_photo_camera_24" />
 
         <ImageButton
-            android:id="@+id/btnSelectImageCreatePost"
+            android:id="@+id/btnSelectImageCreatePoll"
             android:layout_width="match_parent"
             android:layout_height="75dp"
             android:background="#27FFFFFF"
@@ -46,10 +46,10 @@
     </LinearLayout>
 
     <EditText
-        android:id="@+id/etDescription"
+        android:id="@+id/etDescriptionCreatePoll"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_above="@+id/btnSubmit"
+        android:layout_above="@+id/btnPostCreatePoll"
         android:layout_marginBottom="10dp"
         android:autofillHints=""
         android:backgroundTint="#4BFFFFFF"
@@ -67,13 +67,13 @@
         style="?android:attr/progressBarStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/etDescription"
+        android:layout_below="@+id/etDescriptionCreatePoll"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="5dp"
         android:visibility="invisible" />
 
     <TextView
-        android:id="@+id/btnSubmit"
+        android:id="@+id/btnPostCreatePoll"
         android:layout_width="350dp"
         android:layout_height="50dp"
         android:layout_alignParentBottom="true"
@@ -81,7 +81,7 @@
         android:background="@drawable/btn_rounded"
         android:clickable="true"
         android:gravity="center"
-        android:text="Submit"
+        android:text="Post"
         android:textColor="@color/white"
         android:textSize="20sp" />
 

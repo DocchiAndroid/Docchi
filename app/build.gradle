@@ -49,6 +49,11 @@ dependencies {
     implementation "androidx.appcompat:appcompat:${appCompatVersion}"
     implementation "com.google.android.material:material:${designSupportVersion}"
     implementation "androidx.recyclerview:recyclerview:${recyclerViewVersion}"
+    implementation 'org.apache.directory.studio:org.apache.commons.io:2.4'
+
+
+
+
 
 
 }
