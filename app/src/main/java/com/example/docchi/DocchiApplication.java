@@ -13,6 +13,7 @@ public class DocchiApplication extends Application {
 
         // Register your parse models
         ParseObject.registerSubclass(Post.class);
+        ParseObject.registerSubclass(Images.class);
 
         Parse.initialize(new Parse.Configuration.Builder(this)
                 .applicationId("M0vZHfDXtFzMQng8gZEQdDa4OthaJenROvGoUmR5")

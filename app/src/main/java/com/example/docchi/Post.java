@@ -1,15 +1,26 @@
 package com.example.docchi;
 
+import android.util.Log;
+import android.widget.ProgressBar;
+import android.widget.Toast;
+
 import com.parse.ParseClassName;
+import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.ParseObject;
 import com.parse.ParseUser;
+import com.parse.SaveCallback;
+
+import java.io.File;
+import java.util.ArrayList;
+
 
 @ParseClassName("Post")
 public class Post extends ParseObject {
 
     public static final String KEY_DESCRIPTION = "description";
     public static final String KEY_IMAGE = "image";
+    public static final String KEY_IMAGES = "images";
     public static final String KEY_USER = "user";
     public static final String KEY_CREATED_KEY = "createdAt";
 
@@ -28,7 +39,20 @@ public class Post extends ParseObject {
 
     public void setImage(ParseFile parseFile){
         put(KEY_IMAGE, parseFile);
+    }
 
+    public void setImages(ArrayList<File> imageList){
+        Images images= new Images();
+        images.setImages(imageList);
+        images.saveInBackground(new SaveCallback() {
+            @Override
+            public void done(ParseException e) {
+                if (e != null) {
+                    Log.e("setImages", "Error while saving. images....", e);
+                }
+            }
+        });
+        put(KEY_IMAGES, images);
     }
 
     public ParseUser getUser() {

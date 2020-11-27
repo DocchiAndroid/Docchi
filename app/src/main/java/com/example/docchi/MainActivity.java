@@ -4,12 +4,11 @@ import android.os.Bundle;
 import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
-import com.example.docchi.fragments.CreateVoteFragment;
+import com.example.docchi.fragments.CreatePostFragment;
 import com.example.docchi.fragments.ProfileFragment;
 import com.example.docchi.fragments.TimelineFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -38,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
                         fragment = new TimelineFragment();
                         break;
                     case R.id.action_vote:
-                        fragment = new CreateVoteFragment();
+                        fragment = new CreatePostFragment();
                         break;
                     case R.id.action_profile:
 
@@ -55,5 +54,9 @@ public class MainActivity extends AppCompatActivity {
 
         bottomNavigationView.setSelectedItemId(R.id.action_home);
 
+    }
+
+    public void setHome(){
+        bottomNavigationView.setSelectedItemId(R.id.action_home);
     }
 }
