@@ -30,4 +30,15 @@ public class Images extends ParseObject {
         if (nImages == 5) put(KEY_IMAGE4, new ParseFile(files.get(4)));
 
     }
+
+    public ArrayList<ParseFile> getImages(){
+        int nImages = getInt(KEY_NUMBER_OF_IMAGES);
+        ArrayList<ParseFile> images = new ArrayList<>();
+        if (nImages >=1) images.add(getParseFile(KEY_IMAGE0));
+        if (nImages >= 2) images.add(getParseFile(KEY_IMAGE1));
+        if (nImages >= 3) images.add(getParseFile(KEY_IMAGE2));
+        if (nImages >= 4) images.add(getParseFile(KEY_IMAGE3));
+        if (nImages == 5) images.add(getParseFile(KEY_IMAGE4));
+        return images;
+    }
 }

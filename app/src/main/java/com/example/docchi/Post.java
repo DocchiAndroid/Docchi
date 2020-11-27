@@ -41,6 +41,11 @@ public class Post extends ParseObject {
         put(KEY_IMAGE, parseFile);
     }
 
+    public ArrayList<ParseFile> getImages(){
+        Images images = (Images) get(KEY_IMAGES);
+        return images.getImages();
+    }
+
     public void setImages(ArrayList<File> imageList){
         Images images= new Images();
         images.setImages(imageList);

@@ -20,6 +20,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
 import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
 
@@ -248,6 +249,10 @@ public class CreatePollFragment extends Fragment {
                 .getDefaultDisplay()
                 .getMetrics(displayMetrics);
         int width = displayMetrics.widthPixels;
+
+        ActionBar actionBar = ((MainActivity) getContext()).getSupportActionBar();
+
+        actionBar.setTitle("New Poll");
 
         //resize linear layout to hold images
         ViewGroup.LayoutParams imageLayoutParams = imageLayout.getLayoutParams();
