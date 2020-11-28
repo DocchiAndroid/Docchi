@@ -27,7 +27,7 @@ public class TimelineFragment extends Fragment {
 
   public static final String TAG = "PostFragment";
   private RecyclerView rvPosts;
-  private PostsAdapter adapter;
+  protected PostsAdapter adapter;
   protected List<Post> allPosts;
 
   ActionBar actionBar;
