@@ -99,7 +99,12 @@ public class CreatePollFragment extends Fragment {
         btnCaptureImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                launchCamera();
+                if(photoFiles.size()<5){
+                    launchCamera();
+                }
+                else{
+                    Toast.makeText(getContext(), "Cannot post more than 5 pictures in one post.",Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -107,7 +112,12 @@ public class CreatePollFragment extends Fragment {
         btnSelectImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                onPickPhoto(view);
+                if(photoFiles.size()<5){
+                    onPickPhoto(view);
+                }
+                else{
+                    Toast.makeText(getContext(), "Cannot post more than 5 pictures in one post.",Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -126,6 +136,7 @@ public class CreatePollFragment extends Fragment {
                 }
                 ParseUser currentUser = ParseUser.getCurrentUser();
                 savePost(description, currentUser, photoFiles);
+
             }
         });
     }
@@ -140,15 +151,14 @@ public class CreatePollFragment extends Fragment {
         post.saveInBackground(new SaveCallback() {
             @Override
             public void done(ParseException e) {
-                if (e != null) {
-                    Log.e(TAG, "Error while saving.....", e);
-                    Toast.makeText(getContext(), "Error while posting", Toast.LENGTH_SHORT).show();
+                if(e!=null){
+                    //if upload fails
+                    Toast.makeText(getContext(), "Error while uploading post. Try again later.",Toast.LENGTH_SHORT).show();
                 }
                 alertDialog.dismiss();
                 ((MainActivity) getActivity()).setHome();
             }
         });
-
     }
 
     //launch camera to take photo
