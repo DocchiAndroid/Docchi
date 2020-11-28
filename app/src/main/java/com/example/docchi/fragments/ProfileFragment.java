@@ -14,6 +14,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.docchi.LoginActivity;
+import com.example.docchi.MainActivity;
 import com.example.docchi.Post;
 import com.example.docchi.R;
 import com.parse.FindCallback;
@@ -83,6 +84,7 @@ public class ProfileFragment extends Fragment {
        if(ParseUser.getCurrentUser() == null){
             Intent i = new Intent(getActivity(), LoginActivity.class);
             startActivity(i);
+         ((MainActivity) getContext()).finish();
         }
     }
 
