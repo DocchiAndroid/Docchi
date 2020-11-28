@@ -38,8 +38,6 @@ public class TimelineFragment extends Fragment {
   }
 
 
-
-
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
                            Bundle savedInstanceState) {
@@ -52,6 +50,7 @@ public class TimelineFragment extends Fragment {
   protected void queryPost() {
     ParseQuery<Post> query = ParseQuery.getQuery(Post.class);
     query.include(Post.KEY_USER);
+    query.include(Post.KEY_IMAGES);
     query.setLimit(20);
     query.addDescendingOrder(Post.KEY_CREATED_KEY);
 
@@ -63,7 +62,8 @@ public class TimelineFragment extends Fragment {
           return;
         }
         for (Post post : posts) {
-          Log.i(TAG, "Post: " + post.getDescription() + ", username: " + post.getUser().getUsername());
+          Log.i(TAG, "Post: " + post.getDescription() + ", username: " + post.getUser().getUsername()
+           + " " + post.getImages().get(0).getImageUrl().getUrl() + " " + post.getImages().get(0).getCount());
         }
         allPosts.addAll(posts);
         adapter.notifyDataSetChanged();
@@ -78,12 +78,10 @@ public class TimelineFragment extends Fragment {
     rvPosts = view.findViewById(R.id.rvPosts);
     allPosts = new ArrayList<>();
 
-
     adapter = new PostsAdapter(getContext(), allPosts);
 
     rvPosts.setAdapter(adapter);
     rvPosts.setLayoutManager(new LinearLayoutManager(getContext()));
     queryPost();
-
   }
 }

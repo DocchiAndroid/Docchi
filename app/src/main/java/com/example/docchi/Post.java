@@ -19,7 +19,6 @@ import java.util.ArrayList;
 public class Post extends ParseObject {
 
     public static final String KEY_DESCRIPTION = "description";
-    public static final String KEY_IMAGE = "image";
     public static final String KEY_IMAGES = "images";
     public static final String KEY_USER = "user";
     public static final String KEY_CREATED_KEY = "createdAt";
@@ -33,20 +32,12 @@ public class Post extends ParseObject {
         put(KEY_DESCRIPTION, description);
     }
 
-    public ParseFile getImage() {
-        return getParseFile(KEY_IMAGE);
-    }
-
-    public void setImage(ParseFile parseFile){
-        put(KEY_IMAGE, parseFile);
-    }
-
-    public ArrayList<ParseFile> getImages(){
+    public ArrayList<Image> getImages(){
         Images images = (Images) get(KEY_IMAGES);
         return images.getImages();
     }
 
-    public void setImages(ArrayList<File> imageList){
+    public void setImages(ArrayList<Image> imageList){
         Images images= new Images();
         images.setImages(imageList);
         images.saveInBackground(new SaveCallback() {

@@ -25,11 +25,13 @@ import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
+import com.example.docchi.Image;
 import com.example.docchi.MainActivity;
 import com.example.docchi.Post;
 import com.example.docchi.R;
 import com.example.docchi.adapters.ViewPagerAdapter;
 import com.parse.ParseException;
+import com.parse.ParseFile;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
@@ -54,7 +56,7 @@ public class CreatePollFragment extends Fragment {
     private ViewPagerAdapter viewPagerAdapter;
     private EditText etDescription;
     private TextView btnPost;
-    private ArrayList<File> photoFiles;
+    private ArrayList<Image> photoFiles;
     public String photoFileName = "docchi_img";
     private AlertDialog alertDialog;
     private AlertDialog.Builder dialogBuilder;
@@ -126,7 +128,7 @@ public class CreatePollFragment extends Fragment {
         });
     }
 
-    private void savePost(String description, ParseUser currentUser, ArrayList<File> photoFiles) {
+    private void savePost(String description, ParseUser currentUser, ArrayList<Image> photoFiles) {
         showDialogProgressBar();
         Post post = new Post();
         post.setDescription(description);
@@ -153,10 +155,14 @@ public class CreatePollFragment extends Fragment {
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         // Create a File reference for future access
 
-        photoFiles.add(getPhotoFileUri());
+        File file = getPhotoFileUri();
+        ParseFile selectedImage = new ParseFile(file);
+        photoFiles.add(new Image(selectedImage));
 
         // wrap File object into a content provider
-        Uri fileProvider = FileProvider.getUriForFile(getContext(), "com.example.fileprovider", photoFiles.get(photoFiles.size() - 1));
+        Uri fileProvider = null;
+        fileProvider = FileProvider.getUriForFile(getContext(), "com.example.fileprovider", file);
+
         intent.putExtra(MediaStore.EXTRA_OUTPUT, fileProvider);
 
         // If you call startActivityForResult() using an intent that no app can handle, your app will crash.
@@ -205,8 +211,8 @@ public class CreatePollFragment extends Fragment {
             Uri photoUri = data.getData();
 
             // Load the image located at photoUri into selectedImage
-            File selectedImage = loadFromUri(photoUri);
-            photoFiles.add(selectedImage);
+            ParseFile selectedImage = new ParseFile(loadFromUri(photoUri));
+            photoFiles.add(new Image(selectedImage));
 
             //display the image on screen
             viewPagerAdapter.notifyDataSetChanged();
