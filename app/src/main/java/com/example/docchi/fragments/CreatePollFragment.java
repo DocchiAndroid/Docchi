@@ -56,7 +56,8 @@ public class CreatePollFragment extends Fragment {
     private ViewPagerAdapter viewPagerAdapter;
     private EditText etDescription;
     private TextView btnPost;
-    private ArrayList<Image> photoFiles;
+    private ArrayList<Image> photoFiles; //for parse
+    private ArrayList<File> photos; //for viewpager
     public String photoFileName = "docchi_img";
     private AlertDialog alertDialog;
     private AlertDialog.Builder dialogBuilder;
@@ -85,9 +86,10 @@ public class CreatePollFragment extends Fragment {
         etDescription = view.findViewById(R.id.etDescriptionCreatePoll);
         btnPost = view.findViewById(R.id.btnPostCreatePoll);
         photoFiles = new ArrayList<>();
+        photos = new ArrayList<>();
 
-
-        viewPagerAdapter = new ViewPagerAdapter((MainActivity) getContext(), photoFiles);
+        //instantiate and set viewpager adapter
+        viewPagerAdapter = new ViewPagerAdapter((MainActivity) getContext(), photos);
         viewPager.setAdapter(viewPagerAdapter);
 
         //resize certain UI components
@@ -109,7 +111,7 @@ public class CreatePollFragment extends Fragment {
             }
         });
 
-        //post
+        //post button
         btnPost.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -128,6 +130,7 @@ public class CreatePollFragment extends Fragment {
         });
     }
 
+    //savePost to parse
     private void savePost(String description, ParseUser currentUser, ArrayList<Image> photoFiles) {
         showDialogProgressBar();
         Post post = new Post();
@@ -157,6 +160,7 @@ public class CreatePollFragment extends Fragment {
 
         File file = getPhotoFileUri();
         ParseFile selectedImage = new ParseFile(file);
+        photos.add(file);
         photoFiles.add(new Image(selectedImage));
 
         // wrap File object into a content provider
@@ -184,42 +188,6 @@ public class CreatePollFragment extends Fragment {
         if (intent.resolveActivity(((MainActivity) getContext()).getPackageManager()) != null) {
             // Bring up gallery to select a photo
             startActivityForResult(intent, PICK_PHOTO_CODE);
-        }
-    }
-
-    //activity result handler for camera and file selector
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE) {
-            if (resultCode == RESULT_OK) {
-                // by this point we have the camera photo on disk
-                //Bitmap takenImage = BitmapFactory.decodeFile(photoFiles.get(photoFiles.size()-1).getAbsolutePath());
-                // RESIZE BITMAP, see section below
-                // Load the taken image into a preview
-                //ivPostImage.setImageBitmap(takenImage);
-
-                //display the image on screen
-                viewPagerAdapter.notifyDataSetChanged();
-
-            } else { // Result was a failure
-                Toast.makeText(getContext(), "Picture wasn't taken!", Toast.LENGTH_SHORT).show();
-            }
-        }
-
-        if ((data != null) && requestCode == PICK_PHOTO_CODE) {
-            Uri photoUri = data.getData();
-
-            // Load the image located at photoUri into selectedImage
-            ParseFile selectedImage = new ParseFile(loadFromUri(photoUri));
-            photoFiles.add(new Image(selectedImage));
-
-            //display the image on screen
-            viewPagerAdapter.notifyDataSetChanged();
-
-            //Bitmap takenImage = BitmapFactory.decodeFile(selectedImage.getAbsolutePath());
-            //ivPostImage.setImageBitmap(takenImage);
-
         }
     }
 
@@ -261,6 +229,46 @@ public class CreatePollFragment extends Fragment {
         return image;
     }
 
+    //activity result handler for camera and file selector
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        //camera
+        if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE) {
+            if (resultCode == RESULT_OK) {
+                // by this point we have the camera photo on disk
+                //Bitmap takenImage = BitmapFactory.decodeFile(photoFiles.get(photoFiles.size()-1).getAbsolutePath());
+                // RESIZE BITMAP, see section below
+                // Load the taken image into a preview
+                //ivPostImage.setImageBitmap(takenImage);
+
+                //display the image on screen
+                viewPagerAdapter.notifyDataSetChanged();
+
+            } else { // Result was a failure
+                Toast.makeText(getContext(), "Picture wasn't taken!", Toast.LENGTH_SHORT).show();
+            }
+        }
+
+        //file selector
+        if ((data != null) && requestCode == PICK_PHOTO_CODE) {
+            Uri photoUri = data.getData();
+
+            // Load the image located at photoUri into selectedImage
+            File selectedImage = loadFromUri(photoUri);
+            ParseFile selectedImageParse = new ParseFile(selectedImage);
+            photoFiles.add(new Image(selectedImageParse));
+            photos.add(selectedImage);
+
+            //display the image on screen
+            viewPagerAdapter.notifyDataSetChanged();
+
+            //Bitmap takenImage = BitmapFactory.decodeFile(selectedImage.getAbsolutePath());
+            //ivPostImage.setImageBitmap(takenImage);
+
+        }
+    }
+
     //resize buttons and layout
     private void fixUI() {
         //get display width
@@ -290,6 +298,7 @@ public class CreatePollFragment extends Fragment {
         btnSelectImage.setLayoutParams(btnSelectImageLayoutParams);
     }
 
+    //show progress bar while uploading
     public void showDialogProgressBar() {
 
         dialogBuilder = new AlertDialog.Builder((MainActivity) getContext());
