@@ -56,7 +56,8 @@ public class CreatePollFragment extends Fragment {
     private ViewPagerAdapter viewPagerAdapter;
     private EditText etDescription;
     private TextView btnPost;
-    private ArrayList<Image> photoFiles;
+    private ArrayList<Image> photoParseFiles;
+    private ArrayList<File> photoFiles;
     public String photoFileName = "docchi_img";
     private AlertDialog alertDialog;
     private AlertDialog.Builder dialogBuilder;
@@ -84,7 +85,9 @@ public class CreatePollFragment extends Fragment {
         viewPager = view.findViewById(R.id.viewPagerCreatePoll);
         etDescription = view.findViewById(R.id.etDescriptionCreatePoll);
         btnPost = view.findViewById(R.id.btnPostCreatePoll);
+        photoParseFiles = new ArrayList<>();
         photoFiles = new ArrayList<>();
+
 
 
         viewPagerAdapter = new ViewPagerAdapter((MainActivity) getContext(), photoFiles);
@@ -123,7 +126,7 @@ public class CreatePollFragment extends Fragment {
                     return;
                 }
                 ParseUser currentUser = ParseUser.getCurrentUser();
-                savePost(description, currentUser, photoFiles);
+                savePost(description, currentUser, photoParseFiles);
             }
         });
     }
@@ -157,7 +160,8 @@ public class CreatePollFragment extends Fragment {
 
         File file = getPhotoFileUri();
         ParseFile selectedImage = new ParseFile(file);
-        photoFiles.add(new Image(selectedImage));
+        photoFiles.add(file);
+        photoParseFiles.add(new Image(selectedImage));
 
         // wrap File object into a content provider
         Uri fileProvider = null;
@@ -211,8 +215,10 @@ public class CreatePollFragment extends Fragment {
             Uri photoUri = data.getData();
 
             // Load the image located at photoUri into selectedImage
-            ParseFile selectedImage = new ParseFile(loadFromUri(photoUri));
-            photoFiles.add(new Image(selectedImage));
+            File file = loadFromUri(photoUri);
+            ParseFile parseFile = new ParseFile(file);
+            photoParseFiles.add(new Image(parseFile));
+            photoFiles.add(file);
 
             //display the image on screen
             viewPagerAdapter.notifyDataSetChanged();

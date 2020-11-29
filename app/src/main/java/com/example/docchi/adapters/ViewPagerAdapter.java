@@ -26,13 +26,13 @@ public class ViewPagerAdapter extends PagerAdapter {
     Context context;
 
     // Array of images
-    ArrayList<Image> images;
+    ArrayList<File> images;
 
     // Layout Inflater
     LayoutInflater mLayoutInflater;
 
     // Viewpager Constructor
-    public ViewPagerAdapter(Context context, ArrayList<Image> images) {
+    public ViewPagerAdapter(Context context, ArrayList<File> images) {
         this.context = context;
         this.images = images;
         mLayoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -59,12 +59,7 @@ public class ViewPagerAdapter extends PagerAdapter {
         ImageView imageView = (ImageView) itemView.findViewById(R.id.postImageLayout);
 
         // setting the image in the imageView
-        Bitmap takenImage = null;
-        try {
-            takenImage = BitmapFactory.decodeFile(images.get(position).getImageUrl().getFile().getAbsolutePath());
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+        Bitmap takenImage = BitmapFactory.decodeFile(images.get(position).getAbsolutePath());
         imageView.setImageBitmap(takenImage);
 
         // Adding the View
