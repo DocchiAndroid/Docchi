@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        String loggedInUser = getIntent().getStringExtra("LoggedInUser");
 
 
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -37,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
                 Fragment fragment;
                 switch (menuItem.getItemId()) {
                     case R.id.action_home:
-                        fragment = new TimelineFragment();
+                        fragment = new TimelineFragment(loggedInUser);
                         break;
                     case R.id.action_newPoll:
                         fragment = new CreatePollFragment();
