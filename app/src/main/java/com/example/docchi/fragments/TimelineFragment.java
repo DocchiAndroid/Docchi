@@ -26,7 +26,7 @@ import java.util.List;
 public class TimelineFragment extends Fragment {
 
   public static final String TAG = "PostFragment";
-  private RecyclerView rvPosts;
+  protected RecyclerView rvPosts;
   protected PostsAdapter adapter;
   protected List<Post> allPosts;
 
@@ -62,8 +62,7 @@ public class TimelineFragment extends Fragment {
           return;
         }
         for (Post post : posts) {
-          Log.i(TAG, "Post: " + post.getDescription() + ", username: " + post.getUser().getUsername()
-           + " " + post.getImages().get(0).getImageUrl().getUrl() + " " + post.getImages().get(0).getCount());
+          Log.i(TAG, "Post: " + post.getDescription() + ", username: " + post.getUser().getUsername());
         }
         allPosts.addAll(posts);
         adapter.notifyDataSetChanged();
