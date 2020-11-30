@@ -1,17 +1,15 @@
 package com.example.docchi;
 
 import android.util.Log;
-import android.widget.ProgressBar;
-import android.widget.Toast;
 
+import com.parse.GetCallback;
 import com.parse.ParseClassName;
 import com.parse.ParseException;
-import com.parse.ParseFile;
 import com.parse.ParseObject;
+import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
-import java.io.File;
 import java.util.ArrayList;
 
 
@@ -33,8 +31,44 @@ public class Post extends ParseObject {
     }
 
     public ArrayList<Image> getImages(){
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("Images");
+        Images imagesCol = (Images) get(KEY_IMAGES);
+        Images im = null;
+        try {
+            im = (Images) query.get(imagesCol.getObjectId());
+            return im.getImages();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public void updateImages(ArrayList<Image> imageList){
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("Images");
         Images images = (Images) get(KEY_IMAGES);
-        return images.getImages();
+        query.whereEqualTo("objectId", images.getObjectId());
+
+        query.getFirstInBackground(new GetCallback<ParseObject>() {
+            public void done(ParseObject object, ParseException e) {
+                if (e == null) {
+                    // Now let's update it with some new data.
+                    Images images = (Images) object;
+                    images.setImages(imageList);
+                    object.saveInBackground(new SaveCallback() {
+                        @Override
+                        public void done(ParseException e) {
+                            if (e != null) {
+                                Log.e(getClass().getSimpleName(), "User update error: " + e);
+                            }
+                        }
+                    });
+                } else {
+                    e.printStackTrace();
+                }
+
+            }
+        });
+        put(KEY_IMAGES, images);
     }
 
     public void setImages(ArrayList<Image> imageList){
@@ -57,6 +91,16 @@ public class Post extends ParseObject {
 
     public void setUser(ParseUser user){
         put(KEY_USER, user);
+    }
+
+    public int previousVote(String username){
+        ArrayList<Image> images = getImages();
+        for(int i=0; i<images.size(); i++){
+            if(images.get(i).getWhoVoted().contains(username)){
+                return i;
+            }
+        }
+        return -1;
     }
 
 

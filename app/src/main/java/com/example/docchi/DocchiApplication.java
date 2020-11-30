@@ -1,8 +1,10 @@
 package com.example.docchi;
 
 import android.app.Application;
+import android.util.Log;
 
 import com.parse.Parse;
+import com.parse.ParseInstallation;
 import com.parse.ParseObject;
 
 public class DocchiApplication extends Application {
@@ -21,5 +23,10 @@ public class DocchiApplication extends Application {
                 .server("https://parseapi.back4app.com")
                 .build()
         );
+
+        ParseInstallation installation = ParseInstallation.getCurrentInstallation();
+        Log.d("ParseNotif", "hello" + installation.getInstallationId());
+        installation.put("GCMSenderId", "151705258392");
+        installation.saveInBackground();
     }
 }

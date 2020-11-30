@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -13,6 +14,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.docchi.MainActivity;
 import com.example.docchi.Post;
 import com.example.docchi.R;
 import com.parse.FindCallback;
@@ -25,23 +27,22 @@ import java.util.List;
 
 public class TimelineFragment extends Fragment {
 
-  public static final String TAG = "PostFragment";
-  protected RecyclerView rvPosts;
-  protected PostsAdapter adapter;
+  public static final String TAG = "TimelineFragment";
+  private RecyclerView rvPosts;
+  private PostsAdapter adapter;
   protected List<Post> allPosts;
+  private String username;
 
-  ActionBar actionBar;
-
-
-  public TimelineFragment() {
+  public TimelineFragment(String username) {
     // Required empty public constructor
+    this.username = username;
+    Log.d(TAG, "TimelineFragment: " + this.username);
   }
 
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
                            Bundle savedInstanceState) {
-
     // Inflate the layout for this fragment
     return inflater.inflate(R.layout.fragment_timeline, container, false);
 
@@ -77,7 +78,7 @@ public class TimelineFragment extends Fragment {
     rvPosts = view.findViewById(R.id.rvPosts);
     allPosts = new ArrayList<>();
 
-    adapter = new PostsAdapter(getContext(), allPosts);
+    adapter = new PostsAdapter(getContext(), allPosts, username);
 
     rvPosts.setAdapter(adapter);
     rvPosts.setLayoutManager(new LinearLayoutManager(getContext()));
