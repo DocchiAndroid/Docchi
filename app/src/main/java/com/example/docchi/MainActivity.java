@@ -1,6 +1,8 @@
 package com.example.docchi;
 
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
@@ -19,6 +21,8 @@ public class MainActivity extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
 
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,11 +30,16 @@ public class MainActivity extends AppCompatActivity {
         String loggedInUser = getIntent().getStringExtra("LoggedInUser");
 
 
+
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
 
         bottomNavigationView = findViewById(R.id.bottomNavigation);
+
+
+
 
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
