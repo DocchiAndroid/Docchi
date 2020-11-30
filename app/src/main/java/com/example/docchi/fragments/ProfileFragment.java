@@ -30,6 +30,15 @@ import java.util.List;
 public class ProfileFragment extends TimelineFragment {
 
 
+  public ProfileFragment(String username) {
+    super(username);
+  }
+
+  public ProfileFragment() {
+    super();
+
+  }
+
   @Override
   protected void queryPost() {
     ParseQuery<Post> query = ParseQuery.getQuery(Post.class);
