@@ -69,7 +69,8 @@ public class LoginActivity extends AppCompatActivity {
 
     private void checkLogin() {
         if (ParseUser.getCurrentUser() != null) {
-            Intent i = new Intent(this, MainActivity.class);
+            Intent i = new Intent(LoginActivity.this, MainActivity.class);
+            i.putExtra("LoggedInUser", ParseUser.getCurrentUser().getUsername());
             startActivity(i);
             finish();
         }
@@ -95,6 +96,7 @@ public class LoginActivity extends AppCompatActivity {
 
                 //Login success, start main activity
                 Intent i = new Intent(LoginActivity.this, MainActivity.class);
+                i.putExtra("LoggedInUser", username);
                 startActivity(i);
                 finish();
             }
