@@ -288,8 +288,8 @@ public class CreatePollFragment extends Fragment {
                 .getMetrics(displayMetrics);
         int width = displayMetrics.widthPixels;
 
+        //Action bar title
         ActionBar actionBar = ((MainActivity) getContext()).getSupportActionBar();
-
         actionBar.setTitle("New Poll");
 
         //resize viewpager to hold images

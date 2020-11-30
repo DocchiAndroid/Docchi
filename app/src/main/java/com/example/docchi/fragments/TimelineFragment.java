@@ -29,7 +29,7 @@ public class TimelineFragment extends Fragment {
 
   public static final String TAG = "TimelineFragment";
   private RecyclerView rvPosts;
-  private PostsAdapter adapter;
+  protected PostsAdapter adapter;
   protected List<Post> allPosts;
   private String username;
 
@@ -37,6 +37,10 @@ public class TimelineFragment extends Fragment {
     // Required empty public constructor
     this.username = username;
     Log.d(TAG, "TimelineFragment: " + this.username);
+  }
+
+  public TimelineFragment() {
+
   }
 
 
