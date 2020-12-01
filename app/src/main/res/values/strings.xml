@@ -7,4 +7,5 @@
     <string name="signUp">Sign up</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="desc">Docchi is a voting app that lets users to create public polls. It will let users create quick large scale surveys and polls to make decisions. All votes on our platform will be anonymous.</string>
 </resources>

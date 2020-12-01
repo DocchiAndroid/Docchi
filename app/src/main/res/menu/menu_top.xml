@@ -9,13 +9,23 @@
         app:showAsAction="ifRoom" />
 
     <item
-        android:id="@+id/item2"
-        android:title="Item2"
+        android:id="@+id/About"
+        android:title="About"
         app:showAsAction="never" />
 
     <item
-        android:id="@+id/item3"
-        android:title="Item3"
+        android:id="@+id/Help"
+        android:title="Help"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/Settings"
+        android:title="Settings"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/Logout"
+        android:title="Logout"
         app:showAsAction="never" />
 
 

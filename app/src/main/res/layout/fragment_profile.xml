@@ -4,18 +4,47 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context=".fragments.ProfileFragment">
 
 
-    <Button
-        android:id="@+id/btnLogout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="100dp"
-        android:text="logout" />
+        <ImageView
+            android:id="@+id/ivProfilePicture"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/default_pic"/>
+
+        <TextView
+            android:id="@+id/tvName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_toEndOf="@id/ivProfilePicture"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            tools:text="Smita Mujumdar" />
+
+        <view
+            android:id="@+id/separator"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@id/ivProfilePicture"
+            android:background="#757575"
+            />
+
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvPictureContainer"
+            android:scrollbars="horizontal"
+            android:layout_width="match_parent"
+            android:layout_marginTop="10dp"
+            android:layout_below="@id/separator"
+            android:layout_height="400dp"/>
+
+
+
+
 
 </RelativeLayout>
-
-
