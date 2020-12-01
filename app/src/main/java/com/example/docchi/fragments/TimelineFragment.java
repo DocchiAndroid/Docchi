@@ -31,7 +31,7 @@ public class TimelineFragment extends Fragment {
   private RecyclerView rvPosts;
   protected PostsAdapter adapter;
   protected List<Post> allPosts;
-  private String username;
+  protected String username;
 
   public TimelineFragment(String username) {
     // Required empty public constructor
