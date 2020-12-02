@@ -1,19 +1,22 @@
 package com.example.docchi.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
+import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.example.docchi.AboutActivity;
+import com.example.docchi.HelpActivity;
+import com.example.docchi.LoginActivity;
+import com.example.docchi.MainActivity;
 import com.example.docchi.Post;
 import com.example.docchi.R;
+import com.example.docchi.SettingActivity;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseQuery;
@@ -24,19 +27,6 @@ import java.util.List;
 
 public class ProfileFragment extends TimelineFragment {
 
-  public static final String TAG = "TimelineFragment";
-  public Button btnLogOut;
-
-
-  @Override
-  public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                           Bundle savedInstanceState) {
-    View view = inflateFragment(inflater, container);
-
-
-    return view;
-  }
-
 
   @Override
   public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
@@ -45,9 +35,43 @@ public class ProfileFragment extends TimelineFragment {
   }
 
   @Override
+  public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+    switch (item.getItemId()){
+      case R.id.About:
+        Intent intent1 = new Intent(getActivity(), AboutActivity.class);
+        startActivity(intent1);
+        return true;
+      case R.id.Help:
+        Intent intent2 = new Intent(getActivity(), HelpActivity.class);
+        startActivity(intent2);
+        return true;
+      case R.id.Settings:
+        Intent intent3 = new Intent(getActivity(), SettingActivity.class);
+        //intent3.putExtra("LoggedInUser", ParseUser.getCurrentUser().getUsername());
+        startActivity(intent3);
+        return true;
+      case R.id.Logout:
+        logout();
+        return true;
+      default:
+        return super.onOptionsItemSelected(item);
+    }
+
+  }
+
+  private void logout() {
+    ParseUser.logOut();
+    Intent intent = new Intent(getActivity(), LoginActivity.class);
+    startActivity(intent);
+    ((MainActivity)getActivity()).finish();
+
+  }
+
+  @Override
   public void onCreate(@Nullable Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setHasOptionsMenu(true);
+
   }
 
   public ProfileFragment(String username) {
@@ -57,8 +81,6 @@ public class ProfileFragment extends TimelineFragment {
   public ProfileFragment() {
 
   }
-
-
 
 
   @Override
