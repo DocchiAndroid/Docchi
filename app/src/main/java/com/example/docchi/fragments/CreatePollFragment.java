@@ -21,6 +21,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
@@ -63,16 +65,41 @@ public class CreatePollFragment extends Fragment {
     private AlertDialog.Builder dialogBuilder;
 
 
+
+
+
     public CreatePollFragment() {
         // Required empty public constructor
     }
+
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_create_poll, container, false);
+        ((MainActivity) getActivity()).getSupportActionBar().setTitle("hello word");
+
+        View v = inflater.inflate(R.layout.fragment_create_poll, container, false);
+        Toolbar toolbar = (Toolbar)  v.findViewById(R.id.toolbar);
+        toolbar.setTitle("pool");
+
+        return v;
+
+
     }
+
+
+    //original
+//    @Override
+//    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+//                             Bundle savedInstanceState) {
+//        // Inflate the layout for this fragment
+//
+//
+//        return inflater.inflate(R.layout.fragment_create_poll, container, false);
+//
+//    }
 
 
     // This event is triggered soon after onCreateView().
@@ -87,6 +114,9 @@ public class CreatePollFragment extends Fragment {
         btnPost = view.findViewById(R.id.btnPostCreatePoll);
         photoFiles = new ArrayList<>();
         photos = new ArrayList<>();
+
+
+
 
         //instantiate and set viewpager adapter
         viewPagerAdapter = new ViewPagerAdapter((MainActivity) getContext(), photos);
@@ -288,9 +318,12 @@ public class CreatePollFragment extends Fragment {
                 .getMetrics(displayMetrics);
         int width = displayMetrics.widthPixels;
 
-        //Action bar title
-        ActionBar actionBar = ((MainActivity) getContext()).getSupportActionBar();
-        actionBar.setTitle("New Poll");
+//        Action bar title
+//        ActionBar actionBar = ((MainActivity) getContext()).getSupportActionBar();
+//        actionBar.setTitle("New Poll");
+
+
+
 
         //resize viewpager to hold images
         ViewGroup.LayoutParams viewPagerParams = viewPager.getLayoutParams();

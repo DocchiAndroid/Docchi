@@ -30,11 +30,9 @@ public class MainActivity extends AppCompatActivity {
         String loggedInUser = getIntent().getStringExtra("LoggedInUser");
 
 
-
-
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
+            Toolbar toolbar = findViewById(R.id.toolbar);
+            toolbar.setTitle("test");
+            setSupportActionBar(toolbar);
 
         bottomNavigationView = findViewById(R.id.bottomNavigation);
 

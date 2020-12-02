@@ -76,7 +76,6 @@ public class ProfileFragment extends TimelineFragment {
     setHasOptionsMenu(true);
 
 
-
   }
 
 
