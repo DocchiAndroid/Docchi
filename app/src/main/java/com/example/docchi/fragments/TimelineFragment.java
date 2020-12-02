@@ -26,7 +26,7 @@ public class TimelineFragment extends Fragment {
 
   public static final String TAG = "TimelineFragment";
   private RecyclerView rvPosts;
-  protected PostsAdapter adapter;
+  protected com.example.docchi.fragments.PostsAdapter adapter;
   protected List<Post> allPosts;
   private String username;
 
@@ -79,7 +79,7 @@ public class TimelineFragment extends Fragment {
     rvPosts = view.findViewById(R.id.rvPosts);
     allPosts = new ArrayList<>();
 
-    adapter = new PostsAdapter(getContext(), allPosts, username);
+    adapter = new com.example.docchi.fragments.PostsAdapter(getContext(), allPosts, username);
 
     rvPosts.setAdapter(adapter);
     rvPosts.setLayoutManager(new LinearLayoutManager(getContext()));

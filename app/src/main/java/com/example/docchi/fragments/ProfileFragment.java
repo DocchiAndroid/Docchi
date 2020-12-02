@@ -6,6 +6,8 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -26,6 +28,7 @@ import java.util.List;
 
 
 public class ProfileFragment extends TimelineFragment {
+
 
 
   @Override
@@ -72,7 +75,12 @@ public class ProfileFragment extends TimelineFragment {
     super.onCreate(savedInstanceState);
     setHasOptionsMenu(true);
 
+
+
   }
+
+
+
 
   public ProfileFragment(String username) {
     super(username);
