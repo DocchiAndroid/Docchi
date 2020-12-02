@@ -1,22 +1,19 @@
 package com.example.docchi.fragments;
 
-import android.app.ActionBar;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
+import android.widget.FrameLayout;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.docchi.MainActivity;
 import com.example.docchi.Post;
 import com.example.docchi.R;
+import com.example.docchi.adapters.PostsAdapter;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseQuery;
@@ -27,8 +24,9 @@ import java.util.List;
 
 public class TimelineFragment extends Fragment {
 
+
   public static final String TAG = "TimelineFragment";
-  private RecyclerView rvPosts;
+  protected RecyclerView rvPosts;
   protected PostsAdapter adapter;
   protected List<Post> allPosts;
   protected String username;
@@ -43,11 +41,30 @@ public class TimelineFragment extends Fragment {
 
   }
 
+  //test
+  protected View inflateFragment(LayoutInflater inflater, ViewGroup container) {
+    View view = inflater.inflate(R.layout.fragment_timeline, container, false);
+    FrameLayout frameLayout = (FrameLayout)view.findViewById(R.id.rvPosts);
+
+
+    allPosts = new ArrayList<>();
+
+    adapter = new PostsAdapter(getContext(), allPosts, username);
+
+    rvPosts.setAdapter(adapter);
+    rvPosts.setLayoutManager(new LinearLayoutManager(getContext()));
+    queryPost();
+
+    setHasOptionsMenu(true);
+    return view;
+  }
+
 
   @Override
-  public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                           Bundle savedInstanceState) {
-    // Inflate the layout for this fragment
+  public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
+
+//     Inflate the layout for this fragment
     return inflater.inflate(R.layout.fragment_timeline, container, false);
 
   }
@@ -76,16 +93,16 @@ public class TimelineFragment extends Fragment {
 
   }
 
-  @Override
-  public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-    super.onViewCreated(view, savedInstanceState);
-    rvPosts = view.findViewById(R.id.rvPosts);
-    allPosts = new ArrayList<>();
-
-    adapter = new PostsAdapter(getContext(), allPosts, username);
-
-    rvPosts.setAdapter(adapter);
-    rvPosts.setLayoutManager(new LinearLayoutManager(getContext()));
-    queryPost();
-  }
+//  @Override
+//  public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+//    super.onViewCreated(view, savedInstanceState);
+//    rvPosts = view.findViewById(R.id.rvPosts);
+//    allPosts = new ArrayList<>();
+//
+//    adapter = new PostsAdapter(getContext(), allPosts, username);
+//
+//    rvPosts.setAdapter(adapter);
+//    rvPosts.setLayoutManager(new LinearLayoutManager(getContext()));
+//    queryPost();
+//  }
 }

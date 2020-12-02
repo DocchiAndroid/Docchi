@@ -53,7 +53,6 @@ public class MainActivity extends AppCompatActivity {
                         fragment = new CreatePollFragment();
                         break;
                     case R.id.action_profile:
-
                         fragment = new ProfileFragment();
                         break;
                     default:
