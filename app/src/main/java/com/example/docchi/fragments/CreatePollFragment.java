@@ -73,33 +73,15 @@ public class CreatePollFragment extends Fragment {
     }
 
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        ((MainActivity) getActivity()).getSupportActionBar().setTitle("hello word");
 
-        View v = inflater.inflate(R.layout.fragment_create_poll, container, false);
-        Toolbar toolbar = (Toolbar)  v.findViewById(R.id.toolbar);
-        toolbar.setTitle("pool");
 
-        return v;
-
+        return inflater.inflate(R.layout.fragment_create_poll, container, false);
 
     }
-
-
-    //original
-//    @Override
-//    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-//                             Bundle savedInstanceState) {
-//        // Inflate the layout for this fragment
-//
-//
-//        return inflater.inflate(R.layout.fragment_create_poll, container, false);
-//
-//    }
 
 
     // This event is triggered soon after onCreateView().
@@ -319,8 +301,8 @@ public class CreatePollFragment extends Fragment {
         int width = displayMetrics.widthPixels;
 
 //        Action bar title
-//        ActionBar actionBar = ((MainActivity) getContext()).getSupportActionBar();
-//        actionBar.setTitle("New Poll");
+        ActionBar actionBar = ((MainActivity) getContext()).getSupportActionBar();
+        actionBar.setTitle("New Poll");
 
 
 
