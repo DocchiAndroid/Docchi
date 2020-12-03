@@ -77,12 +77,41 @@ public class CreatePollFragment extends Fragment {
     }
 
 
+//menu action bar icon set on click listner
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        switch (item.getItemId()) {
+//            case R.id.btnPostPoll : {
+//                Log.i(TAG, "Save from fragment");
+//                btnPost.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        String description = etDescription.getText().toString();
+//                        if (description.isEmpty()) {
+//                            Toast.makeText(getContext(), "Description cannot be empty", Toast.LENGTH_SHORT).show();
+//                            return;
+//                        }
+//                        if (photoFiles.size() < 2) {  //|| ivPostImage.getDrawable() == null
+//                            Toast.makeText(getContext(), "At least two images are required to create a poll.", Toast.LENGTH_SHORT).show();
+//                            return;
+//                        }
+//                        ParseUser currentUser = ParseUser.getCurrentUser();
+//                        savePost(description, currentUser, photoFiles);
+//
+//                    }
+//                });
+//
+//
+//                return true;
+//            }
+//        }
+//        return super.onOptionsItemSelected(item);
+//    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
-
     }
 
 
