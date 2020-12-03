@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
 
 
             Toolbar toolbar = findViewById(R.id.toolbar);
-            toolbar.setTitle("test");
+            toolbar.setTitle("Docchi");
             setSupportActionBar(toolbar);
 
         bottomNavigationView = findViewById(R.id.bottomNavigation);

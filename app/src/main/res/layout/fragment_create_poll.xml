@@ -9,13 +9,6 @@
     android:fitsSystemWindows="true"
     tools:context=".fragments.CreatePollFragment">
 
-    <include
-        android:id="@+id/toolbar"
-        layout="@layout/customtoolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-
-
 
     <LinearLayout
         android:id="@+id/btnLayout"

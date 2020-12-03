@@ -11,6 +11,7 @@ import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
 
 import com.example.docchi.AboutActivity;
 import com.example.docchi.HelpActivity;
@@ -74,6 +75,10 @@ public class ProfileFragment extends TimelineFragment {
   public void onCreate(@Nullable Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setHasOptionsMenu(true);
+
+    //Tool bar title
+    ActionBar actionBar = ((MainActivity) getContext()).getSupportActionBar();
+    actionBar.setTitle("Docchi");
 
 
   }

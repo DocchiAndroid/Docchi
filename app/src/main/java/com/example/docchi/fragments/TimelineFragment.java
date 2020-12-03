@@ -8,10 +8,12 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.docchi.MainActivity;
 import com.example.docchi.Post;
 import com.example.docchi.R;
 import com.parse.FindCallback;
@@ -40,14 +42,25 @@ public class TimelineFragment extends Fragment {
 
   }
 
-
-  @Override
+    @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
                            Bundle savedInstanceState) {
     // Inflate the layout for this fragment
-    return inflater.inflate(R.layout.fragment_timeline, container, false);
+     View v = inflater.inflate(R.layout.fragment_timeline, container, false);
+      ActionBar actionBar = ((MainActivity) getContext()).getSupportActionBar();
+      actionBar.setTitle("Docchi");
+
+      return v;
 
   }
+
+//  @Override
+//  public View onCreateView(LayoutInflater inflater, ViewGroup container,
+//                           Bundle savedInstanceState) {
+//    // Inflate the layout for this fragment
+//    return inflater.inflate(R.layout.fragment_timeline, container, false);
+//
+//  }
 
   protected void queryPost() {
     ParseQuery<Post> query = ParseQuery.getQuery(Post.class);
