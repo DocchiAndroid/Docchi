@@ -31,6 +31,7 @@ public class SignUpActivity extends AppCompatActivity {
     EditText etEmail;
     EditText etUsername;
     EditText etPassword;
+    TextView btnSignUpToLogin;
 
 
     @SuppressLint("WrongViewCast")
@@ -50,6 +51,19 @@ public class SignUpActivity extends AppCompatActivity {
         etUsername = findViewById(R.id.etUsername);
         etPassword = findViewById(R.id.etPassword);
         btnSignUp = findViewById(R.id.btnSignUp);
+        btnSignUpToLogin = findViewById(R.id.btnSignUpToLogin);
+
+
+
+        //For back to login page from the signup page
+        btnSignUpToLogin.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                        Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+        startActivity(intent);
+
+            }
+        });
 
 
 
@@ -114,13 +128,7 @@ public class SignUpActivity extends AppCompatActivity {
     }
 }
 
-//  private void userSignUp(String firstName, String lastName, String email, String username, String password) {
 
-// store these values to parse
-
-//        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-//        startActivity(intent);
-//.       finish();
 
 
 
