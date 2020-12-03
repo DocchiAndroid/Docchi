@@ -69,6 +69,19 @@
         android:textColor="#FFFFFF"
         android:textColorHint="#FFFFFF" />
 
+<!--    <TextView-->
+<!--        android:id="@+id/btnPostCreatePoll"-->
+<!--        android:layout_width="350dp"-->
+<!--        android:layout_height="50dp"-->
+<!--        android:layout_alignParentBottom="true"-->
+<!--        android:layout_centerHorizontal="true"-->
+<!--        android:background="@drawable/btn_rounded"-->
+<!--        android:clickable="true"-->
+<!--        android:gravity="center"-->
+<!--        android:text="Post"-->
+<!--        android:textColor="@color/white"-->
+<!--        android:textSize="20sp" />-->
+
     <TextView
         android:id="@+id/btnPostCreatePoll"
         android:layout_width="350dp"
@@ -81,5 +94,7 @@
         android:text="Post"
         android:textColor="@color/white"
         android:textSize="20sp" />
+
+
 
 </RelativeLayout>

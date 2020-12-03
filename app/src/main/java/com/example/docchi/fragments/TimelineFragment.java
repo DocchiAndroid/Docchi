@@ -49,9 +49,7 @@ public class TimelineFragment extends Fragment {
      View v = inflater.inflate(R.layout.fragment_timeline, container, false);
       ActionBar actionBar = ((MainActivity) getContext()).getSupportActionBar();
       actionBar.setTitle("Docchi");
-
       return v;
-
   }
 
 //  @Override
