@@ -1,30 +1,22 @@
 package com.example.docchi.fragments;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.CircleCrop;
-import com.example.docchi.Image;
-import com.example.docchi.MainActivity;
 import com.example.docchi.Post;
 import com.example.docchi.R;
-import com.parse.ParseException;
 import com.parse.ParseFile;
-import com.parse.ParseUser;
-import com.parse.SaveCallback;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> {
@@ -32,11 +24,13 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
     private Context context;
     private List<Post> posts;
     private String loggedInUser;
+    private boolean showUserDetail;
 
-    public PostsAdapter(Context context, List<Post> posts, String loggedInUser){
+    public PostsAdapter(Context context, List<Post> posts, String loggedInUser, boolean showUserDetail){
         this.context = context;
         this.posts = posts;
         this.loggedInUser = loggedInUser;
+        this.showUserDetail = showUserDetail;
     }
 
     @NonNull
@@ -73,11 +67,19 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
        }
 
         public void bind(Post post){
-            tvDescription.setText(post.getDescription());
-            tvName.setText(post.getUser().getUsername());
-            ParseFile file = post.getUser().getParseFile("profilePic");
-            Glide.with(context).load(file.getUrl()).transform(new CircleCrop()).into(ivProfilePic);
+            if (showUserDetail == false){
+                tvName.setVisibility(View.GONE);
+                ivProfilePic.setVisibility(View.GONE);
+            }else{
+                tvName.setText(post.getUser().getUsername());
+                ParseFile file = post.getUser().getParseFile("profilePic");
+                if(file!= null){
+                    Glide.with(context).load(file.getUrl()).transform(new CircleCrop()).into(ivProfilePic);
+                }
 
+            }
+
+            tvDescription.setText(post.getDescription());
             PostImagesAdapter adapter = new PostImagesAdapter(context, post, loggedInUser);
             LinearLayoutManager HorizontalLayout = new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false);
             rvImages.setLayoutManager(HorizontalLayout);

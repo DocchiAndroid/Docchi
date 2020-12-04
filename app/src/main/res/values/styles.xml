@@ -9,13 +9,13 @@
 
     <!-- Toolbar title font type and color-->
     <style name="ToolbarThemeOverlay" parent="@style/ThemeOverlay.AppCompat.Light">
-        <item name="android:fontFamily">@font/dekko</item>
+        <item name="android:fontFamily">@font/uddigikyokashonb</item>
         <item name="android:textColorPrimary">@color/blue</item>
     </style>
 
     <!-- Toolbar title font size and style-->
     <style name="Toolbar.TitleText" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
-        <item name="android:textSize">20sp</item>
+        <item name="android:textSize">25sp</item>
     </style>
 
 

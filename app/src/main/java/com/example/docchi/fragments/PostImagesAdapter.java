@@ -42,6 +42,7 @@ public class PostImagesAdapter extends RecyclerView.Adapter<PostImagesAdapter.My
     public PostImagesAdapter.MyView onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.item_image_post, parent, false);
         return new PostImagesAdapter.MyView(view);
+
     }
 
     @Override

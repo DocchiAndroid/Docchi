@@ -4,17 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#31BFDB"
     android:orientation="vertical"
+    android:background="@drawable/gradient"
     tools:context=".SignUpActivity">
+
+
+
 
     <TextView
         android:id="@+id/tvWelcomeMessage"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="40dp"
-        android:fontFamily="@font/dekko"
+        android:layout_marginTop="60dp"
+        android:fontFamily="@font/uddigikyokashonb"
         android:text="Welcome!"
         android:textColor="#FFFFFF"
         android:textSize="40sp" />
@@ -22,7 +25,7 @@
     <EditText
         android:id="@+id/etFirstName"
         android:layout_width="300dp"
-        android:layout_height="40dp"
+        android:layout_height="50dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="20dp"
         android:background="@drawable/et_rounded"
@@ -80,6 +83,7 @@
         android:textColor="#FFFFFF"
         android:textColorHint="#FFFFFF" />
 
+
     <TextView
         android:id="@+id/btnSignUp"
         android:layout_width="150dp"
@@ -92,6 +96,15 @@
         android:text="Sign Up"
         android:textColor="@color/white"
         android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/btnSignUpToLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Already have an account?"
+        android:layout_gravity="center"
+        android:layout_marginTop="40dp"
+        android:textColor="#FFFFFF" />
 
 
 </LinearLayout>

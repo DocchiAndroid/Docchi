@@ -9,6 +9,9 @@ import android.provider.MediaStore;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
@@ -21,6 +24,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
@@ -63,15 +68,66 @@ public class CreatePollFragment extends Fragment {
     private AlertDialog.Builder dialogBuilder;
 
 
+
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        //set create post icon on action bar
+        inflater.inflate(R.menu.newpoll_menu, menu);
+    }
+
+
+//menu action bar icon set on click listner
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        switch (item.getItemId()) {
+//            case R.id.btnPostPoll : {
+//                Log.i(TAG, "Save from fragment");
+//                btnPost.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        String description = etDescription.getText().toString();
+//                        if (description.isEmpty()) {
+//                            Toast.makeText(getContext(), "Description cannot be empty", Toast.LENGTH_SHORT).show();
+//                            return;
+//                        }
+//                        if (photoFiles.size() < 2) {  //|| ivPostImage.getDrawable() == null
+//                            Toast.makeText(getContext(), "At least two images are required to create a poll.", Toast.LENGTH_SHORT).show();
+//                            return;
+//                        }
+//                        ParseUser currentUser = ParseUser.getCurrentUser();
+//                        savePost(description, currentUser, photoFiles);
+//
+//                    }
+//                });
+//
+//
+//                return true;
+//            }
+//        }
+//        return super.onOptionsItemSelected(item);
+//    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+    }
+
+
+
     public CreatePollFragment() {
         // Required empty public constructor
     }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+
         return inflater.inflate(R.layout.fragment_create_poll, container, false);
+
     }
 
 
@@ -87,6 +143,9 @@ public class CreatePollFragment extends Fragment {
         btnPost = view.findViewById(R.id.btnPostCreatePoll);
         photoFiles = new ArrayList<>();
         photos = new ArrayList<>();
+
+
+
 
         //instantiate and set viewpager adapter
         viewPagerAdapter = new ViewPagerAdapter((MainActivity) getContext(), photos);
@@ -288,9 +347,12 @@ public class CreatePollFragment extends Fragment {
                 .getMetrics(displayMetrics);
         int width = displayMetrics.widthPixels;
 
-        //Action bar title
+//        Action bar title
         ActionBar actionBar = ((MainActivity) getContext()).getSupportActionBar();
         actionBar.setTitle("New Poll");
+
+
+
 
         //resize viewpager to hold images
         ViewGroup.LayoutParams viewPagerParams = viewPager.getLayoutParams();
