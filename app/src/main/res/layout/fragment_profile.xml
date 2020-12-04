@@ -8,7 +8,7 @@
     tools:context=".fragments.ProfileFragment">
 
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
@@ -22,7 +22,8 @@
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:scaleType="fitXY"
-                    android:src="@drawable/default_pic" />
+                    android:src="@drawable/default_pic"
+                  />
 
                 <TextView
                     android:id="@+id/tvName"
@@ -35,30 +36,26 @@
                     android:textSize="20sp"
                     tools:text="Smita Mujumdar" />
 
-                <view
-                    android:id="@+id/separator"
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_below="@id/ivProfilePicture"
-                    android:background="#757575"
-                    />
+<!--                <view-->
+<!--                    android:id="@+id/separator"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="1dp"-->
+<!--                    android:background="#757575"-->
+<!--                    android:layout_below="@id/ivProfilePicture"-->
+<!--                    />-->
 
-        </LinearLayout>
+        </RelativeLayout>
 
-
-<LinearLayout
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content" ></LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvPictureContainer"
+            android:id="@+id/rvPosts"
             android:layout_width="match_parent"
-            android:layout_height="400dp"
-            android:layout_below="@id/separator"
+            android:layout_height="match_parent"
             android:layout_alignParentStart="true"
             android:layout_marginStart="0dp"
-            android:layout_marginTop="180dp"
-            android:scrollbars="horizontal" />
+            android:layout_marginTop="0dp"
+            />
+
 
 
 </LinearLayout>

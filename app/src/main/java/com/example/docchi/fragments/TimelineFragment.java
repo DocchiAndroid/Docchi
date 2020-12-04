@@ -90,7 +90,7 @@ public class TimelineFragment extends Fragment {
     rvPosts = view.findViewById(R.id.rvPosts);
     allPosts = new ArrayList<>();
 
-    adapter = new com.example.docchi.fragments.PostsAdapter(getContext(), allPosts, username);
+    adapter = new com.example.docchi.fragments.PostsAdapter(getContext(), allPosts, username, true);
 
     rvPosts.setAdapter(adapter);
     rvPosts.setLayoutManager(new LinearLayoutManager(getContext()));
