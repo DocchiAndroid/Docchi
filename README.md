@@ -93,7 +93,7 @@ Optional:
 <img src="https://github.com/DocchiAndroid/Docchi/blob/main/DocchiDigitalWireframeWalkthrough.gif" height=500>
 
 ### Walkthrough Updated
-<img src="https://github.com/DocchiAndroid/Docchi/blob/main/ProgessWalkthroupUpdated.gif" height=500>
+<img src="https://github.com/DocchiAndroid/Docchi/blob/main/ProgessWalkthroughUpdated.gif" height=500>
 
 ### Walkthrough
 <img src="https://github.com/DocchiAndroid/Docchi/blob/main/progresswalkthrough.gif" height=500>
