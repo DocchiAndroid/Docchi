@@ -92,8 +92,9 @@ Optional:
 ### [BONUS] Interactive Prototype
 <img src="https://github.com/DocchiAndroid/Docchi/blob/main/DocchiDigitalWireframeWalkthrough.gif" height=500>
 
-### Walkthrough
+### Walkthrough Updated
 <img src="https://github.com/DocchiAndroid/Docchi/blob/main/ProgessWalkthroupUpdated.gif" height=500>
+
 ### Walkthrough
 <img src="https://github.com/DocchiAndroid/Docchi/blob/main/progresswalkthrough.gif" height=500>
 
