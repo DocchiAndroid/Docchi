@@ -2,9 +2,12 @@ package com.example.docchi.adapters;
 
 import android.app.Activity;
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -23,16 +26,21 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.parse.ParseFile;
 import com.parse.ParseUser;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
-public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.ViewHolder> {
+public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.ViewHolder> implements Filterable {
 
     private Context context;
     private List<ParseUser> users;
+    private List<ParseUser> allUsers;
 
     public UsersAdapter(Context context, List<ParseUser> users){
         this.context = context;
         this.users = users;
+        this.allUsers = users;
     }
 
     @NonNull
@@ -51,6 +59,46 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.ViewHolder> 
     @Override
     public int getItemCount() {
         return users.size();
+    }
+
+
+    public Filter getFilter() {
+        return new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence charSequence) {
+                List<ParseUser> usersFiltered = new ArrayList<>();
+                String charString = charSequence.toString();
+                if (charString.isEmpty()) {
+                    usersFiltered = allUsers;
+                } else {
+                    List<ParseUser> filteredList = new ArrayList<>();
+                    for (ParseUser row : allUsers) {
+
+                        // name match condition. this might differ depending on your requirement
+                        // here we are looking for name or phone number match
+                        if (row.getUsername().toLowerCase().contains(charString.toLowerCase())) {
+                            filteredList.add(row);
+                            Log.d("UsersAdapter", row.getUsername());
+                        }
+                    }
+                    usersFiltered = filteredList;
+                }
+
+                FilterResults filterResults = new FilterResults();
+                filterResults.values = usersFiltered;
+                return filterResults;
+            }
+
+            @Override
+            protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+                users = (ArrayList<ParseUser>)filterResults.values;
+                notifyDataSetChanged();
+            }
+        };
+    }
+
+    public interface UsersAdapterListener {
+        void onUserSelected(ParseUser user);
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
