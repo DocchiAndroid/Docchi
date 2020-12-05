@@ -13,6 +13,7 @@ import androidx.fragment.app.FragmentManager;
 
 import com.example.docchi.fragments.CreatePollFragment;
 import com.example.docchi.fragments.ProfileFragment;
+import com.example.docchi.fragments.SearchFragment;
 import com.example.docchi.fragments.TimelineFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -47,6 +48,9 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.action_home:
                         fragment = new TimelineFragment(loggedInUser);
                         break;
+                    case R.id.action_search:
+                        fragment = new SearchFragment();
+                        break;
                     case R.id.action_newPoll:
                         fragment = new CreatePollFragment();
                         break;
@@ -64,6 +68,12 @@ public class MainActivity extends AppCompatActivity {
 
         bottomNavigationView.setSelectedItemId(R.id.action_home);
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_top, menu);
+        return true;
     }
 
     public void setHome(){

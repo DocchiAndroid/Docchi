@@ -1,4 +1,4 @@
-package com.example.docchi.fragments;
+package com.example.docchi.adapters;
 
 import android.content.Context;
 import android.util.Log;
@@ -13,15 +13,12 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.docchi.Image;
-import com.example.docchi.Post;
+import com.example.docchi.model.Image;
+import com.example.docchi.model.Post;
 import com.example.docchi.R;
-import com.parse.ParseException;
 import com.parse.ParseFile;
-import com.parse.SaveCallback;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class PostImagesAdapter extends RecyclerView.Adapter<PostImagesAdapter.MyView> {
 
