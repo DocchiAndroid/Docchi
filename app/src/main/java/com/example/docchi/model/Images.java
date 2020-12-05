@@ -1,13 +1,9 @@
-package com.example.docchi;
+package com.example.docchi.model;
 
+import com.example.docchi.model.Image;
 import com.parse.ParseClassName;
-import com.parse.ParseException;
-import com.parse.ParseFile;
 import com.parse.ParseObject;
-import com.parse.ParseUser;
-import com.parse.SaveCallback;
 
-import java.io.File;
 import java.util.ArrayList;
 
 @ParseClassName("Images")

@@ -25,9 +25,11 @@ import com.example.docchi.AboutActivity;
 import com.example.docchi.HelpActivity;
 import com.example.docchi.LoginActivity;
 import com.example.docchi.MainActivity;
-import com.example.docchi.Post;
+import com.example.docchi.model.Post;
 import com.example.docchi.R;
 import com.example.docchi.SettingActivity;
+import com.example.docchi.adapters.PostsAdapter;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseFile;
@@ -41,21 +43,22 @@ import java.util.List;
 public class ProfileFragment extends Fragment {
 
   public static final String TAG = "ProfileFragment";
-  protected com.example.docchi.fragments.PostsAdapter adapter;
+  protected PostsAdapter adapter;
   protected List<Post> allPosts;
-  private String username;
+  private ParseUser user;
   private ImageView ivProfilePic;
   private TextView tvName;
 
 
-  public ProfileFragment(String username) {
+  public ProfileFragment(ParseUser user) {
     // Required empty public constructor
-    this.username = username;
-    Log.d(TAG, "ProfileFragment: " + this.username);
+    this.user = user;
+    Log.d(TAG, "ProfileFragment: " + this.user.getUsername());
   }
 
 
   public ProfileFragment() {
+    this.user = ParseUser.getCurrentUser();
   }
 
   @Override
@@ -77,7 +80,6 @@ public class ProfileFragment extends Fragment {
         return true;
       case R.id.Settings:
         Intent intent3 = new Intent(getActivity(), SettingActivity.class);
-        //intent3.putExtra("LoggedInUser", ParseUser.getCurrentUser().getUsername());
         startActivity(intent3);
         return true;
       case R.id.Logout:
@@ -100,38 +102,23 @@ public class ProfileFragment extends Fragment {
   @Override
   public void onCreate(@Nullable Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-
     setHasOptionsMenu(true);
 
     //Tool bar title
     ActionBar actionBar = ((MainActivity) getContext()).getSupportActionBar();
     actionBar.setTitle("Docchi");
-
-
   }
 
   //&oncreaview for the profile
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
                            Bundle savedInstanceState) {
-
-
     // Inflate the layout for this fragment
     View v = inflater.inflate(R.layout.fragment_profile, container, false);
     ActionBar actionBar = ((MainActivity) getContext()).getSupportActionBar();
     actionBar.setTitle("Docchi");
-
     return v;
-
-
-
   }
-
-
-//  public ProfileFragment(String username) {
-//    super(username);
-//  }
-
 
   protected void queryPost() {
     ParseQuery<Post> query = ParseQuery.getQuery(Post.class);
@@ -139,7 +126,7 @@ public class ProfileFragment extends Fragment {
     query.include(Post.KEY_IMAGES);
     query.setLimit(20);
     query.addDescendingOrder(Post.KEY_CREATED_KEY);
-    query.whereEqualTo(Post.KEY_USER, ParseUser.getCurrentUser());
+    query.whereEqualTo(Post.KEY_USER, user);
 
     query.findInBackground(new FindCallback<Post>() {
       @Override
@@ -147,9 +134,6 @@ public class ProfileFragment extends Fragment {
         if (e != null) {
           Log.e(TAG, "Issue with getting posts", e);
           return;
-        }
-        for (Post post : posts) {
-          Log.i(TAG, "Post: " + post.getDescription() + ", username: " + post.getUser().getUsername());
         }
         allPosts.addAll(posts);
         adapter.notifyDataSetChanged();
@@ -167,11 +151,8 @@ public class ProfileFragment extends Fragment {
     tvName = view.findViewById(R.id.tvName);
     loadImage();
 
-
-
     allPosts = new ArrayList<>();
-
-    adapter = new com.example.docchi.fragments.PostsAdapter(getContext(), allPosts, username, false);
+    adapter = new PostsAdapter(getContext(), allPosts, user.getUsername(), false);
 
     rvPosts.setAdapter(adapter);
     rvPosts.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -179,13 +160,19 @@ public class ProfileFragment extends Fragment {
   }
 
   public void loadImage() {
-    ParseUser user = ParseUser.getCurrentUser();
-    tvName.setText(user.getUsername());
-  ParseFile file = user.getParseFile("profilePic");
-      Glide.with(this).
-              load(file.getUrl()).
-              transform(new CircleCrop()).
-              into(ivProfilePic);
+      tvName.setText(user.getUsername());
+      ParseFile file = user.getParseFile("profilePic");
+      if(file != null){
+        Glide.with(this).
+                load(file.getUrl()).
+                transform(new CircleCrop()).
+                into(ivProfilePic);
+      } else {
+        Glide.with(this).
+                load(R.drawable.default_pic).
+                transform(new CircleCrop()).
+                into(ivProfilePic);
+      }
     }
   }
 

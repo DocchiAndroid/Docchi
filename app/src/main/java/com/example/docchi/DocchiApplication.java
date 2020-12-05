@@ -3,6 +3,8 @@ package com.example.docchi;
 import android.app.Application;
 import android.util.Log;
 
+import com.example.docchi.model.Images;
+import com.example.docchi.model.Post;
 import com.parse.Parse;
 import com.parse.ParseInstallation;
 import com.parse.ParseObject;

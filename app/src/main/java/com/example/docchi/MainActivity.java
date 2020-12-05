@@ -13,6 +13,7 @@ import androidx.fragment.app.FragmentManager;
 
 import com.example.docchi.fragments.CreatePollFragment;
 import com.example.docchi.fragments.ProfileFragment;
+import com.example.docchi.fragments.SearchFragment;
 import com.example.docchi.fragments.TimelineFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -46,6 +47,9 @@ public class MainActivity extends AppCompatActivity {
                 switch (menuItem.getItemId()) {
                     case R.id.action_home:
                         fragment = new TimelineFragment(loggedInUser);
+                        break;
+                    case R.id.action_search:
+                        fragment = new SearchFragment();
                         break;
                     case R.id.action_newPoll:
                         fragment = new CreatePollFragment();
