@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -20,7 +21,9 @@ import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseQuery;
 
+import java.text.DateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 
@@ -45,7 +48,12 @@ public class TimelineFragment extends Fragment {
     @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
                            Bundle savedInstanceState) {
+
+
+
     // Inflate the layout for this fragment
+
+
      View v = inflater.inflate(R.layout.fragment_timeline, container, false);
       ActionBar actionBar = ((MainActivity) getContext()).getSupportActionBar();
       actionBar.setTitle("Docchi");
@@ -87,6 +95,9 @@ public class TimelineFragment extends Fragment {
   @Override
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
+
+
+
     rvPosts = view.findViewById(R.id.rvPosts);
     allPosts = new ArrayList<>();
 
@@ -95,5 +106,12 @@ public class TimelineFragment extends Fragment {
     rvPosts.setAdapter(adapter);
     rvPosts.setLayoutManager(new LinearLayoutManager(getContext()));
     queryPost();
+
+    //Timestamp
+//    Calendar calendar = Calendar.getInstance();
+//    String currentDate = DateFormat.getDateInstance().format(calendar.getTime());
+
+//    TextView textViewDate = view.findViewById(R.id.text_view_date);
+//    textViewDate.setText(currentDate);
   }
 }

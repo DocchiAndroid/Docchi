@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,10 +17,12 @@ import com.example.docchi.fragments.ProfileFragment;
 import com.example.docchi.fragments.TimelineFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.text.DateFormat;
+import java.util.Calendar;
+
 public class MainActivity extends AppCompatActivity {
     final FragmentManager fragmentManager = getSupportFragmentManager();
     BottomNavigationView bottomNavigationView;
-
 
 
 
@@ -34,8 +37,13 @@ public class MainActivity extends AppCompatActivity {
             toolbar.setTitle("Docchi");
             setSupportActionBar(toolbar);
 
-        bottomNavigationView = findViewById(R.id.bottomNavigation);
+//        Calendar calendar = Calendar.getInstance();
+//        String currentDate = DateFormat.getDateInstance(DateFormat.FULL).format(calendar.getTime());
+//        TextView textViewDate = findViewById(R.id.text_view_date);
+//        textViewDate.setText(currentDate);
 
+
+        bottomNavigationView = findViewById(R.id.bottomNavigation);
 
 
 
