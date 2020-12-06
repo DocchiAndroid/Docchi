@@ -2,7 +2,6 @@ package com.example.docchi;
 
 import android.os.Bundle;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
@@ -11,7 +10,8 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
-import com.example.docchi.fragments.CreatePollFragment;
+import com.example.docchi.fragments.CreatePostFragment;
+import com.example.docchi.fragments.NewPostDialogFragment;
 import com.example.docchi.fragments.ProfileFragment;
 import com.example.docchi.fragments.SearchFragment;
 import com.example.docchi.fragments.TimelineFragment;
@@ -47,21 +47,22 @@ public class MainActivity extends AppCompatActivity {
                 switch (menuItem.getItemId()) {
                     case R.id.action_home:
                         fragment = new TimelineFragment(loggedInUser);
+                        fragmentManager.beginTransaction().replace(R.id.flContainer, fragment).commit();
                         break;
                     case R.id.action_search:
                         fragment = new SearchFragment();
+                        fragmentManager.beginTransaction().replace(R.id.flContainer, fragment).commit();
                         break;
                     case R.id.action_newPoll:
-                        fragment = new CreatePollFragment();
+                        showNewPostDialog();
                         break;
                     case R.id.action_profile:
                         fragment = new ProfileFragment();
+                        fragmentManager.beginTransaction().replace(R.id.flContainer, fragment).commit();
                         break;
                     default:
                         return true;
                 }
-
-                fragmentManager.beginTransaction().replace(R.id.flContainer, fragment).commit();
                 return true;
             }
         });
@@ -74,6 +75,12 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_top, menu);
         return true;
+    }
+
+    private void showNewPostDialog() {
+        FragmentManager fm = getSupportFragmentManager();
+        NewPostDialogFragment editNameDialogFragment = NewPostDialogFragment.newInstance("New Post");
+        editNameDialogFragment.show(fm, "fragment_create_post");
     }
 
     public void setHome(){
