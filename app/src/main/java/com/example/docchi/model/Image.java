@@ -1,4 +1,4 @@
-package com.example.docchi;
+package com.example.docchi.model;
 
 import com.parse.ParseFile;
 

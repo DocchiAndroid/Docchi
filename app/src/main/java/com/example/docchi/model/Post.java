@@ -1,7 +1,9 @@
-package com.example.docchi;
+package com.example.docchi.model;
 
 import android.util.Log;
 
+import com.example.docchi.model.Image;
+import com.example.docchi.model.Images;
 import com.parse.GetCallback;
 import com.parse.ParseClassName;
 import com.parse.ParseException;
