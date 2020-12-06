@@ -20,7 +20,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.CenterCrop;
+import com.bumptech.glide.load.resource.bitmap.CenterInside;
 import com.bumptech.glide.load.resource.bitmap.CircleCrop;
+import com.bumptech.glide.load.resource.bitmap.FitCenter;
 import com.example.docchi.AboutActivity;
 import com.example.docchi.HelpActivity;
 import com.example.docchi.LoginActivity;
@@ -115,8 +118,10 @@ public class ProfileFragment extends Fragment {
                            Bundle savedInstanceState) {
     // Inflate the layout for this fragment
     View v = inflater.inflate(R.layout.fragment_profile, container, false);
+
     ActionBar actionBar = ((MainActivity) getContext()).getSupportActionBar();
     actionBar.setTitle("Docchi");
+
     return v;
   }
 
@@ -160,6 +165,7 @@ public class ProfileFragment extends Fragment {
   }
 
   public void loadImage() {
+
       tvName.setText(user.getUsername());
       ParseFile file = user.getParseFile("profilePic");
       if(file != null){
@@ -173,6 +179,7 @@ public class ProfileFragment extends Fragment {
                 transform(new CircleCrop()).
                 into(ivProfilePic);
       }
+
     }
   }
 
