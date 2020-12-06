@@ -5,12 +5,15 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -18,6 +21,7 @@ import com.example.docchi.MainActivity;
 import com.example.docchi.model.Post;
 import com.example.docchi.R;
 import com.example.docchi.adapters.PostsAdapter;
+import com.example.docchi.model.SpacesItemDecoration;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseQuery;
@@ -32,6 +36,7 @@ import java.util.List;
 public class TimelineFragment extends Fragment {
 
   public static final String TAG = "TimelineFragment";
+  private static final int VERTICAL_ITEM_SPACE = 20;
   private RecyclerView rvPosts;
   protected PostsAdapter adapter;
   protected List<Post> allPosts;
@@ -51,15 +56,20 @@ public class TimelineFragment extends Fragment {
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
                            Bundle savedInstanceState) {
 
-
+//      Calendar calendar = Calendar.getInstance();
+//      String currentDate = DateFormat.getDateInstance(DateFormat.FULL).format(calendar.getTime());
+//      TextView textViewDate = View.findViewById(R.id.text_view_date);
+//      textViewDate.setText(currentDate);
 
     // Inflate the layout for this fragment
-
-
      View v = inflater.inflate(R.layout.fragment_timeline, container, false);
       ActionBar actionBar = ((MainActivity) getContext()).getSupportActionBar();
       actionBar.setTitle("Docchi");
+
+
       return v;
+
+
   }
 
 //  @Override
@@ -99,7 +109,6 @@ public class TimelineFragment extends Fragment {
     super.onViewCreated(view, savedInstanceState);
 
 
-
     rvPosts = view.findViewById(R.id.rvPosts);
     allPosts = new ArrayList<>();
 
@@ -107,13 +116,20 @@ public class TimelineFragment extends Fragment {
 
     rvPosts.setAdapter(adapter);
     rvPosts.setLayoutManager(new LinearLayoutManager(getContext()));
+
+
+    //Divider for recyclerview
+    LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
+    DividerItemDecoration itemDecorator  = new DividerItemDecoration(getContext(), LinearLayoutManager.VERTICAL);
+    itemDecorator.setDrawable(ContextCompat.getDrawable(getContext(), R.drawable.border));
+
+    rvPosts.setHasFixedSize(true);
+    rvPosts.setLayoutManager(layoutManager);
+    rvPosts.addItemDecoration(itemDecorator);
+    rvPosts.addItemDecoration(new SpacesItemDecoration(VERTICAL_ITEM_SPACE));
+
     queryPost();
 
-    //Timestamp
-//    Calendar calendar = Calendar.getInstance();
-//    String currentDate = DateFormat.getDateInstance().format(calendar.getTime());
 
-//    TextView textViewDate = view.findViewById(R.id.text_view_date);
-//    textViewDate.setText(currentDate);
   }
 }

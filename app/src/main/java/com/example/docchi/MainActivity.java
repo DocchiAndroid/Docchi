@@ -11,6 +11,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.docchi.fragments.CreatePollFragment;
 import com.example.docchi.fragments.ProfileFragment;
@@ -34,15 +36,10 @@ public class MainActivity extends AppCompatActivity {
         String loggedInUser = getIntent().getStringExtra("LoggedInUser");
 
 
+
             Toolbar toolbar = findViewById(R.id.toolbar);
             toolbar.setTitle("Docchi");
             setSupportActionBar(toolbar);
-
-//        Calendar calendar = Calendar.getInstance();
-//        String currentDate = DateFormat.getDateInstance(DateFormat.FULL).format(calendar.getTime());
-//        TextView textViewDate = findViewById(R.id.text_view_date);
-//        textViewDate.setText(currentDate);
-
 
         bottomNavigationView = findViewById(R.id.bottomNavigation);
 

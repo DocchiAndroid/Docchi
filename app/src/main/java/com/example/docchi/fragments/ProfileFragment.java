@@ -15,7 +15,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -29,6 +31,7 @@ import com.example.docchi.model.Post;
 import com.example.docchi.R;
 import com.example.docchi.SettingActivity;
 import com.example.docchi.adapters.PostsAdapter;
+import com.example.docchi.model.SpacesItemDecoration;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.parse.FindCallback;
 import com.parse.ParseException;
@@ -43,6 +46,7 @@ import java.util.List;
 public class ProfileFragment extends Fragment {
 
   public static final String TAG = "ProfileFragment";
+  private static final int VERTICAL_ITEM_SPACE = 48;
   protected PostsAdapter adapter;
   protected List<Post> allPosts;
   private ParseUser user;
@@ -153,6 +157,16 @@ public class ProfileFragment extends Fragment {
 
     allPosts = new ArrayList<>();
     adapter = new PostsAdapter(getContext(), allPosts, user.getUsername(), false);
+
+    //Divider for recyclerview
+    LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
+    DividerItemDecoration itemDecorator  = new DividerItemDecoration(getContext(), LinearLayoutManager.VERTICAL);
+    itemDecorator.setDrawable(ContextCompat.getDrawable(getContext(), R.drawable.border));
+
+    rvPosts.setHasFixedSize(true);
+    rvPosts.setLayoutManager(layoutManager);
+    rvPosts.addItemDecoration(itemDecorator);
+    rvPosts.addItemDecoration(new SpacesItemDecoration(VERTICAL_ITEM_SPACE));
 
     rvPosts.setAdapter(adapter);
     rvPosts.setLayoutManager(new LinearLayoutManager(getContext()));
