@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_marginLeft="10dp"
@@ -12,16 +13,29 @@
         android:scaleType="centerCrop"
         tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
-    <ImageView
+<!--    <ImageView-->
+<!--        android:id="@+id/ivVote"-->
+<!--        android:layout_width="20dp"-->
+<!--        android:layout_height="20dp"-->
+<!--        android:layout_below="@id/ivImage"-->
+<!--        android:layout_marginStart="20dp"-->
+<!--        android:layout_marginTop="20dp"-->
+<!--        app:srcCompat="@drawable/ic_baseline_thumb_up_24" />-->
+
+
+    <com.varunest.sparkbutton.SparkButton
         android:id="@+id/ivVote"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:layout_below="@id/ivImage"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:src="@drawable/ic_baseline_thumb_up_24" />
-
-
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="51dp"
+        android:layout_marginBottom="47dp"
+        app:sparkbutton_activeImage="@drawable/ic_baseline_thumb_up_24"
+        app:sparkbutton_iconSize="40dp"
+        app:sparkbutton_inActiveImage="@drawable/sparkle3"
+        app:sparkbutton_primaryColor="@color/primary_color"
+        app:sparkbutton_secondaryColor="@color/secondary_color" />
 
     <TextView
         android:id="@+id/tvCount"
@@ -34,5 +48,7 @@
         android:textSize="12sp"
         android:textStyle="bold"
         tools:text="200" />
+
+
 
 </RelativeLayout>

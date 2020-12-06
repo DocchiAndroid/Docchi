@@ -1,10 +1,14 @@
 package com.example.docchi.fragments;
 
+import android.app.Activity;
+import android.graphics.drawable.AnimatedVectorDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -16,6 +20,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.vectordrawable.graphics.drawable.AnimatedVectorDrawableCompat;
 
 import com.example.docchi.MainActivity;
 import com.example.docchi.model.Post;
@@ -52,7 +57,8 @@ public class TimelineFragment extends Fragment {
 
   }
 
-    @Override
+
+  @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
                            Bundle savedInstanceState) {
 
@@ -65,6 +71,7 @@ public class TimelineFragment extends Fragment {
      View v = inflater.inflate(R.layout.fragment_timeline, container, false);
       ActionBar actionBar = ((MainActivity) getContext()).getSupportActionBar();
       actionBar.setTitle("Docchi");
+
 
 
       return v;
@@ -107,6 +114,37 @@ public class TimelineFragment extends Fragment {
   @Override
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
+
+    ImageView ivVote;
+    AnimatedVectorDrawableCompat avd;
+    AnimatedVectorDrawable avd2;
+
+    ivVote = view.findViewById(R.id.ivVote);
+
+    //done animation
+    ((Activity) getContext()).getWindow().getDecorView().setSystemUiVisibility(
+            View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                    | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                    | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                    | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                    | View.SYSTEM_UI_FLAG_FULLSCREEN
+                    | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+
+    );
+
+//    ivVote.setOnClickListener(new View.OnClickListener(){
+//      @Override
+//      public void onClick(View v) {
+//        Drawable drawable = ivVote.getDrawable();
+//
+//        if(drawable instanceof AnimatedVectorDrawableCompat){
+//          avd = (AnimatedVectorDrawableCompat) drawable;
+//          avd.start();
+//        }else if(drawable instanceof AnimatedVectorDrawable)
+//          avd2 = (AnimatedVectorDrawable) drawable;
+//        avd2.start();
+//      }
+//    });
 
 
     rvPosts = view.findViewById(R.id.rvPosts);
