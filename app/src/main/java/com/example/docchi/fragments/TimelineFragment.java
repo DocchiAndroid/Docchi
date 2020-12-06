@@ -15,11 +15,13 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.docchi.MainActivity;
-import com.example.docchi.Post;
+import com.example.docchi.model.Post;
 import com.example.docchi.R;
+import com.example.docchi.adapters.PostsAdapter;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseQuery;
+import com.parse.ParseUser;
 
 import java.text.DateFormat;
 import java.util.ArrayList;
@@ -31,7 +33,7 @@ public class TimelineFragment extends Fragment {
 
   public static final String TAG = "TimelineFragment";
   private RecyclerView rvPosts;
-  protected com.example.docchi.fragments.PostsAdapter adapter;
+  protected PostsAdapter adapter;
   protected List<Post> allPosts;
   private String username;
 
@@ -101,7 +103,7 @@ public class TimelineFragment extends Fragment {
     rvPosts = view.findViewById(R.id.rvPosts);
     allPosts = new ArrayList<>();
 
-    adapter = new com.example.docchi.fragments.PostsAdapter(getContext(), allPosts, username, true);
+    adapter = new PostsAdapter(getContext(), allPosts, username, true);
 
     rvPosts.setAdapter(adapter);
     rvPosts.setLayoutManager(new LinearLayoutManager(getContext()));

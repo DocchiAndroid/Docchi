@@ -13,10 +13,7 @@ import android.widget.LinearLayout;
 import androidx.annotation.NonNull;
 import androidx.viewpager.widget.PagerAdapter;
 
-import com.example.docchi.Image;
 import com.example.docchi.R;
-import com.parse.GetFileCallback;
-import com.parse.ParseException;
 
 import java.io.File;
 import java.util.ArrayList;
