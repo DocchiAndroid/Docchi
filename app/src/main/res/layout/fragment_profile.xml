@@ -18,7 +18,7 @@
         <com.google.android.material.appbar.CollapsingToolbarLayout
             android:id="@+id/collapsing_toolbar"
             android:layout_width="wrap_content"
-            android:layout_height="400dp"
+            android:layout_height="300dp"
             android:fitsSystemWindows="true"
             app:contentScrim="?attr/colorPrimary"
             app:expandedTitleMarginEnd="64dp"
@@ -26,27 +26,16 @@
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
             <ImageView
-                android:id="@+id/ivProfilePicture"
+                android:id="@+id/ivProfileBackground"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerVertical="false"
-                android:layout_marginBottom="150dp"
-                android:src="@drawable/default_pic" />
-
-            <TextView
-                android:id="@+id/tvName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="300dp"
-                android:layout_toEndOf="@id/ivProfilePicture"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                android:background="@drawable/btn_rounded"
-                tools:text="Smita Mujumdar"
+                android:src="@drawable/gradient"
+                android:scaleType="fitXY"
                 />
-<!--            <com.google.android.material.floatingactionbutton.FloatingActionButton-->
+
+
+            <!--            <com.google.android.material.floatingactionbutton.FloatingActionButton-->
 <!--                android:layout_width="wrap_content"-->
 <!--                android:layout_height="wrap_content"-->
 <!--                android:layout_gravity="bottom|right"-->
@@ -55,13 +44,51 @@
 <!--                app:layout_anchor="@id/rvPosts"-->
 <!--                app:layout_anchorGravity="bottom|right|end"/>-->
 
+
+<!--            <RelativeLayout-->
+<!--                android:layout_width="125dp"-->
+<!--                android:layout_height="125dp"-->
+<!--                android:background="@drawable/circleborder">-->
+
+                <ImageView
+                    android:id="@+id/ivProfilePicture"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="80dp"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/default_pic" />
+
+            <ImageView
+                android:id="@+id/circleBoarder"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="80dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/circleborder" />
+
+
+
+            <TextView
+                android:id="@+id/tvName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="210dp"
+                android:layout_toEndOf="@id/ivProfilePicture"
+                android:fontFamily="sans-serif-light"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textColor="@color/white"
+                android:textSize="32sp"
+                tools:text="Smita Mujumdar" />
+
             <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-        app:layout_scrollFlags="scroll|enterAlwaysCollapsed"
-        />
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:layout_scrollFlags="scroll|enterAlwaysCollapsed"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
     </com.google.android.material.appbar.AppBarLayout>

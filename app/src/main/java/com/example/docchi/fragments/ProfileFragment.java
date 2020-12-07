@@ -23,6 +23,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.CircleCrop;
+import com.bumptech.glide.request.RequestOptions;
 import com.example.docchi.AboutActivity;
 import com.example.docchi.HelpActivity;
 import com.example.docchi.LoginActivity;
@@ -179,7 +180,7 @@ public class ProfileFragment extends Fragment {
       if(file != null){
         Glide.with(this).
                 load(file.getUrl()).
-                transform(new CircleCrop()).
+                apply(RequestOptions.circleCropTransform()).
                 into(ivProfilePic);
       } else {
         Glide.with(this).
