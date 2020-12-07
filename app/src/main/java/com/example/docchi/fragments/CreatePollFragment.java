@@ -68,8 +68,7 @@ public class CreatePollFragment extends Fragment {
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
-        //set create post icon on action bar
-        inflater.inflate(R.menu.newpoll_menu, menu);
+
     }
 
 
