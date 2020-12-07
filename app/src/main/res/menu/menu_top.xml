@@ -9,27 +9,27 @@
         android:icon="@drawable/ic_baseline_menu_24"
         app:showAsAction="always" >
 
-<menu>
-    <item
-        android:id="@+id/About"
-        android:title="About"
-        app:showAsAction="never" />
+    <menu>
+        <item
+            android:id="@+id/About"
+            android:title="About"
+            app:showAsAction="never" />
 
-    <item
-        android:id="@+id/Help"
-        android:title="Help"
-        app:showAsAction="never" />
+        <item
+            android:id="@+id/Help"
+            android:title="Help"
+            app:showAsAction="never" />
 
-    <item
-        android:id="@+id/Settings"
-        android:title="Settings"
-        app:showAsAction="never" />
+        <item
+            android:id="@+id/Settings"
+            android:title="Settings"
+            app:showAsAction="never" />
 
-    <item
-        android:id="@+id/Logout"
-        android:title="Logout"
-        app:showAsAction="never" />
-</menu>
+        <item
+            android:id="@+id/Logout"
+            android:title="Logout"
+            app:showAsAction="never" />
+    </menu>
     </item>
 
 
