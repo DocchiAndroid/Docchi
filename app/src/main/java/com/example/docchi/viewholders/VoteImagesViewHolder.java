@@ -1,5 +1,6 @@
 package com.example.docchi.viewholders;
 
+import android.app.Activity;
 import android.content.Context;
 import android.util.Log;
 import android.view.View;
@@ -9,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -17,6 +19,7 @@ import com.bumptech.glide.load.resource.bitmap.CircleCrop;
 import com.example.docchi.R;
 import com.example.docchi.adapters.PostImagesAdapter;
 import com.example.docchi.fragments.ProfileFragment;
+import com.example.docchi.fragments.ViewPostDialogFragment;
 import com.example.docchi.model.Post;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.parse.ParseFile;
@@ -68,11 +71,25 @@ public class VoteImagesViewHolder extends RecyclerView.ViewHolder{
             });
         }
 
+        itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showPostDetails(post);
+            }
+        });
+
         tvDescription.setText(post.getDescription());
         PostImagesAdapter adapter = new PostImagesAdapter(context, post, loggedInUser);
         LinearLayoutManager HorizontalLayout = new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false);
         rvImages.setLayoutManager(HorizontalLayout);
         rvImages.setAdapter(adapter);
         adapter.notifyDataSetChanged();
+    }
+
+    private void showPostDetails(Post post) {
+        AppCompatActivity activity = (AppCompatActivity) itemView.getContext();
+        FragmentManager fm = activity.getSupportFragmentManager();
+        ViewPostDialogFragment showPostDetailsDialog  = ViewPostDialogFragment.newInstance(post);
+        showPostDetailsDialog.show(fm, "fragment_view_post");
     }
 }

@@ -36,7 +36,6 @@ public class CreatePollFragment extends Fragment {
     EditText etQuestion;
     List<EditText>  options;
     TextView btnPost;
-    TextView btnBack;
     LinearLayout linearLayout;
     FloatingActionButton btnNewOption;
 
@@ -64,17 +63,7 @@ public class CreatePollFragment extends Fragment {
         options.add(edOption1);
         linearLayout = view.findViewById(R.id.linerLayout);
         btnPost = view.findViewById(R.id.createPost);
-        btnBack = view.findViewById(R.id.back);
         btnNewOption = view.findViewById(R.id.floatingActionButton);
-
-        btnBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                AppCompatActivity activity = (AppCompatActivity) view.getContext();
-                Fragment myFragment = new CreatePostFragment();
-                activity.getSupportFragmentManager().beginTransaction().replace(R.id.flContainer, myFragment).addToBackStack(null).commit();
-            }
-        });
 
         btnPost.setOnClickListener(new View.OnClickListener() {
             @Override

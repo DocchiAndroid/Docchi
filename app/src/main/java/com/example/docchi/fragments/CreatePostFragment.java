@@ -1,5 +1,8 @@
 package com.example.docchi.fragments;
 
+import android.app.Activity;
+import android.content.Context;
+import android.content.ContextWrapper;
 import android.content.Intent;
 import android.icu.text.SimpleDateFormat;
 import android.net.Uri;
@@ -25,6 +28,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.docchi.model.Image;
@@ -32,10 +36,14 @@ import com.example.docchi.MainActivity;
 import com.example.docchi.model.Post;
 import com.example.docchi.R;
 import com.example.docchi.adapters.ViewPagerAdapter;
+import com.github.jjobes.slidedatetimepicker.SlideDateTimeListener;
+import com.github.jjobes.slidedatetimepicker.SlideDateTimePicker;
 import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
+
+import org.w3c.dom.Text;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -63,8 +71,6 @@ public class CreatePostFragment extends Fragment {
     public String photoFileName = "docchi_img";
     private AlertDialog alertDialog;
     private AlertDialog.Builder dialogBuilder;
-    private TextView btnBack;
-
 
 
     @Override
@@ -141,7 +147,6 @@ public class CreatePostFragment extends Fragment {
         btnPost = view.findViewById(R.id.btnPostCreatePoll);
         photoFiles = new ArrayList<>();
         photos = new ArrayList<>();
-        btnBack = view.findViewById(R.id.back);
 
         //instantiate and set viewpager adapter
         viewPagerAdapter = new ViewPagerAdapter((MainActivity) getContext(), photos);
@@ -195,16 +200,9 @@ public class CreatePostFragment extends Fragment {
             }
         });
 
-        btnBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                AppCompatActivity activity = (AppCompatActivity) view.getContext();
-                Fragment myFragment = new CreatePostFragment();
-                activity.getSupportFragmentManager().beginTransaction().replace(R.id.flContainer, myFragment).addToBackStack(null).commit();
-            }
-        });
-
     }
+
+
 
     //savePost to parse
     private void savePost(String description, ParseUser currentUser, ArrayList<Image> photoFiles) {
