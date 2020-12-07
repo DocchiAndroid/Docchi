@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <array name="preloaded_fonts" translatable="false">
+        <item>@font/actor</item>
+        <item>@font/aldrich</item>
         <item>@font/alef</item>
         <item>@font/dekko</item>
         <item>@font/fjalla_one</item>
