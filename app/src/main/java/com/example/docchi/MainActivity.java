@@ -120,9 +120,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void showNewPostDialog() {
-        FragmentManager fm = getSupportFragmentManager();
         NewPostDialogFragment editNameDialogFragment = NewPostDialogFragment.newInstance("New Post");
-        editNameDialogFragment.show(fm, "fragment_create_post");
+        editNameDialogFragment.show(fragmentManager, "fragment_create_post");
     }
 
     public void setHome(){

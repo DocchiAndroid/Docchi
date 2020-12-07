@@ -1,0 +1,93 @@
+<!-- fragment_edit_name.xml -->
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:orientation="vertical"
+    android:layout_height="fill_parent" >
+
+    <RelativeLayout
+        android:id="@+id/fragment_view_post"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="50dp"
+        android:layout_gravity="center"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/ivProfilePicture"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/default_pic"/>
+
+        <TextView
+            android:id="@+id/tvName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_toEndOf="@id/ivProfilePicture"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            tools:text="Smita Mujumdar" />
+
+        <TextView
+            android:id="@+id/tvDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/ivProfilePicture"
+            tools:text="Do you like me or this insect?"
+            android:textSize="18sp"
+            android:layout_marginTop="10dp"
+            android:textColor="#000000"
+            />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvPictureContainer"
+            android:scrollbars="horizontal"
+            android:layout_width="match_parent"
+            android:layout_marginTop="10dp"
+            android:layout_below="@id/tvDescription"
+            android:layout_height="400dp"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvComments"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/rvPictureContainer"/>
+
+        <EditText
+            android:id="@+id/addComment"
+            android:layout_below="@id/rvComments"
+            android:hint="Add a comment..."
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/btnSend"
+            android:layout_below="@id/rvComments"
+            android:layout_alignRight="@id/addComment"
+            android:text="Send"
+            android:textColor="@color/black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/btnClose"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_below="@id/addComment"
+            android:layout_marginEnd="300dp"
+            android:background="@drawable/btn_rounded"
+            android:clickable="true"
+            android:gravity="center_horizontal"
+            android:text="Close"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+    </RelativeLayout>
+</ScrollView>

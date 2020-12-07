@@ -30,6 +30,7 @@ public class Post extends ParseObject {
     public static final String KEY_USER = "user";
     public static final String KEY_CREATED_KEY = "createdAt";
     public static final String KEY_POLL = "poll";
+    public static final String KEY_COMMENTS = "comments";
 
     public String getDescription() {
         return getString(KEY_DESCRIPTION);
@@ -158,6 +159,55 @@ public class Post extends ParseObject {
 
             }
         });
+    }
+
+    public List<Comment> getComments(){
+        JSONArray jsonArray = getJSONArray(KEY_COMMENTS);
+        List<Comment> comments = new ArrayList<>();
+        for(int i=0; i<jsonArray.length(); i++){
+            try {
+                JSONArray element = jsonArray.getJSONArray(i);
+                String user = element.getString(0);
+                String content = element.getString(1);
+                String time = element.getString(2);
+                Comment comment = new Comment(user, content, time);
+                comments.add(comment);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+        return comments;
+    }
+
+    public void addComment(Comment comment) {
+        List<Comment> comments = getComments();
+        comments.add(comment);
+        List<List<String>> storeComments = new ArrayList<>();
+        for(Comment c : comments){
+            List<String> curr = new ArrayList<>();
+            curr.add(c.getParseUser().getObjectId());
+            curr.add(c.getDescription());
+            curr.add(c.getTime());
+            storeComments.add(curr);
+        }
+        put(KEY_COMMENTS, storeComments);
+        this.saveInBackground(new SaveCallback() {
+            @Override
+            public void done(ParseException e) {
+
+            }
+        });
+    }
+
+    public static ParseUser getUserById(String id){
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("_User");
+        try {
+            ParseUser user = (ParseUser) query.get(id);
+            return user;
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
 }

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="15dp"
+    android:background="#FFFFFF"
+    android:padding="5dp">
+
+    <ImageView
+        android:id="@+id/profilePic"
+        android:src="@drawable/default_pic"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="8dp"/>
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Name"
+        android:textColor="#000000"
+        android:textStyle="bold"
+        android:textSize="7pt"
+        android:layout_marginRight="5dp"
+        android:layout_toEndOf="@id/profilePic" />
+
+    <TextView
+        android:id="@+id/time"
+        android:text="7m"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@id/name"
+        android:layout_alignParentEnd="true"/>
+
+    <TextView
+        android:id="@+id/content"
+        android:textColor="#000000"
+        android:text="This is a test content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/profilePic"
+        android:layout_below="@id/name"
+        android:autoLink="all"
+        android:linksClickable="true"/>
+
+</RelativeLayout>

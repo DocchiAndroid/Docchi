@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:fitsSystemWindows="true"
-    tools:context=".fragments.CreatePostImageslFragment"
+    tools:context=".fragments.CreatePostFragment"
     tools:ignore="ExtraText">
 
 
@@ -43,29 +43,16 @@
         android:id="@+id/btnPostCreatePoll"
         android:layout_width="100dp"
         android:layout_height="50dp"
+        android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
+        android:layout_marginEnd="300dp"
         android:layout_marginBottom="72dp"
         android:background="@drawable/btn_rounded"
         android:clickable="true"
-        android:gravity="center"
+        android:gravity="center_horizontal"
         android:text="Post"
         android:textColor="@color/white"
         android:textSize="20sp" />
-
-    <TextView
-        android:id="@+id/back"
-        android:layout_width="100dp"
-        android:layout_height="50dp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="72dp"
-        android:background="@drawable/btn_rounded"
-        android:clickable="true"
-        android:gravity="center"
-        android:text="Back"
-        android:textColor="@color/white"
-        android:textSize="20sp" />
-
 
     <ImageButton
         android:id="@+id/btnCaptureImageCreatePoll"
