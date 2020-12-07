@@ -11,6 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -35,7 +36,7 @@ public class PostsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     private boolean showUserDetail;
     private final int VOTE_POLL = 0, VOTE_IMAGES = 1;
 
-    public PostsAdapter(Context context, List<Post> posts, String loggedInUser, boolean showUserDetail){
+    public PostsAdapter(Context context, List<Post> posts, String loggedInUser, boolean showUserDetail) {
         this.context = context;
         this.posts = posts;
         this.loggedInUser = loggedInUser;
@@ -76,6 +77,7 @@ public class PostsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         }
     }
 
+
     @Override
     public int getItemCount() {
         return posts.size();
@@ -90,4 +92,7 @@ public class PostsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         }
         return -1;
     }
-}
+
+    }
+
+

@@ -3,9 +3,9 @@
   <style name="Theme.Docchi" parent="Theme.MaterialComponents.DayNight.NoActionBar">
     <!-- Primary brand color. -->
 
-    <item name="colorPrimary">#007A18DC</item>
+    <item name="colorPrimary">#000000</item>
     <item name="colorPrimaryVariant">@color/blue_dark</item>
-    <item name="colorOnPrimary">@color/white</item>
+    <item name="colorOnPrimary">#656161</item>
 
     <!-- Secondary brand color. -->
     <item name="colorSecondary">@color/teal_200</item>
