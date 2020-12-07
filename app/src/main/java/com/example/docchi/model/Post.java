@@ -1,6 +1,8 @@
 package com.example.docchi.model;
 
+import android.util.JsonWriter;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.example.docchi.model.Image;
 import com.example.docchi.model.Images;
@@ -12,7 +14,12 @@ import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
+import java.util.List;
 
 
 @ParseClassName("Post")
@@ -22,13 +29,13 @@ public class Post extends ParseObject {
     public static final String KEY_IMAGES = "images";
     public static final String KEY_USER = "user";
     public static final String KEY_CREATED_KEY = "createdAt";
-
+    public static final String KEY_POLL = "poll";
 
     public String getDescription() {
         return getString(KEY_DESCRIPTION);
     }
 
-    public void setDescription(String description){
+    public void setDescription(String description) {
         put(KEY_DESCRIPTION, description);
     }
 
@@ -37,11 +44,14 @@ public class Post extends ParseObject {
         Images imagesCol = (Images) get(KEY_IMAGES);
         Images im = null;
         try {
+            if(imagesCol == null || imagesCol.getObjectId() == null)
+                return null;
             im = (Images) query.get(imagesCol.getObjectId());
-            return im.getImages();
         } catch (ParseException e) {
             e.printStackTrace();
         }
+        if(im != null)
+            return im.getImages();
         return null;
     }
 
@@ -95,7 +105,7 @@ public class Post extends ParseObject {
         put(KEY_USER, user);
     }
 
-    public int previousVote(String username){
+    public int previousVoteImages(String username){
         ArrayList<Image> images = getImages();
         for(int i=0; i<images.size(); i++){
             if(images.get(i).getWhoVoted().contains(username)){
@@ -105,5 +115,49 @@ public class Post extends ParseObject {
         return -1;
     }
 
+    public int previousVotePoll(String username){
+        List<Poll> polls = getPolls();
+        for(int i=0; i<polls.size(); i++){
+            if(polls.get(i).getWhoVoted().contains(username)){
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    public ArrayList<Poll> getPolls() {
+        JSONArray jsonArray = getJSONArray(KEY_POLL);
+        ArrayList<Poll> polls = new ArrayList<>();
+        for(int i=0; i<jsonArray.length(); i++){
+            try {
+                String description = jsonArray.getJSONArray(i).getString(0);
+                List<String> voted = new ArrayList<>();
+                for(int j=1; j<jsonArray.getJSONArray(i).length(); j++){
+                    voted.add(jsonArray.getString(j));
+                }
+                polls.add(new Poll(description, voted));
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+        return polls;
+    }
+
+    public void setPoll(List<Poll> p) {
+        List<List<String>> polls = new ArrayList<>();
+        for (int i = 0; i < p.size(); i++) {
+            List<String> poll = new ArrayList<>();
+            poll.add(p.get(i).getItemDescription());
+            poll.addAll(p.get(i).getWhoVoted());
+            polls.add(poll);
+        }
+        put(KEY_POLL, polls);
+        this.saveInBackground(new SaveCallback() {
+            @Override
+            public void done(ParseException e) {
+
+            }
+        });
+    }
 
 }

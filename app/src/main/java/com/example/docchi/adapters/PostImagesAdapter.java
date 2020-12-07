@@ -44,10 +44,11 @@ public class PostImagesAdapter extends RecyclerView.Adapter<PostImagesAdapter.My
     @NonNull
     @Override
     public PostImagesAdapter.MyView onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.item_image_post, parent, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.item_post_images_image, parent, false);
         return new PostImagesAdapter.MyView(view);
+    }
 
-            }
+
 
     @Override
     public void onBindViewHolder(@NonNull PostImagesAdapter.MyView holder, int position) {
@@ -101,7 +102,7 @@ public class PostImagesAdapter extends RecyclerView.Adapter<PostImagesAdapter.My
             btnVote.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    int pos = post.previousVote(username);
+                    int pos = post.previousVoteImages(username);
                     if(pos != -1 && pos != position){
                         Toast.makeText(context, "You have already voted " + pos, Toast.LENGTH_SHORT).show();
                         return;
