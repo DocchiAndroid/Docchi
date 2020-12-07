@@ -103,21 +103,28 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.ViewHolder> 
 
     class ViewHolder extends RecyclerView.ViewHolder {
         private ImageView ivProfilePic;
+        private TextView tvUsername;
         private TextView tvName;
         private View itemView;
+
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             ivProfilePic = itemView.findViewById(R.id.ivProfilePicture);
-            tvName = itemView.findViewById(R.id.tvUsername);
+            tvUsername = itemView.findViewById(R.id.tvUsername);
+            tvName = itemView.findViewById(R.id.tvName);
             this.itemView = itemView;
         }
 
         public void bind(ParseUser user){
-            tvName.setText(user.getUsername());
+            tvUsername.setText(user.getUsername());
+            String fullname = user.getString("firstname") + " " + user.getString("lastname");
+            tvName.setText(fullname);
             ParseFile file = user.getParseFile("profilePic");
             if(file!= null){
                 Glide.with(context).load(file.getUrl()).transform(new CircleCrop()).into(ivProfilePic);
+            } else {
+                Glide.with(context).load(R.drawable.default_pic).transform(new CircleCrop()).into(ivProfilePic);
             }
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

@@ -3,38 +3,85 @@
     android:id="@+id/choosePostType"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:layout_gravity="center"
-    android:orientation="vertical">
+    android:paddingTop="20dp"
+    android:paddingBottom="40dp"
+    android:paddingLeft="20dp"
+    android:paddingRight="40dp"
+    android:layout_marginBottom="50dp"
+    android:background="@drawable/item_background_rounded">
 
-    <TextView
-        android:id="@+id/PostType"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Choose post type"
-        app:layout_constraintEnd_toEndOf="parent"
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/dialog_toolbar"
+        android:layout_width="260dp"
+        android:layout_height="52dp"
+        android:background="@drawable/item_background_rounded"
+        app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent"
+        app:title="New Post"
+        android:gravity="left"
+        app:titleTextColor="@color/blue">
+
+        <ImageView
+            android:id="@+id/dialog_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_gravity="right"
+            android:clickable="true"
+            android:src="@drawable/close" />
+    </androidx.appcompat.widget.Toolbar>
+
+    <ImageView
+        android:id="@+id/voteWPic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ballot"
+        app:layout_constraintTop_toTopOf="@id/pollWithoutPicture"
+        app:layout_constraintBottom_toBottomOf="@id/pollWithoutPicture"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/pollWithoutPicture"/>
+
+
+
+    <ImageView
+        android:id="@+id/votePic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/camera"
+        app:layout_constraintTop_toTopOf="@id/poll"
+        app:layout_constraintBottom_toBottomOf="@id/poll"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/poll"/>
 
     <Button
         android:id="@+id/poll"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/btn_rounded"
+        android:textColor="@color/white"
         android:text="With pictures"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/choosePostType" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/dialog_toolbar" />
 
     <Button
         android:id="@+id/pollWithoutPicture"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Without pictures"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/btn_rounded"
+        android:textColor="@color/white"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/poll" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
