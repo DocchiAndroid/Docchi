@@ -36,7 +36,7 @@ public class PostsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     private boolean showUserDetail;
     private final int VOTE_POLL = 0, VOTE_IMAGES = 1;
 
-    public PostsAdapter(Context context, List<Post> posts, String loggedInUser, boolean showUserDetail){
+    public PostsAdapter(Context context, List<Post> posts, String loggedInUser, boolean showUserDetail) {
         this.context = context;
         this.posts = posts;
         this.loggedInUser = loggedInUser;
@@ -77,6 +77,7 @@ public class PostsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         }
     }
 
+
     @Override
     public int getItemCount() {
         return posts.size();
@@ -88,56 +89,10 @@ public class PostsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             return VOTE_IMAGES;
         } else if (posts.get(position).getPolls().isEmpty()) {
             return VOTE_POLL;
-    class ViewHolder extends RecyclerView.ViewHolder{
-        private ImageView ivProfilePic;
-        private TextView tvName;
-        private TextView tvDescription;
-        private RecyclerView rvImages;
-
-        public ViewHolder(@NonNull View itemView) {
-            super(itemView);
-            ivProfilePic = itemView.findViewById(R.id.ivProfilePicture);
-            tvName = itemView.findViewById(R.id.tvName);
-            tvDescription = itemView.findViewById(R.id.tvDescription);
-            rvImages = itemView.findViewById(R.id.rvPictureContainer);
-       }
-
-        public void bind(Post post){
-            if (showUserDetail == false){
-                tvName.setVisibility(View.GONE);
-                ivProfilePic.setVisibility(View.GONE);
-            }else{
-                tvName.setText(post.getUser().getUsername());
-                ParseFile file = post.getUser().getParseFile("profilePic");
-                if(file!= null){
-                    Glide.with(context).load(file.getUrl()).transform(new CircleCrop()).into(ivProfilePic);
-                }
-                ivProfilePic.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        AppCompatActivity activity = (AppCompatActivity) view.getContext();
-                        ParseUser user = post.getUser();
-                        Log.d("Posts Adapter", user.getUsername());
-                        BottomNavigationView bnv = (BottomNavigationView) activity.findViewById(R.id.bottomNavigation);
-                        bnv.setSelectedItemId(R.id.action_profile);
-                        Fragment myFragment = new ProfileFragment(user);
-                        activity.getSupportFragmentManager().beginTransaction().replace(R.id.flContainer, myFragment).addToBackStack(null).commit();
-                    }
-                });
-            }
-
-            tvDescription.setText(post.getDescription());
-            PostImagesAdapter adapter = new PostImagesAdapter(context, post, loggedInUser);
-            LinearLayoutManager HorizontalLayout = new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false);
-
-
-
-            rvImages.setLayoutManager(HorizontalLayout);
-            rvImages.setAdapter(adapter);
-            adapter.notifyDataSetChanged();
-
-
         }
         return -1;
     }
-}
+
+    }
+
+
