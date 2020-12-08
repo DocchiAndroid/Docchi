@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -17,12 +18,15 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.CircleCrop;
 import com.example.docchi.MainActivity;
 import com.example.docchi.R;
 import com.example.docchi.model.Poll;
 import com.example.docchi.model.Post;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.parse.ParseException;
+import com.parse.ParseFile;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
@@ -36,6 +40,9 @@ public class CreatePollFragment extends Fragment {
     EditText etQuestion;
     List<EditText>  options;
     TextView btnPost;
+    ImageView ivProfilePic;
+    TextView tvUsername;
+    TextView tvName;
     LinearLayout linearLayout;
     FloatingActionButton btnNewOption;
 
@@ -57,13 +64,27 @@ public class CreatePollFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        etQuestion = view.findViewById(R.id.question);
+        ivProfilePic = view.findViewById(R.id.profilePic);
+        tvUsername = view.findViewById(R.id.username);
+        tvName = view.findViewById(R.id.name);
+        etQuestion = view.findViewById(R.id.compose);
         options = new ArrayList<>();
         EditText edOption1 = view.findViewById(R.id.Option1);
         options.add(edOption1);
         linearLayout = view.findViewById(R.id.linerLayout);
         btnPost = view.findViewById(R.id.createPost);
         btnNewOption = view.findViewById(R.id.floatingActionButton);
+
+        tvUsername.setText(ParseUser.getCurrentUser().getUsername());
+        String fullname = ParseUser.getCurrentUser().getString("firstname") +
+                " " + ParseUser.getCurrentUser().getString("lastname");
+        tvName.setText(fullname);
+        ParseFile file = ParseUser.getCurrentUser().getParseFile("profilePic");
+        if(file!= null){
+            Glide.with(getContext()).load(file.getUrl()).transform(new CircleCrop()).into(ivProfilePic);
+        } else {
+            Glide.with(getContext()).load(R.drawable.default_pic).transform(new CircleCrop()).into(ivProfilePic);
+        }
 
         btnPost.setOnClickListener(new View.OnClickListener() {
             @Override
