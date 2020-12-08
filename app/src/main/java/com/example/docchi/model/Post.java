@@ -210,4 +210,26 @@ public class Post extends ParseObject {
         return null;
     }
 
+    public int getTotalImagesVotes(){
+        List<Image> images = getImages();
+        int total = 0;
+        for(Image image: images){
+            total += image.getCount();
+        }
+        return total;
+    }
+
+    public int getTotalPollVotes(){
+        List<Poll> polls = getPolls();
+        int total = 0;
+        for(Poll poll: polls){
+            total += poll.getVotes();
+        }
+        return total;
+    }
+
+    public int getTotalComments(){
+        List<Comment> comments = getComments();
+        return comments.size();
+    }
 }

@@ -42,9 +42,9 @@ import java.util.List;
 public class TimelineFragment extends Fragment {
 
   public static final String TAG = "TimelineFragment";
-  private static final int VERTICAL_ITEM_SPACE = 20;
+  public static final int VERTICAL_ITEM_SPACE = 20;
   private RecyclerView rvPosts;
-  protected PostsAdapter adapter;
+  public static PostsAdapter adapter;
   protected List<Post> allPosts;
   private String username;
 
@@ -167,7 +167,7 @@ public class TimelineFragment extends Fragment {
 //    rvPosts.addItemDecoration(itemDecorator);
 //    rvPosts.addItemDecoration(new SpacesItemDecoration(VERTICAL_ITEM_SPACE));
 
-    queryPost();
+    if(allPosts.size() == 0) queryPost();
 
 
   }

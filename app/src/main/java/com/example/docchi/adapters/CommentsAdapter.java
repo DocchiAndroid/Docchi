@@ -66,7 +66,7 @@ public class CommentsAdapter extends RecyclerView.Adapter<CommentsAdapter.ViewHo
                 Glide.with(context).load(file.getUrl()).transform(new CircleCrop()).into(ivProfilePic);
             }
             tvDescription.setText(comment.getDescription());
-            tvDateTime.setText(comment.getTime());
+            tvDateTime.setText(comment.getTimeDifference());
         }
     }
 }
