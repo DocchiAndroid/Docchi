@@ -18,6 +18,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,6 +32,8 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.viewpager.widget.ViewPager;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.CircleCrop;
 import com.example.docchi.model.Image;
 import com.example.docchi.MainActivity;
 import com.example.docchi.model.Post;
@@ -60,8 +63,8 @@ public class CreatePostFragment extends Fragment {
     public static final String TAG = "CreatePollFragment";
     public static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 42;
     public final static int PICK_PHOTO_CODE = 328;
-    private ImageButton btnCaptureImage;
-    private ImageButton btnSelectImage;
+    private ImageView btnCaptureImage;
+    private ImageView btnSelectImage;
     private ViewPager viewPager;
     private ViewPagerAdapter viewPagerAdapter;
     private EditText etDescription;
@@ -71,6 +74,9 @@ public class CreatePostFragment extends Fragment {
     public String photoFileName = "docchi_img";
     private AlertDialog alertDialog;
     private AlertDialog.Builder dialogBuilder;
+    private ImageView ivProfilePic;
+    private TextView tvUsername;
+    private TextView tvName;
 
 
     @Override
@@ -150,6 +156,21 @@ public class CreatePostFragment extends Fragment {
         //instantiate and set viewpager adapter
         viewPagerAdapter = new ViewPagerAdapter((MainActivity) getContext(), photos);
         viewPager.setAdapter(viewPagerAdapter);
+
+        //set user
+        ivProfilePic = view.findViewById(R.id.profilePic);
+        tvUsername = view.findViewById(R.id.username);
+        tvName = view.findViewById(R.id.name);
+        tvUsername.setText(ParseUser.getCurrentUser().getUsername());
+        String fullname = ParseUser.getCurrentUser().getString("firstname") +
+                " " + ParseUser.getCurrentUser().getString("lastname");
+        tvName.setText(fullname);
+        ParseFile file = ParseUser.getCurrentUser().getParseFile("profilePic");
+        if(file!= null){
+            Glide.with(getContext()).load(file.getUrl()).transform(new CircleCrop()).into(ivProfilePic);
+        } else {
+            Glide.with(getContext()).load(R.drawable.default_pic).transform(new CircleCrop()).into(ivProfilePic);
+        }
 
         //resize certain UI components
         fixUI();
