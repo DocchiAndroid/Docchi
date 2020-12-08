@@ -13,6 +13,7 @@ import android.widget.LinearLayout;
 import androidx.annotation.NonNull;
 import androidx.viewpager.widget.PagerAdapter;
 
+import com.bumptech.glide.Glide;
 import com.example.docchi.R;
 
 import java.io.File;
@@ -58,11 +59,12 @@ public class ViewPagerAdapter extends PagerAdapter {
         ImageView imageView = (ImageView) itemView.findViewById(R.id.postImageLayout);
 
         // setting the image in the imageView
-        Bitmap bp = BitmapFactory.decodeFile(images.get(position).getAbsolutePath());
-        Matrix matrix = new Matrix();
-        matrix.postRotate(90);
-        bp=Bitmap.createBitmap(bp, 0, 0, bp.getWidth(), bp.getHeight(), matrix, true);
-        imageView.setImageBitmap(bp);
+        //Bitmap bp = BitmapFactory.decodeFile(images.get(position).getAbsolutePath());
+        Glide.with(context).load(images.get(position)).into(imageView);
+        //Matrix matrix = new Matrix();
+        //matrix.postRotate(90);
+        //bp=Bitmap.createBitmap(bp, 0, 0, bp.getWidth(), bp.getHeight(), matrix, true);
+        //imageView.setImageBitmap(bp);
 
         // Adding the View
         Objects.requireNonNull(container).addView(itemView);
