@@ -16,7 +16,7 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:scaleType="fitXY"
-        android:src="@drawable/default_pic" />
+        android:src="@drawable/default_pic"/>
 
     <TextView
         android:id="@+id/tvName"
@@ -40,25 +40,25 @@
         android:layout_marginStart="5dp"
         android:layout_marginTop="25dp"
         android:layout_toEndOf="@id/ivProfilePicture"
-        android:text="12/5/2020"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="#6E6969"
-        android:textSize="10sp" />
+        android:textSize="10sp"
+        android:text="12/5/2020" />
 
 
-    <!--    <TextView-->
-    <!--        android:id="@+id/text_view_date"-->
-    <!--        android:layout_width="wrap_content"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:layout_alignParentTop="true"-->
-    <!--        android:layout_marginStart="13dp"-->
-    <!--        android:layout_marginTop="24dp"-->
-    <!--        android:layout_toEndOf="@id/ivProfilePicture"-->
-    <!--        android:textAppearance="@style/TextAppearance.AppCompat.Large"-->
-    <!--        android:text="Date"-->
-    <!--        android:textColor="#4A4848"-->
-    <!--        android:textSize="10sp"-->
-    <!--         />-->
+<!--    <TextView-->
+<!--        android:id="@+id/text_view_date"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_alignParentTop="true"-->
+<!--        android:layout_marginStart="13dp"-->
+<!--        android:layout_marginTop="24dp"-->
+<!--        android:layout_toEndOf="@id/ivProfilePicture"-->
+<!--        android:textAppearance="@style/TextAppearance.AppCompat.Large"-->
+<!--        android:text="Date"-->
+<!--        android:textColor="#4A4848"-->
+<!--        android:textSize="10sp"-->
+<!--         />-->
 
     <TextView
         android:id="@+id/tvDescription"
@@ -74,11 +74,11 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvPictureContainer"
+        android:nestedScrollingEnabled="false"
         android:layout_width="match_parent"
-        android:layout_height="400dp"
-        android:layout_below="@id/tvDescription"
         android:layout_marginTop="20dp"
-        android:scrollbars="horizontal" />
+        android:layout_below="@id/tvDescription"
+        android:layout_height="400dp"/>
 
 
 </RelativeLayout>

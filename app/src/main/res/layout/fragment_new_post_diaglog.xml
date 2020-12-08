@@ -3,8 +3,8 @@
     android:id="@+id/choosePostType"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     android:layout_gravity="center"
     android:paddingTop="20dp"
     android:paddingBottom="40dp"
@@ -15,7 +15,7 @@
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/dialog_toolbar"
-        android:layout_width="260dp"
+        android:layout_width="350dp"
         android:layout_height="52dp"
         android:background="@drawable/item_background_rounded"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -35,28 +35,6 @@
             android:src="@drawable/close" />
     </androidx.appcompat.widget.Toolbar>
 
-    <ImageView
-        android:id="@+id/voteWPic"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ballot"
-        app:layout_constraintTop_toTopOf="@id/pollWithoutPicture"
-        app:layout_constraintBottom_toBottomOf="@id/pollWithoutPicture"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@id/pollWithoutPicture"/>
-
-
-
-    <ImageView
-        android:id="@+id/votePic"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/camera"
-        app:layout_constraintTop_toTopOf="@id/poll"
-        app:layout_constraintBottom_toBottomOf="@id/poll"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@id/poll"/>
-
     <Button
         android:id="@+id/poll"
         android:layout_width="wrap_content"
@@ -65,23 +43,27 @@
         android:layout_marginTop="10dp"
         android:background="@drawable/btn_rounded"
         android:textColor="@color/white"
-        android:text="With pictures"
+        android:text="Add Images to the Poll"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        android:drawableLeft="@drawable/ic_camera_24"
+        android:textAllCaps="false"
         app:layout_constraintTop_toBottomOf="@id/dialog_toolbar" />
 
     <Button
         android:id="@+id/pollWithoutPicture"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Without pictures"
+        android:text="Continue without Images"
         android:layout_marginStart="50dp"
         android:layout_marginTop="20dp"
         android:background="@drawable/btn_rounded"
         android:textColor="@color/white"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        android:drawableLeft="@drawable/ic_poll"
+        android:textAllCaps="false"
         app:layout_constraintTop_toBottomOf="@+id/poll" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
