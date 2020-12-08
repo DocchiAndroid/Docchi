@@ -166,14 +166,14 @@ public class ProfileFragment extends Fragment {
     adapter = new PostsAdapter(getContext(), allPosts, user.getUsername(), false);
 
     //Divider for recyclerview
-    LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
-    DividerItemDecoration itemDecorator  = new DividerItemDecoration(getContext(), LinearLayoutManager.VERTICAL);
-    itemDecorator.setDrawable(ContextCompat.getDrawable(getContext(), R.drawable.border));
-
-    rvPosts.setHasFixedSize(true);
-    rvPosts.setLayoutManager(layoutManager);
-    rvPosts.addItemDecoration(itemDecorator);
-    rvPosts.addItemDecoration(new SpacesItemDecoration(VERTICAL_ITEM_SPACE));
+//    LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
+//    DividerItemDecoration itemDecorator  = new DividerItemDecoration(getContext(), LinearLayoutManager.VERTICAL);
+//    itemDecorator.setDrawable(ContextCompat.getDrawable(getContext(), R.drawable.border));
+//
+//    rvPosts.setHasFixedSize(true);
+//    rvPosts.setLayoutManager(layoutManager);
+//    rvPosts.addItemDecoration(itemDecorator);
+//    rvPosts.addItemDecoration(new SpacesItemDecoration(VERTICAL_ITEM_SPACE));
 
     rvPosts.setAdapter(adapter);
     rvPosts.setLayoutManager(new LinearLayoutManager(getContext()));
