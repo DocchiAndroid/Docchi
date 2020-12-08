@@ -9,12 +9,15 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toolbar;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DividerItemDecoration;
@@ -53,6 +56,8 @@ public class ProfileFragment extends Fragment {
   private ParseUser user;
   private ImageView ivProfilePic;
   private TextView tvName;
+  protected Toolbar toolbar;
+
 
 
   public ProfileFragment(ParseUser user) {
@@ -96,6 +101,7 @@ public class ProfileFragment extends Fragment {
     startActivity(intent);
     ((MainActivity) getActivity()).finish();
 
+
   }
 
   @Override
@@ -106,6 +112,10 @@ public class ProfileFragment extends Fragment {
     //Tool bar title
     ActionBar actionBar = ((MainActivity) getContext()).getSupportActionBar();
     actionBar.setTitle("Docchi");
+
+
+//    ((MainActivity)getActivity()).getSupportActionBar().hide();
+
   }
 
   //&oncreaview for the profile
@@ -113,9 +123,11 @@ public class ProfileFragment extends Fragment {
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
                            Bundle savedInstanceState) {
     // Inflate the layout for this fragment
+
+
+
     View v = inflater.inflate(R.layout.fragment_profile, container, false);
-    ActionBar actionBar = ((MainActivity) getContext()).getSupportActionBar();
-    actionBar.setTitle("Docchi");
+
     return v;
   }
 
