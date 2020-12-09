@@ -1,5 +1,6 @@
 package com.example.docchi.adapters;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -7,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -64,16 +66,16 @@ public class PostPollAdapter extends RecyclerView.Adapter<PostPollAdapter.MyView
         TextView tvDescription;
         ImageView voteImage;
         TextView tvCount;
-        ImageView vote1;
+
 
         public MyView(@NonNull View itemView) {
             super(itemView);
             tvDescription = itemView.findViewById(R.id.tvDescription);
             voteImage = itemView.findViewById(R.id.vote);
-            vote1 = itemView.findViewById(R.id.vote1);
             tvCount = itemView.findViewById(R.id.voteCount);
         }
 
+        @SuppressLint("SetTextI18n")
         public void bind(int position){
             Poll poll = polls.get(position);
             //Bind the post data to the view elements
@@ -93,10 +95,6 @@ public class PostPollAdapter extends RecyclerView.Adapter<PostPollAdapter.MyView
                     post.setPoll(polls);
                     //update ui
                     tvCount.setText(Integer.toString(poll.getVotes()));
-
-                    //shake animation on vote_btn
-                    Animation shake = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.shake);
-                    voteImage.startAnimation(shake);
                 }
             });
         }

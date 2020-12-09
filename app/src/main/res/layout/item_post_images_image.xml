@@ -29,7 +29,8 @@
         android:textAlignment="textStart"
         android:textColor="#00BCD4"
         android:textSize="10dp"
-        app:strokeColor="@color/blue" />
+        app:strokeColor="@color/blue"
+        />
 
     <TextView
         android:id="@+id/tvCount"
