@@ -18,6 +18,7 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.docchi.fragments.TimelineFragment;
 import com.example.docchi.model.Image;
 import com.example.docchi.model.Poll;
 import com.example.docchi.model.Post;
@@ -86,15 +87,18 @@ public class PostPollAdapter extends RecyclerView.Adapter<PostPollAdapter.MyView
                 @Override
                 public void onClick(View view) {
                     int pos = post.previousVotePoll(username);
-                    if(pos != -1 && pos != position){
+                    if(pos != -1 && pos != position) {
                         Toast.makeText(context, "You have already voted " + pos, Toast.LENGTH_SHORT).show();
                         return;
                     }
                     poll.changeVote(username);
+                    Log.i("HerePostPollAdapter", username);
+                    Log.i("HerePostPollAdapter", poll.getWhoVoted().toString());
                     polls.set(position, poll);
                     post.setPoll(polls);
                     //update ui
                     tvCount.setText(Integer.toString(poll.getVotes()));
+                    TimelineFragment.adapter.notifyDataSetChanged();
                 }
             });
         }

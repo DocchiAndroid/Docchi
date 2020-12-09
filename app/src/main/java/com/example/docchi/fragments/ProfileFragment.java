@@ -163,7 +163,7 @@ public class ProfileFragment extends Fragment {
     loadImage();
 
     allPosts = new ArrayList<>();
-    adapter = new PostsAdapter(getContext(), allPosts, user.getUsername(), false);
+    adapter = new PostsAdapter(getContext(), allPosts, user.getUsername(), true);
 
     //Divider for recyclerview
 //    LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
