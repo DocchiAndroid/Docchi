@@ -61,6 +61,7 @@ public class ViewPostDialogFragment extends DialogFragment {
     private EditText addComment;
     private Button send;
     private ImageView btnClose;
+    private TextView tvDate;
     private static final int VERTICAL_ITEM_SPACE = 0;
 
 
@@ -106,6 +107,7 @@ public class ViewPostDialogFragment extends DialogFragment {
         rvComments = view.findViewById(R.id.rvComments);
         addComment = view.findViewById(R.id.addComment);
         send = view.findViewById(R.id.btnSend);
+        tvDate = view.findViewById(R.id.text_view_date);
 
         List<Comment> previousComments = post.getComments();
         CommentsAdapter adapter = new CommentsAdapter(getContext(), previousComments);
@@ -161,6 +163,7 @@ public class ViewPostDialogFragment extends DialogFragment {
             }
         });
 
+        tvDate.setText(post.getTimeDifference());
         tvDescription.setText(post.getDescription());
         if(post.getImages() != null) {
             PostImagesAdapter adapterImages = new PostImagesAdapter(getContext(), post, ParseUser.getCurrentUser().getUsername());
