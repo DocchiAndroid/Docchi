@@ -32,6 +32,7 @@ public class VotePollViewHolder extends RecyclerView.ViewHolder{
     private TextView tvDescription;
     private RecyclerView rvPoll;
     private TextView tvMoreDetails;
+    private TextView tvDate;
 
     private boolean showUserDetail;
     private Context context;
@@ -44,6 +45,7 @@ public class VotePollViewHolder extends RecyclerView.ViewHolder{
         tvDescription = itemView.findViewById(R.id.tvDescription);
         rvPoll = itemView.findViewById(R.id.rvPolls);
         tvMoreDetails = itemView.findViewById(R.id.MoreDetails);
+        tvDate = itemView.findViewById(R.id.text_view_date);
 
         this.showUserDetail = showUserDetails;
         this.loggedInUser = loggedInUser;
@@ -81,6 +83,7 @@ public class VotePollViewHolder extends RecyclerView.ViewHolder{
             }
         });
 
+        tvDate.setText(post.getTimeDifference());
         tvDescription.setText(post.getDescription());
         int totalVotes = post.getTotalPollVotes();
         int totalComments = post.getTotalComments();
