@@ -14,11 +14,31 @@
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Help"
-        android:textSize="18dp"
-        android:textColor="@color/black"
+        android:layout_height="wrap_content"
+        android:text="Contact us!"
+        android:textSize="28dp"
+        android:textColor="@color/blue"
         android:layout_margin="10dp"
+        />
+
+    <EditText
+        android:id="@+id/etHelpMessage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:hint="Your Message"
+        android:padding="15dp"
+        android:gravity="top"
+        android:minLines="6"
+        android:background="@drawable/et_settings"
+        />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+        android:text="SEND MESSAGE"
         />
 
 
