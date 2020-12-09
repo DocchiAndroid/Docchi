@@ -1,30 +1,30 @@
 package com.example.docchi.adapters;
 
-import android.app.Activity;
 import android.content.Context;
-import android.graphics.drawable.AnimatedVectorDrawable;
-import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.view.animation.TranslateAnimation;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.vectordrawable.graphics.drawable.AnimatedVectorDrawableCompat;
 
 import com.bumptech.glide.Glide;
 import com.example.docchi.model.Image;
 import com.example.docchi.model.Post;
 import com.example.docchi.R;
 import com.parse.ParseFile;
-import com.varunest.sparkbutton.SparkButton;
-import com.varunest.sparkbutton.SparkEventListener;
 
 import java.util.ArrayList;
+
+import static com.parse.Parse.getApplicationContext;
 
 public class PostImagesAdapter extends RecyclerView.Adapter<PostImagesAdapter.MyView> {
 
@@ -62,29 +62,18 @@ public class PostImagesAdapter extends RecyclerView.Adapter<PostImagesAdapter.My
 
     public class MyView extends RecyclerView.ViewHolder {
         ImageView ivImage;
-        ImageView voteImage;
         TextView tvCount;
-        TextView btnVote;
-        AnimatedVectorDrawableCompat avd;
-        AnimatedVectorDrawable avd2;
+        Button vtnButton;
+
 
         public MyView(@NonNull View itemView) {
             super(itemView);
             ivImage = itemView.findViewById(R.id.ivImage);
-            voteImage = itemView.findViewById(R.id.ivVote);
-            btnVote = itemView.findViewById(R.id.btnVote);
+
             tvCount = itemView.findViewById(R.id.tvCount);
+            vtnButton = itemView.findViewById(R.id.vtnButton);
 
 
-            ((Activity) itemView.getContext()).getWindow().getDecorView().setSystemUiVisibility(
-                    View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                            | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                            | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                            | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-                            | View.SYSTEM_UI_FLAG_FULLSCREEN
-                            | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
-
-            );
         }
 
         public void bind(int position){
@@ -99,7 +88,7 @@ public class PostImagesAdapter extends RecyclerView.Adapter<PostImagesAdapter.My
             }
 
 
-            btnVote.setOnClickListener(new View.OnClickListener() {
+            vtnButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     int pos = post.previousVoteImages(username);
@@ -113,13 +102,9 @@ public class PostImagesAdapter extends RecyclerView.Adapter<PostImagesAdapter.My
                     //update ui
                     tvCount.setText(Integer.toString(image.getCount()));
 
-                    Drawable drawable = voteImage.getDrawable();
-                    if(drawable instanceof AnimatedVectorDrawableCompat){
-                        avd = (AnimatedVectorDrawableCompat) drawable;
-                        avd.start();
-                    }else if(drawable instanceof AnimatedVectorDrawable)
-                        avd2 = (AnimatedVectorDrawable) drawable;
-                    avd2.start();
+                    //shake animation on vote_btn
+                    Animation shake = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.shake);
+                    vtnButton.startAnimation(shake);
                 }
             });
 

@@ -3,56 +3,71 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
-    android:layout_marginLeft="10dp"
-    android:layout_height="wrap_content">
+    android:layout_marginLeft="5dp"
+    android:layout_height="300dp">
 
     <ImageView
         android:id="@+id/ivImage"
-        android:layout_width="170dp"
+        android:layout_width="160dp"
         android:layout_height="250dp"
         android:scaleType="centerCrop"
         tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
 
+    <Button
+        android:id="@+id/vtnButton"
+        style="?attr/materialButtonOutlinedStyle"
+        android:layout_width="66dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/ivImage"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="3dp"
+        android:layout_marginBottom="1dp"
+        android:text="THIS!"
+        android:textAlignment="textStart"
+        android:textColor="#00BCD4"
+        android:textSize="10dp"
+        app:strokeColor="@color/blue"
+        />
+
     <TextView
         android:id="@+id/tvCount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@id/btnVote"
-        android:layout_marginRight="15dp"
-        android:layout_toRightOf="@id/btnVote"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="11dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginBottom="16dp"
+        android:layout_toEndOf="@id/vtnButton"
         android:textColor="@color/black"
         android:textSize="12sp"
         android:textStyle="bold"
         tools:text="200" />
 
-    <TextView
-        android:id="@+id/btnVote"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_below="@+id/ivImage"
-        android:layout_centerHorizontal="true"
-        android:layout_gravity="center_vertical"
-        android:layout_marginStart="70dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="10dp"
-        android:background="@drawable/circle"
-        android:fontFamily="casual"
-        android:gravity="center"
-        android:padding="5dp"
-        android:text="vote"
-        android:textColor="@color/white"
-        android:textSize="12sp" />
+    <!--    <TextView-->
+<!--        android:id="@+id/btnVote"-->
+<!--        android:layout_width="80dp"-->
+<!--        android:layout_height="35dp"-->
+<!--        android:layout_below="@+id/ivImage"-->
+<!--        android:layout_centerHorizontal="true"-->
+<!--        android:layout_gravity="center_vertical"-->
+<!--        android:layout_marginStart="70dp"-->
+<!--        android:layout_marginLeft="5dp"-->
+<!--        android:layout_marginTop="20dp"-->
+<!--        android:layout_marginBottom="10dp"-->
+<!--        android:background="@drawable/vote_btn_rounded"-->
+<!--        android:fontFamily="sans-serif"-->
+<!--        android:gravity="center"-->
+<!--        android:padding="3dp"-->
+<!--        android:text="VOTE"-->
+<!--        android:onClick="shake"-->
+<!--        android:textColor="@color/blue"-->
+<!--        android:textSize="12sp" />-->
 
-    <ImageView
-        android:id="@+id/ivVote"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:layout_below="@id/ivImage"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="4dp"
-        app:srcCompat="@drawable/avd_star" />
+
+
+
 
 </RelativeLayout>
