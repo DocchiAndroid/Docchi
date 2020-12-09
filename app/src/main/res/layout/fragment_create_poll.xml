@@ -63,8 +63,7 @@
         <EditText
             android:id="@+id/compose"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:maxLength="280"
+            android:layout_height="wrap_content"
             android:gravity="top|left"
             android:background="@color/white"
             android:hint="What's on your mind?"/>
