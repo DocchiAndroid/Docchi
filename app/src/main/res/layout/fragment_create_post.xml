@@ -68,50 +68,56 @@
             android:id="@+id/etDescriptionCreatePoll"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@id/name"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
-            android:layout_below="@id/name"
-            android:textColor="@color/black"
             android:ems="10"
-            android:hint="What's on your mind?" />
-
-        <androidx.viewpager.widget.ViewPager
-            android:id="@+id/viewPagerCreatePoll"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_below="@id/etDescriptionCreatePoll"
-            android:layout_alignParentStart="true"
-            android:scrollbarStyle="insideOverlay"
-            android:scrollbars="horizontal"/>
+            android:hint="What's on your mind?"
+            android:importantForAutofill="no"
+            android:inputType="textShortMessage"
+            android:textColor="@color/black" />
 
         <Button
             android:id="@+id/btnPostCreatePoll"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/etDescriptionCreatePoll"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="5dp"
             android:background="@drawable/btn_rounded"
             android:text="Post"
-            android:layout_marginLeft="10dp"
-            android:layout_below="@id/viewPagerCreatePoll"
-            android:layout_alignParentLeft="true"
             android:textAllCaps="false"
             android:textColor="@color/white"
             android:textSize="16sp" />
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/viewPagerCreatePoll"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/btnSelectImageCreatePoll"
+            android:layout_below="@+id/btnPostCreatePoll"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="2dp"
+            android:scrollbarStyle="insideOverlay"
+            android:scrollbars="horizontal" />
 
         <ImageView
             android:id="@+id/btnCaptureImageCreatePoll"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:layout_alignParentRight="true"
-            android:layout_below="@id/viewPagerCreatePoll"
-            android:src="@drawable/camera" />
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:src="@drawable/ic_baseline_photo_camera_24" />
 
         <ImageView
             android:id="@+id/btnSelectImageCreatePoll"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:layout_marginRight="2dp"
-            android:layout_toLeftOf="@id/btnCaptureImageCreatePoll"
-            android:layout_below="@id/viewPagerCreatePoll"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="2dp"
+            android:layout_toStartOf="@id/btnCaptureImageCreatePoll"
             android:src="@drawable/image_gallery" />
 
     </RelativeLayout>

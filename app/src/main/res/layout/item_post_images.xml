@@ -32,7 +32,7 @@
         android:layout_marginTop="5dp"
         android:layout_toEndOf="@id/ivProfilePicture"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textColor="#6E6969"
+        android:textColor="#000000"
         android:textSize="15sp"
         android:textStyle="bold"
         tools:text="Smita Mujumdar" />
@@ -46,7 +46,7 @@
         android:layout_marginTop="25dp"
         android:layout_toEndOf="@id/ivProfilePicture"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textColor="#6E6969"
+        android:textColor="#000000"
         android:textSize="10sp"
         android:text="Dec 05, 2020" />
 
@@ -58,21 +58,36 @@
         android:layout_marginTop="10dp"
         android:fontFamily="sans-serif"
         android:textColor="#000000"
-        android:textSize="13sp"
+        android:textSize="15sp"
         tools:text="Do you like me or this insect?" />
 
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvPictureContainer"
         android:layout_width="match_parent"
-        android:layout_height="400dp"
         android:layout_below="@id/tvDescription"
+        android:layout_height="wrap_content"
         android:layout_marginTop="60dp"
         android:elevation="10dp"
         android:nestedScrollingEnabled="false"
-        android:padding="10dp" >
+        android:padding="10dp" />
 
-    </androidx.recyclerview.widget.RecyclerView>
-    </RelativeLayout>
+    <TextView
+        android:id="@+id/MoreDetails"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:textSize="5pt"
+        android:textStyle="bold"
+        android:padding="6dp"
+        android:gravity="center_vertical"
+        android:background="@drawable/btn_rounded"
+        android:layout_alignParentTop="true"
+        android:textAllCaps="true"
+        android:layout_alignParentRight="true"
+        android:text=" 10 votes\n 7 comments"
+        app:drawableLeftCompat="@drawable/ic_time_24" />
+
+        </RelativeLayout>
 
 </RelativeLayout>

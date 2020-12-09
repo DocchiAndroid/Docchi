@@ -60,7 +60,7 @@ import static android.app.Activity.RESULT_OK;
 
 public class CreatePostFragment extends Fragment {
 
-    public static final String TAG = "CreatePollFragment";
+    public static final String TAG = "CreatePostFragment";
     public static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 42;
     public final static int PICK_PHOTO_CODE = 328;
     private ImageView btnCaptureImage;
@@ -157,6 +157,7 @@ public class CreatePostFragment extends Fragment {
         viewPagerAdapter = new ViewPagerAdapter((MainActivity) getContext(), photos);
         viewPager.setAdapter(viewPagerAdapter);
 
+        fixUI();
         //set user
         ivProfilePic = view.findViewById(R.id.profilePic);
         tvUsername = view.findViewById(R.id.username);
@@ -173,13 +174,13 @@ public class CreatePostFragment extends Fragment {
         }
 
         //resize certain UI components
-        fixUI();
 
         //capture image listener
         btnCaptureImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(photoFiles.size()<5){
+                    //moveButtonsDown();
                     launchCamera();
                 }
                 else{
@@ -193,6 +194,7 @@ public class CreatePostFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 if(photoFiles.size()<5){
+                    //moveButtonsDown();
                     onPickPhoto(view);
                 }
                 else{
@@ -221,8 +223,6 @@ public class CreatePostFragment extends Fragment {
         });
 
     }
-
-
 
     //savePost to parse
     private void savePost(String description, ParseUser currentUser, ArrayList<Image> photoFiles) {
@@ -340,6 +340,8 @@ public class CreatePostFragment extends Fragment {
 
             } else { // Result was a failure
                 Toast.makeText(getContext(), "Picture wasn't taken!", Toast.LENGTH_SHORT).show();
+                photoFiles.remove(photoFiles.size()-1);
+                photos.remove(photos.size()-1);
             }
         }
 
@@ -362,6 +364,19 @@ public class CreatePostFragment extends Fragment {
         }
     }
 
+//    private void moveButtonsDown(){
+//        //get display width
+//        DisplayMetrics displayMetrics = new DisplayMetrics();
+//        ((MainActivity) getContext()).getWindowManager()
+//                .getDefaultDisplay()
+//                .getMetrics(displayMetrics);
+//        int width = displayMetrics.widthPixels;
+//        //resize viewpager to hold images
+//        ViewGroup.LayoutParams viewPagerParams = viewPager.getLayoutParams();
+//        viewPagerParams.height = width;
+//        viewPager.setLayoutParams(viewPagerParams);
+//    }
+
     //resize buttons and layout
     private void fixUI() {
         //get display width
@@ -371,17 +386,9 @@ public class CreatePostFragment extends Fragment {
                 .getMetrics(displayMetrics);
         int width = displayMetrics.widthPixels;
 
-//        Action bar title
+        //Action bar title
         ActionBar actionBar = ((MainActivity) getContext()).getSupportActionBar();
         actionBar.setTitle("New Poll");
-
-
-
-
-        //resize viewpager to hold images
-        ViewGroup.LayoutParams viewPagerParams = viewPager.getLayoutParams();
-        viewPagerParams.height = viewPagerParams.width;
-        viewPager.setLayoutParams(viewPagerParams);
 
         //resize camera button to cover half of screen width
         ViewGroup.LayoutParams btnCaptureImageLayoutParams = btnCaptureImage.getLayoutParams();

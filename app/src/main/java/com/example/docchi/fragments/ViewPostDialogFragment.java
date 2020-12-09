@@ -1,6 +1,9 @@
 package com.example.docchi.fragments;
 
 import android.app.Dialog;
+import android.content.DialogInterface;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -8,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Adapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -18,8 +22,10 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -28,9 +34,12 @@ import com.bumptech.glide.load.resource.bitmap.CircleCrop;
 import com.example.docchi.R;
 import com.example.docchi.adapters.CommentsAdapter;
 import com.example.docchi.adapters.PostImagesAdapter;
+import com.example.docchi.adapters.PostPollAdapter;
 import com.example.docchi.adapters.UsersAdapter;
 import com.example.docchi.model.Comment;
+import com.example.docchi.model.Image;
 import com.example.docchi.model.Post;
+import com.example.docchi.model.SpacesItemDecoration;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.parse.ParseFile;
 import com.parse.ParseUser;
@@ -47,11 +56,13 @@ public class ViewPostDialogFragment extends DialogFragment {
     private ImageView ivProfilePic;
     private TextView tvName;
     private TextView tvDescription;
-    private RecyclerView rvImages;
+    private RecyclerView rvOptions;
     private RecyclerView rvComments;
     private EditText addComment;
     private Button send;
-    private TextView btnClose;
+    private ImageView btnClose;
+    private TextView tvDate;
+    private static final int VERTICAL_ITEM_SPACE = 0;
 
 
     public ViewPostDialogFragment() {
@@ -71,7 +82,8 @@ public class ViewPostDialogFragment extends DialogFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_view_post, container);
+        getDialog().getWindow().requestFeature(Window.FEATURE_NO_TITLE);
+        return inflater.inflate(R.layout.fragment_view_post, container, false);
     }
 
     @Override
@@ -79,6 +91,7 @@ public class ViewPostDialogFragment extends DialogFragment {
         super.onStart();
         getDialog().getWindow()
                 .setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
+        getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
     }
 
     @Override
@@ -89,14 +102,25 @@ public class ViewPostDialogFragment extends DialogFragment {
         ivProfilePic = view.findViewById(R.id.ivProfilePicture);
         tvName = view.findViewById(R.id.tvName);
         tvDescription = view.findViewById(R.id.tvDescription);
-        rvImages = view.findViewById(R.id.rvPictureContainer);
+        rvOptions = view.findViewById(R.id.rvPictureContainer);
         btnClose = view.findViewById(R.id.btnClose);
         rvComments = view.findViewById(R.id.rvComments);
         addComment = view.findViewById(R.id.addComment);
         send = view.findViewById(R.id.btnSend);
+        tvDate = view.findViewById(R.id.text_view_date);
 
         List<Comment> previousComments = post.getComments();
         CommentsAdapter adapter = new CommentsAdapter(getContext(), previousComments);
+
+        //Divider for recyclerview
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
+        DividerItemDecoration itemDecorator  = new DividerItemDecoration(getContext(), LinearLayoutManager.VERTICAL);
+        itemDecorator.setDrawable(ContextCompat.getDrawable(getContext(), R.drawable.border));
+
+        rvComments.setHasFixedSize(true);
+        rvComments.setLayoutManager(layoutManager);
+        rvComments.addItemDecoration(itemDecorator);
+        rvComments.addItemDecoration(new SpacesItemDecoration(VERTICAL_ITEM_SPACE));
 
         rvComments.setAdapter(adapter);
         rvComments.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -122,6 +146,7 @@ public class ViewPostDialogFragment extends DialogFragment {
         btnClose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                TimelineFragment.adapter.notifyDataSetChanged();
                 dismiss();
             }
         });
@@ -130,10 +155,7 @@ public class ViewPostDialogFragment extends DialogFragment {
             @Override
             public void onClick(View view) {
                 String enteredComment = addComment.getText().toString();
-                SimpleDateFormat s = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss");
-                String format = s.format(new Date());
-
-                Comment comment = new Comment(ParseUser.getCurrentUser().getObjectId(), enteredComment, format);
+                Comment comment = new Comment(ParseUser.getCurrentUser().getObjectId(), enteredComment);
                 post.addComment(comment);
                 previousComments.add(comment);
                 adapter.notifyDataSetChanged();
@@ -141,11 +163,19 @@ public class ViewPostDialogFragment extends DialogFragment {
             }
         });
 
+        tvDate.setText(post.getTimeDifference());
         tvDescription.setText(post.getDescription());
-        PostImagesAdapter adapterImages = new PostImagesAdapter(getContext(), post, ParseUser.getCurrentUser().getUsername());
-        LinearLayoutManager HorizontalLayout = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
-        rvImages.setLayoutManager(HorizontalLayout);
-        rvImages.setAdapter(adapterImages);
-        adapterImages.notifyDataSetChanged();
+        if(post.getImages() != null) {
+            PostImagesAdapter adapterImages = new PostImagesAdapter(getContext(), post, ParseUser.getCurrentUser().getUsername());
+            LinearLayoutManager HorizontalLayout = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
+            rvOptions.setLayoutManager(HorizontalLayout);
+            rvOptions.setAdapter(adapterImages);
+            adapterImages.notifyDataSetChanged();
+        } else {
+            PostPollAdapter adapterPoll = new PostPollAdapter(getContext(), post, ParseUser.getCurrentUser().getUsername());
+            rvOptions.setLayoutManager(new LinearLayoutManager(getContext()));
+            rvOptions.setAdapter(adapterPoll);
+            adapterPoll.notifyDataSetChanged();
+        }
     }
 }

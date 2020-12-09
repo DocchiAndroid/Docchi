@@ -3,12 +3,14 @@ package com.example.docchi.viewholders;
 import android.content.Context;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -18,6 +20,7 @@ import com.example.docchi.R;
 import com.example.docchi.adapters.PostImagesAdapter;
 import com.example.docchi.adapters.PostPollAdapter;
 import com.example.docchi.fragments.ProfileFragment;
+import com.example.docchi.fragments.ViewPostDialogFragment;
 import com.example.docchi.model.Post;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.parse.ParseFile;
@@ -28,6 +31,8 @@ public class VotePollViewHolder extends RecyclerView.ViewHolder{
     private TextView tvName;
     private TextView tvDescription;
     private RecyclerView rvPoll;
+    private TextView tvMoreDetails;
+    private TextView tvDate;
 
     private boolean showUserDetail;
     private Context context;
@@ -39,6 +44,8 @@ public class VotePollViewHolder extends RecyclerView.ViewHolder{
         tvName = itemView.findViewById(R.id.tvName);
         tvDescription = itemView.findViewById(R.id.tvDescription);
         rvPoll = itemView.findViewById(R.id.rvPolls);
+        tvMoreDetails = itemView.findViewById(R.id.MoreDetails);
+        tvDate = itemView.findViewById(R.id.text_view_date);
 
         this.showUserDetail = showUserDetails;
         this.loggedInUser = loggedInUser;
@@ -69,11 +76,30 @@ public class VotePollViewHolder extends RecyclerView.ViewHolder{
             });
         }
 
+        tvMoreDetails.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showPostDetails(post);
+            }
+        });
+
+        tvDate.setText(post.getTimeDifference());
         tvDescription.setText(post.getDescription());
+        int totalVotes = post.getTotalPollVotes();
+        int totalComments = post.getTotalComments();
+        String moreDetails = "  " + totalVotes + (totalVotes==1?" Vote":" Votes") + "\n  " + totalComments + (totalComments==1?" Comment":" Comments");
+        tvMoreDetails.setText(moreDetails);
         PostPollAdapter adapter = new PostPollAdapter(context, post, loggedInUser);
         LinearLayoutManager HorizontalLayout = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
         rvPoll.setLayoutManager(HorizontalLayout);
         rvPoll.setAdapter(adapter);
         adapter.notifyDataSetChanged();
+    }
+
+    private void showPostDetails(Post post) {
+        AppCompatActivity activity = (AppCompatActivity) itemView.getContext();
+        FragmentManager fm = activity.getSupportFragmentManager();
+        ViewPostDialogFragment showPostDetailsDialog  = ViewPostDialogFragment.newInstance(post);
+        showPostDetailsDialog.show(fm, "fragment_view_post");
     }
 }

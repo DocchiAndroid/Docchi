@@ -3,12 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
-    android:layout_marginLeft="5dp"
-    android:layout_height="400dp">
+    android:layout_marginLeft="10dp"
+    android:layout_height="wrap_content">
 
     <ImageView
         android:id="@+id/ivImage"
-        android:layout_width="160dp"
+        android:layout_width="170dp"
         android:layout_height="250dp"
         android:scaleType="centerCrop"
         tools:srcCompat="@tools:sample/backgrounds/scenic" />
@@ -18,9 +18,9 @@
         android:id="@+id/tvCount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/ivVote"
-        android:layout_marginStart="120dp"
-        android:layout_marginTop="17dp"
+        android:layout_alignBottom="@id/btnVote"
+        android:layout_marginRight="15dp"
+        android:layout_toRightOf="@id/btnVote"
         android:textColor="@color/black"
         android:textSize="12sp"
         android:textStyle="bold"
@@ -28,23 +28,35 @@
 
     <TextView
         android:id="@+id/btnVote"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="80dp"
+        android:layout_height="35dp"
         android:layout_below="@+id/ivImage"
-        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_gravity="center_vertical"
         android:layout_marginStart="70dp"
         android:layout_marginLeft="5dp"
-        android:layout_marginTop="34dp"
-        android:layout_marginBottom="76dp"
-        android:background="@drawable/circle"
-        android:fontFamily="casual"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/vote_btn_rounded"
+        android:fontFamily="sans-serif"
         android:gravity="center"
         android:padding="5dp"
-        android:text="vote"
-        android:textColor="@color/white"
-        android:textSize="12sp" />
+        android:text="VOTE"
+        android:onClick="shake"
+        android:textColor="@color/blue"
+        android:textSize="10sp" />
+
+<!--    <Button-->
+<!--        android:background="@color/material_blue_grey_800"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_below="@id/btnVote"-->
+<!--        android:id="@+id/buttonAnimate"-->
+<!--        android:layout_centerHorizontal="true"-->
+<!--        android:text="     Shake dat S     "-->
+<!--        android:onClick="shake"-->
+<!--        android:textColor="#fff"-->
+<!--        />-->
 
     <ImageView
         android:id="@+id/ivVote"

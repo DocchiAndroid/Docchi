@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -30,6 +31,9 @@ public class VoteImagesViewHolder extends RecyclerView.ViewHolder{
     private TextView tvName;
     private TextView tvDescription;
     private RecyclerView rvImages;
+    private TextView tvMoreDetails;
+    private TextView tvDate;
+    private PostImagesAdapter adapter;
 
     private boolean showUserDetail;
     private Context context;
@@ -41,6 +45,8 @@ public class VoteImagesViewHolder extends RecyclerView.ViewHolder{
         tvName = itemView.findViewById(R.id.tvName);
         tvDescription = itemView.findViewById(R.id.tvDescription);
         rvImages = itemView.findViewById(R.id.rvPictureContainer);
+        tvMoreDetails = itemView.findViewById(R.id.MoreDetails);
+        tvDate = itemView.findViewById(R.id.text_view_date);
 
         this.showUserDetail = showUserDetails;
         this.loggedInUser = loggedInUser;
@@ -71,7 +77,13 @@ public class VoteImagesViewHolder extends RecyclerView.ViewHolder{
             });
         }
 
-        itemView.setOnClickListener(new View.OnClickListener() {
+        tvDate.setText(post.getTimeDifference());
+        int totalVotes = post.getTotalImagesVotes();
+        int totalComments = post.getTotalComments();
+        String moreDetails = "  " + totalVotes + (totalVotes==1?" Vote":" Votes") + "\n  " + totalComments + (totalComments==1?" Comment":" Comments");
+        tvMoreDetails.setText(moreDetails);
+
+        tvMoreDetails.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 showPostDetails(post);
@@ -79,7 +91,7 @@ public class VoteImagesViewHolder extends RecyclerView.ViewHolder{
         });
 
         tvDescription.setText(post.getDescription());
-        PostImagesAdapter adapter = new PostImagesAdapter(context, post, loggedInUser);
+        adapter = new PostImagesAdapter(context, post, loggedInUser);
         LinearLayoutManager HorizontalLayout = new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false);
         rvImages.setLayoutManager(HorizontalLayout);
         rvImages.setAdapter(adapter);
