@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.animation.TranslateAnimation;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -61,25 +62,19 @@ public class PostImagesAdapter extends RecyclerView.Adapter<PostImagesAdapter.My
 
     public class MyView extends RecyclerView.ViewHolder {
         ImageView ivImage;
-        ImageView voteImage;
         TextView tvCount;
-        TextView btnVote;
+        Button vtnButton;
 
 
         public MyView(@NonNull View itemView) {
             super(itemView);
             ivImage = itemView.findViewById(R.id.ivImage);
-            voteImage = itemView.findViewById(R.id.ivVote);
-            btnVote = itemView.findViewById(R.id.btnVote);
-            tvCount = itemView.findViewById(R.id.tvCount);
 
+            tvCount = itemView.findViewById(R.id.tvCount);
+            vtnButton = itemView.findViewById(R.id.vtnButton);
 
 
         }
-
-
-
-
 
         public void bind(int position){
             Image image = images.get(position);
@@ -93,7 +88,7 @@ public class PostImagesAdapter extends RecyclerView.Adapter<PostImagesAdapter.My
             }
 
 
-            btnVote.setOnClickListener(new View.OnClickListener() {
+            vtnButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     int pos = post.previousVoteImages(username);
@@ -109,7 +104,7 @@ public class PostImagesAdapter extends RecyclerView.Adapter<PostImagesAdapter.My
 
                     //shake animation on vote_btn
                     Animation shake = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.shake);
-                    btnVote.startAnimation(shake);
+                    vtnButton.startAnimation(shake);
                 }
             });
 

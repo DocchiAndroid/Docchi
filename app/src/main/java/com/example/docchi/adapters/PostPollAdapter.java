@@ -5,11 +5,14 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -22,6 +25,8 @@ import com.parse.ParseFile;
 import com.parse.SaveCallback;
 
 import java.util.ArrayList;
+
+import static com.parse.Parse.getApplicationContext;
 
 public class PostPollAdapter extends RecyclerView.Adapter<PostPollAdapter.MyView> {
 
@@ -59,11 +64,13 @@ public class PostPollAdapter extends RecyclerView.Adapter<PostPollAdapter.MyView
         TextView tvDescription;
         ImageView voteImage;
         TextView tvCount;
+        ImageView vote1;
 
         public MyView(@NonNull View itemView) {
             super(itemView);
             tvDescription = itemView.findViewById(R.id.tvDescription);
             voteImage = itemView.findViewById(R.id.vote);
+            vote1 = itemView.findViewById(R.id.vote1);
             tvCount = itemView.findViewById(R.id.voteCount);
         }
 
@@ -86,6 +93,10 @@ public class PostPollAdapter extends RecyclerView.Adapter<PostPollAdapter.MyView
                     post.setPoll(polls);
                     //update ui
                     tvCount.setText(Integer.toString(poll.getVotes()));
+
+                    //shake animation on vote_btn
+                    Animation shake = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.shake);
+                    voteImage.startAnimation(shake);
                 }
             });
         }

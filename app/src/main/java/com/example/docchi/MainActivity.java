@@ -83,14 +83,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void shake(View v) {
-        // Create shake effect from xml resource
-        Animation shake = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.shake);
-        // View element to be shaken
-        TextView s = findViewById(R.id.btnVote);
-        // Perform animation
-        s.startAnimation(shake);
-    }
+
 
 
     @Override
