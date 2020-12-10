@@ -22,7 +22,9 @@
         android:layout_alignParentLeft="true"
         android:layout_marginLeft="50dp"
         android:layout_marginTop="10dp"
-        android:background="@drawable/button_text" />
+        android:background="@drawable/ic_arrowup"
+
+        />
 
 
 

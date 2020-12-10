@@ -95,7 +95,7 @@ public class PostImagesAdapter extends RecyclerView.Adapter<PostImagesAdapter.My
                         Toast.makeText(context, "You have already voted " + pos, Toast.LENGTH_SHORT).show();
 
                         return;
-                    }
+                    }else
                     image.changeVote(username);
                     images.set(position, image);
                     post.updateImages(images);
