@@ -3,10 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="10dp"
-    android:layout_marginLeft="10dp"
-    android:layout_marginRight="10dp"
-    android:layout_marginBottom="2dp"
-    android:layout_marginTop="10dp"
+    android:layout_margin="8dp"
     android:background="@drawable/item_background_rounded"
     xmlns:tools="http://schemas.android.com/tools">
 
@@ -46,9 +43,10 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/ivProfilePicture"
         tools:text="Do you like me or this insect?"
-        android:textSize="18sp"
-        android:layout_marginTop="10dp"
+        android:fontFamily="sans-serif"
         android:textColor="#000000"
+        android:textSize="16sp"
+        android:layout_marginTop="10dp"
         />
 
     <androidx.recyclerview.widget.RecyclerView
@@ -62,15 +60,17 @@
         android:id="@+id/MoreDetails"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/white"
-        android:textSize="5pt"
+        android:textColor="@color/black"
+        android:textSize="6pt"
+        android:padding="-3dp"
         android:textStyle="bold"
-        android:padding="6dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         android:gravity="center_vertical"
-        android:background="@drawable/btn_rounded"
-        android:layout_alignParentTop="true"
-        android:drawableLeft="@drawable/ic_time_24"
-        android:layout_alignParentRight="true"
-        android:text=" 10 votes\n 7 comments"/>
+        android:background="@drawable/btn_comments_border"
+        android:layout_below="@id/rvPolls"
+        android:layout_alignParentLeft="true"
+        android:text="10 VOTES   7 COMMENTS"/>
 
 </RelativeLayout>

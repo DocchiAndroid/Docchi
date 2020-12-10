@@ -35,11 +35,10 @@ public class VoteImagesViewHolder extends RecyclerView.ViewHolder{
     private TextView tvDate;
     private PostImagesAdapter adapter;
 
-    private boolean showUserDetail;
     private Context context;
     private String loggedInUser;
 
-    public VoteImagesViewHolder(@NonNull View itemView, boolean showUserDetails, Context context, String loggedInUser) {
+    public VoteImagesViewHolder(@NonNull View itemView, Context context, String loggedInUser) {
         super(itemView);
         ivProfilePic = itemView.findViewById(R.id.ivProfilePicture);
         tvName = itemView.findViewById(R.id.tvName);
@@ -48,39 +47,33 @@ public class VoteImagesViewHolder extends RecyclerView.ViewHolder{
         tvMoreDetails = itemView.findViewById(R.id.MoreDetails);
         tvDate = itemView.findViewById(R.id.text_view_date);
 
-        this.showUserDetail = showUserDetails;
         this.loggedInUser = loggedInUser;
         this.context = context;
     }
 
     public void bind(Post post){
-        if (showUserDetail == false){
-            tvName.setVisibility(View.GONE);
-            ivProfilePic.setVisibility(View.GONE);
-        }else{
-            tvName.setText(post.getUser().getUsername());
-            ParseFile file = post.getUser().getParseFile("profilePic");
-            if(file!= null){
-                Glide.with(context).load(file.getUrl()).transform(new CircleCrop()).into(ivProfilePic);
-            }
-            ivProfilePic.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    AppCompatActivity activity = (AppCompatActivity) view.getContext();
-                    ParseUser user = post.getUser();
-                    Log.d("Posts Adapter", user.getUsername());
-                    BottomNavigationView bnv = (BottomNavigationView) activity.findViewById(R.id.bottomNavigation);
-                    bnv.setSelectedItemId(R.id.action_profile);
-                    Fragment myFragment = new ProfileFragment(user);
-                    activity.getSupportFragmentManager().beginTransaction().replace(R.id.flContainer, myFragment).addToBackStack(null).commit();
-                }
-            });
+        tvName.setText(post.getUser().getUsername());
+        ParseFile file = post.getUser().getParseFile("profilePic");
+        if(file!= null){
+            Glide.with(context).load(file.getUrl()).transform(new CircleCrop()).into(ivProfilePic);
         }
+        ivProfilePic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AppCompatActivity activity = (AppCompatActivity) view.getContext();
+                ParseUser user = post.getUser();
+                Log.d("Posts Adapter", user.getUsername());
+                BottomNavigationView bnv = (BottomNavigationView) activity.findViewById(R.id.bottomNavigation);
+                bnv.setSelectedItemId(R.id.action_profile);
+                Fragment myFragment = new ProfileFragment(user);
+                activity.getSupportFragmentManager().beginTransaction().replace(R.id.flContainer, myFragment).addToBackStack(null).commit();
+            }
+        });
 
         tvDate.setText(post.getTimeDifference());
         int totalVotes = post.getTotalImagesVotes();
         int totalComments = post.getTotalComments();
-        String moreDetails = "  " + totalVotes + (totalVotes==1?" Vote":" Votes") + "\n  " + totalComments + (totalComments==1?" Comment":" Comments");
+        String moreDetails = totalVotes + (totalVotes==1?" VOTE":" VOTES") + "   " + totalComments + (totalComments==1?" COMMENT":" COMMENTS");
         tvMoreDetails.setText(moreDetails);
 
         tvMoreDetails.setOnClickListener(new View.OnClickListener() {
