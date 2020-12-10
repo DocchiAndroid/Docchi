@@ -1,41 +1,34 @@
 package com.example.docchi.fragments;
 
-import android.app.Activity;
-import android.graphics.drawable.AnimatedVectorDrawable;
-import android.graphics.drawable.Drawable;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.vectordrawable.graphics.drawable.AnimatedVectorDrawableCompat;
 
+import com.example.docchi.AboutActivity;
+import com.example.docchi.HelpActivity;
+import com.example.docchi.LoginActivity;
 import com.example.docchi.MainActivity;
-import com.example.docchi.model.Post;
 import com.example.docchi.R;
+import com.example.docchi.SettingActivity;
 import com.example.docchi.adapters.PostsAdapter;
-import com.example.docchi.model.SpacesItemDecoration;
+import com.example.docchi.model.Post;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
-import java.text.DateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
 
@@ -58,6 +51,38 @@ public class TimelineFragment extends Fragment {
 
   }
 
+  @Override
+  public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+    switch (item.getItemId()) {
+      case R.id.About:
+        Intent intent1 = new Intent(getActivity(), AboutActivity.class);
+        startActivity(intent1);
+        return true;
+      case R.id.Help:
+        Intent intent2 = new Intent(getActivity(), HelpActivity.class);
+        startActivity(intent2);
+        return true;
+      case R.id.Settings:
+        Intent intent3 = new Intent(getActivity(), SettingActivity.class);
+        startActivity(intent3);
+        return true;
+      case R.id.Logout:
+        logout();
+        return true;
+      default:
+        return super.onOptionsItemSelected(item);
+    }
+
+  }
+
+  private void logout() {
+    ParseUser.logOut();
+    Intent intent = new Intent(getActivity(), LoginActivity.class);
+    startActivity(intent);
+    ((MainActivity) getActivity()).finish();
+
+
+  }
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -70,6 +95,7 @@ public class TimelineFragment extends Fragment {
 
     // Inflate the layout for this fragment
      View v = inflater.inflate(R.layout.fragment_timeline, container, false);
+    setHasOptionsMenu(true);
       ActionBar actionBar = ((MainActivity) getContext()).getSupportActionBar();
       actionBar.setTitle("Docchi");
 
