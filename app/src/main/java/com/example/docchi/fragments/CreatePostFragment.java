@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,8 +24,12 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
-import androidx.viewpager.widget.ViewPager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.load.resource.bitmap.CircleCrop;
+import com.example.docchi.adapters.CreatePostAdapter;
+import com.example.docchi.model.Image;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.CircleCrop;
 import com.example.docchi.AboutActivity;
@@ -33,7 +38,6 @@ import com.example.docchi.LoginActivity;
 import com.example.docchi.MainActivity;
 import com.example.docchi.R;
 import com.example.docchi.SettingActivity;
-import com.example.docchi.adapters.ViewPagerAdapter;
 import com.example.docchi.model.Image;
 import com.example.docchi.model.Post;
 import com.parse.ParseException;
@@ -58,8 +62,8 @@ public class CreatePostFragment extends Fragment {
     public final static int PICK_PHOTO_CODE = 328;
     private ImageView btnCaptureImage;
     private ImageView btnSelectImage;
-    private ViewPager viewPager;
-    private ViewPagerAdapter viewPagerAdapter;
+    private RecyclerView rvImages;
+    private CreatePostAdapter rvAdapter;
     private EditText etDescription;
     private TextView btnPost;
     private ArrayList<Image> photoFiles; //for parse
@@ -173,17 +177,23 @@ public class CreatePostFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         btnCaptureImage = view.findViewById(R.id.btnCaptureImageCreatePoll);
         btnSelectImage = view.findViewById(R.id.btnSelectImageCreatePoll);
-        viewPager = view.findViewById(R.id.viewPagerCreatePoll);
+        rvImages = view.findViewById(R.id.rvCreatePost);
         etDescription = view.findViewById(R.id.etDescriptionCreatePoll);
         btnPost = view.findViewById(R.id.btnPostCreatePoll);
         photoFiles = new ArrayList<>();
         photos = new ArrayList<>();
 
         //instantiate and set viewpager adapter
-        viewPagerAdapter = new ViewPagerAdapter((MainActivity) getContext(), photos);
-        viewPager.setAdapter(viewPagerAdapter);
+        //viewPagerAdapter = new ViewPagerAdapter((MainActivity) getContext(), photos);
+        //viewPager.setAdapter(viewPagerAdapter);
+        rvAdapter = new CreatePostAdapter(getContext(), photos);
+        LinearLayoutManager layoutManager= new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
+        rvImages.setLayoutManager(layoutManager);
+        rvImages.setAdapter(rvAdapter);
 
+        //resize certain UI components
         fixUI();
+
         //set user
         ivProfilePic = view.findViewById(R.id.profilePic);
         tvUsername = view.findViewById(R.id.username);
@@ -199,14 +209,13 @@ public class CreatePostFragment extends Fragment {
             Glide.with(getContext()).load(R.drawable.default_pic).transform(new CircleCrop()).into(ivProfilePic);
         }
 
-        //resize certain UI components
 
         //capture image listener
         btnCaptureImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(photoFiles.size()<5){
-                    //moveButtonsDown();
+                    moveButtonsDown();
                     launchCamera();
                 }
                 else{
@@ -220,7 +229,7 @@ public class CreatePostFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 if(photoFiles.size()<5){
-                    //moveButtonsDown();
+                    moveButtonsDown();
                     onPickPhoto(view);
                 }
                 else{
@@ -249,6 +258,7 @@ public class CreatePostFragment extends Fragment {
         });
 
     }
+
 
     //savePost to parse
     private void savePost(String description, ParseUser currentUser, ArrayList<Image> photoFiles) {
@@ -362,7 +372,7 @@ public class CreatePostFragment extends Fragment {
                 //ivPostImage.setImageBitmap(takenImage);
 
                 //display the image on screen
-                viewPagerAdapter.notifyDataSetChanged();
+                rvAdapter.notifyDataSetChanged();
 
             } else { // Result was a failure
                 Toast.makeText(getContext(), "Picture wasn't taken!", Toast.LENGTH_SHORT).show();
@@ -382,7 +392,7 @@ public class CreatePostFragment extends Fragment {
             photos.add(selectedImage);
 
             //display the image on screen
-            viewPagerAdapter.notifyDataSetChanged();
+            rvAdapter.notifyDataSetChanged();
 
             //Bitmap takenImage = BitmapFactory.decodeFile(selectedImage.getAbsolutePath());
             //ivPostImage.setImageBitmap(takenImage);
@@ -403,8 +413,16 @@ public class CreatePostFragment extends Fragment {
 //        viewPager.setLayoutParams(viewPagerParams);
 //    }
 
+    private void moveButtonsDown() {
+        btnPost.setVisibility(View.VISIBLE);
+        ViewGroup.LayoutParams rvLayoutParams = rvImages.getLayoutParams();
+        rvLayoutParams.height = (int)(250 * getContext().getResources().getDisplayMetrics().density);
+    }
+
+
     //resize buttons and layout
     private void fixUI() {
+        btnPost.setVisibility(View.INVISIBLE);
         //get display width
         DisplayMetrics displayMetrics = new DisplayMetrics();
         ((MainActivity) getContext()).getWindowManager()
