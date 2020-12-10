@@ -66,11 +66,13 @@
         android:id="@+id/btnUpdateUsername"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Update Username"
-        android:layout_marginTop="20dp"
-        android:textColor="@color/white"
         android:layout_gravity="center_horizontal"
-        />
+        android:layout_marginTop="20dp"
+        android:background="@drawable/et_rounded"
+        android:text="Update Username"
+        android:textStyle="bold"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        android:textColor="@color/white" />
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -129,10 +131,12 @@
         android:id="@+id/btnUpdatePassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Update Password"
-        android:layout_marginTop="20dp"
-        android:textColor="@color/white"
         android:layout_gravity="center_horizontal"
-        />
+        android:layout_marginTop="20dp"
+        android:background="@drawable/et_rounded"
+        android:text="Update Password"
+        android:textStyle="bold"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        android:textColor="@color/white" />
 
 </LinearLayout>
