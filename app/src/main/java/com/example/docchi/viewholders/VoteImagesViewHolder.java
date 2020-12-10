@@ -71,10 +71,7 @@ public class VoteImagesViewHolder extends RecyclerView.ViewHolder{
         });
 
         tvDate.setText(post.getTimeDifference());
-        int totalVotes = post.getTotalImagesVotes();
-        int totalComments = post.getTotalComments();
-        String moreDetails = totalVotes + (totalVotes==1?" VOTE":" VOTES") + "   " + totalComments + (totalComments==1?" COMMENT":" COMMENTS");
-        tvMoreDetails.setText(moreDetails);
+        setVotesComments(post);
 
         tvMoreDetails.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -96,5 +93,12 @@ public class VoteImagesViewHolder extends RecyclerView.ViewHolder{
         FragmentManager fm = activity.getSupportFragmentManager();
         ViewPostDialogFragment showPostDetailsDialog  = ViewPostDialogFragment.newInstance(post);
         showPostDetailsDialog.show(fm, "fragment_view_post");
+    }
+
+    public void setVotesComments(Post post) {
+        int totalVotes = post.getTotalImagesVotes();
+        int totalComments = post.getTotalComments();
+        String moreDetails = totalVotes + (totalVotes==1?" VOTE":" VOTES") + "   " + totalComments + (totalComments==1?" COMMENT":" COMMENTS");
+        tvMoreDetails.setText(moreDetails);
     }
 }

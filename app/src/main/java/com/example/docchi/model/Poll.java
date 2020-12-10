@@ -36,4 +36,9 @@ public class Poll {
         return false;
     }
 
+    public boolean isVoted(String username){
+        if(who_voted.contains(username))
+            return true;
+        return false;
+    }
 }

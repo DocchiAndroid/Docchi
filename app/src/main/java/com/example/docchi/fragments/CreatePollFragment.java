@@ -7,14 +7,17 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.GridLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
@@ -145,6 +148,14 @@ public class CreatePollFragment extends Fragment {
                 EditText etd = new EditText(getContext());
                 int next = options.size()+1;
                 etd.setHint("Option " + next + "...");
+                etd.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.et_settings));
+                int paddingDp = 10;
+                float density = getContext().getResources().getDisplayMetrics().density;
+                int paddingPixel = (int)(paddingDp * density);
+                etd.setPadding(paddingPixel, paddingPixel, paddingPixel, paddingPixel);
+                TableRow.LayoutParams params = new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT);
+                params.setMargins(0, 15, 0, 0);
+                etd.setLayoutParams(params);
                 linearLayout.addView(etd);
                 options.add(etd);
             }

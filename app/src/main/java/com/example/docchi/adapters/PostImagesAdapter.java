@@ -14,12 +14,16 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.CircleCrop;
+import com.example.docchi.fragments.TimelineFragment;
 import com.example.docchi.model.Image;
 import com.example.docchi.model.Post;
 import com.example.docchi.R;
+import com.example.docchi.viewholders.VoteImagesViewHolder;
 import com.parse.ParseFile;
 
 import java.util.ArrayList;
@@ -80,28 +84,39 @@ public class PostImagesAdapter extends RecyclerView.Adapter<PostImagesAdapter.My
             //Using Glide library for image
             ParseFile imageFile = image.getImageUrl();
             if(imageFile != null) {
-                Log.d("Bind Post Image", imageFile.getUrl());
                 Glide.with(context).load(imageFile.getUrl()).into(ivImage);
             }
 
+            if(image.isVoted(username))
+                Glide.with(context).load(R.drawable.arrowupfilled).transform(new CircleCrop()).into(vtnButton);
 
             vtnButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     int pos = post.previousVoteImages(username);
                     if(pos != -1 && pos != position){
-                        Toast.makeText(context, "You have already voted " + pos, Toast.LENGTH_SHORT).show();
+                        ResourcesCompat.getDrawable(getApplicationContext().getResources(), R.drawable.button_text, null);
+                        Toast.makeText(context, "You have already voted!", Toast.LENGTH_SHORT).show();
                         return;
                     }
-                    image.changeVote(username);
+                  
+                    boolean isUp = image.changeVote(username);
                     images.set(position, image);
                     post.updateImages(images);
-                    //update ui
+                    if(isUp)
+                        Glide.with(context).load(R.drawable.arrowupfilled).transform(new CircleCrop()).into(vtnButton);
+                    else
+                        Glide.with(context).load(R.drawable.ic_arrowup).transform(new CircleCrop()).into(vtnButton);
                     tvCount.setText(Integer.toString(image.getCount()));
-
                     //shake animation on vote_btn
                     Animation shake = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.shake);
                     vtnButton.startAnimation(shake);
+                    vtnButton.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            TimelineFragment.adapter.notifyDataSetChanged();
+                        }
+                    }, 650);
                 }
             });
 
