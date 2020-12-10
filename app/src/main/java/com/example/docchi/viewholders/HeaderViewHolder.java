@@ -16,7 +16,7 @@ import com.example.docchi.model.Post;
 import com.parse.ParseFile;
 import com.parse.ParseUser;
 
-public class HeaderViewHolder extends RecyclerView.ViewHolder{
+public class HeaderViewHolder extends RecyclerView.ViewHolder {
     private ImageView ivProfilePic;
     private TextView tvUsername;
     private TextView tvName;
@@ -48,6 +48,5 @@ public class HeaderViewHolder extends RecyclerView.ViewHolder{
         } else {
             Glide.with(context).load(R.drawable.default_pic).transform(new CircleCrop()).into(ivProfilePic);
         }
-
     }
 }

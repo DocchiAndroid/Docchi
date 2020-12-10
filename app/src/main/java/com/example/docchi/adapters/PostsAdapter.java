@@ -35,7 +35,7 @@ public class PostsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     private List<Post> posts;
     private String loggedInUser;
     private boolean showHeader;
-    private final int VOTE_POLL = 0, VOTE_IMAGES = 1, HEADER = 2;
+    public static final int VOTE_POLL = 0, VOTE_IMAGES = 1, HEADER = 2;
 
     public PostsAdapter(Context context, List<Post> posts, String loggedInUser, boolean showHeader) {
         this.context = context;

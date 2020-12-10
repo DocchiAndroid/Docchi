@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TableRow;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -78,15 +79,19 @@ public class VotePollViewHolder extends RecyclerView.ViewHolder{
 
         tvDate.setText(post.getTimeDifference());
         tvDescription.setText(post.getDescription());
-        int totalVotes = post.getTotalPollVotes();
-        int totalComments = post.getTotalComments();
-        String moreDetails = totalVotes + (totalVotes==1?" VOTE":" VOTES") + "   " + totalComments + (totalComments==1?" COMMENT":" COMMENTS");
-        tvMoreDetails.setText(moreDetails);
+        setVotesComments(post);
         PostPollAdapter adapter = new PostPollAdapter(context, post, loggedInUser);
         LinearLayoutManager HorizontalLayout = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
         rvPoll.setLayoutManager(HorizontalLayout);
         rvPoll.setAdapter(adapter);
         adapter.notifyDataSetChanged();
+    }
+
+    public void setVotesComments(Post post){
+        int totalVotes = post.getTotalPollVotes();
+        int totalComments = post.getTotalComments();
+        String moreDetails = totalVotes + (totalVotes==1?" VOTE":" VOTES") + "   " + totalComments + (totalComments==1?" COMMENT":" COMMENTS");
+        tvMoreDetails.setText(moreDetails);
     }
 
     private void showPostDetails(Post post) {
