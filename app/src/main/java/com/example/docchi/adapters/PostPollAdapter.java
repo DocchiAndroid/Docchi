@@ -90,8 +90,10 @@ public class PostPollAdapter extends RecyclerView.Adapter<PostPollAdapter.MyView
             voteImage.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                  
                     int pos = post.previousVotePoll(username);
                     if(pos != -1 && pos != position) {
+                         ResourcesCompat.getDrawable(getApplicationContext().getResources(), R.drawable.button_text, null);
                         Toast.makeText(context, "You have already voted!", Toast.LENGTH_SHORT).show();
                         return;
                     }
