@@ -124,7 +124,7 @@ public class Post extends ParseObject {
     public int previousVotePoll(String username){
         List<Poll> polls = getPolls();
         for(int i=0; i<polls.size(); i++){
-            if(polls.get(i).getWhoVoted().contains(username)){
+            if(polls.get(i).isVoted(username)){
                 return i;
             }
         }
@@ -136,10 +136,11 @@ public class Post extends ParseObject {
         ArrayList<Poll> polls = new ArrayList<>();
         for(int i=0; i<jsonArray.length(); i++){
             try {
-                String description = jsonArray.getJSONArray(i).getString(0);
+                JSONArray jsonArray1 = jsonArray.getJSONArray(i);
+                String description = jsonArray1.getString(0);
                 List<String> voted = new ArrayList<>();
-                for(int j=1; j< jsonArray.getJSONArray(i).length(); j++){
-                    voted.add(jsonArray.getJSONArray(i).getString(j));
+                for(int j=1; j< jsonArray1.length(); j++){
+                    voted.add(jsonArray1.getString(j));
                 }
                 polls.add(new Poll(description, voted));
             } catch (JSONException e) {
@@ -218,6 +219,8 @@ public class Post extends ParseObject {
 
     public int getTotalImagesVotes(){
         List<Image> images = getImages();
+        if(images == null)
+            return  -1;
         int total = 0;
         for(Image image: images){
             total += image.getCount();
