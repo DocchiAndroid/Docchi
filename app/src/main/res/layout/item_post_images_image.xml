@@ -22,8 +22,19 @@
         android:layout_alignParentLeft="true"
         android:layout_marginLeft="50dp"
         android:layout_marginTop="10dp"
-        android:src="@drawable/ic_arrowup" />
+        android:background="@drawable/button_text" />
 
+
+
+    <!--    <ImageView-->
+    <!--        android:id="@+id/vtnButton"-->
+    <!--        android:layout_width="40dp"-->
+    <!--        android:layout_height="40dp"-->
+    <!--        android:layout_below="@id/ivImage"-->
+    <!--        android:layout_alignParentLeft="true"-->
+    <!--        android:layout_marginLeft="50dp"-->
+    <!--        android:layout_marginTop="10dp"-->
+    <!--        android:src="@drawable/ic_arrowup" />-->
     <TextView
         android:id="@+id/tvCount"
         android:layout_width="wrap_content"

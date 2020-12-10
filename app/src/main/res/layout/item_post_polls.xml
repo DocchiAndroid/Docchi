@@ -21,7 +21,7 @@
         android:layout_marginStart="10dp"
         android:layout_toEndOf="@id/ivProfilePicture"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textColor="#D8000000"
+        android:textColor="@color/black"
         android:textSize="20sp"
         tools:text="Smita Mujumdar" />
 
@@ -33,7 +33,7 @@
         android:layout_below="@id/tvName"
         android:layout_toEndOf="@id/ivProfilePicture"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textColor="#E9000000"
+        android:textColor="#6E6969"
         android:textSize="10sp"
         android:text="Dec 05, 2020" />
 
@@ -44,7 +44,7 @@
         android:layout_below="@id/ivProfilePicture"
         tools:text="Do you like me or this insect?"
         android:fontFamily="sans-serif"
-        android:textColor="#CD000000"
+        android:textColor="#000000"
         android:textSize="16sp"
         android:layout_marginTop="10dp"
         />

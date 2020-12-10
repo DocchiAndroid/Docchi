@@ -138,8 +138,8 @@ public class Post extends ParseObject {
             try {
                 String description = jsonArray.getJSONArray(i).getString(0);
                 List<String> voted = new ArrayList<>();
-                for(int j=1; j<jsonArray.getJSONArray(i).length(); j++){
-                    voted.add(jsonArray.getString(j));
+                for(int j=1; j< jsonArray.getJSONArray(i).length(); j++){
+                    voted.add(jsonArray.getJSONArray(i).getString(j));
                 }
                 polls.add(new Poll(description, voted));
             } catch (JSONException e) {

@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -90,7 +91,9 @@ public class PostImagesAdapter extends RecyclerView.Adapter<PostImagesAdapter.My
                 public void onClick(View view) {
                     int pos = post.previousVoteImages(username);
                     if(pos != -1 && pos != position){
+                        ResourcesCompat.getDrawable(getApplicationContext().getResources(), R.drawable.button_text, null);
                         Toast.makeText(context, "You have already voted " + pos, Toast.LENGTH_SHORT).show();
+
                         return;
                     }
                     image.changeVote(username);
