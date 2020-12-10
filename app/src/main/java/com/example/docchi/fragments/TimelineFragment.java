@@ -115,6 +115,7 @@ public class TimelineFragment extends Fragment {
         adapter.clear();
         adapter.addAll(posts);
         adapter.notifyDataSetChanged();
+        swipeContainer.setRefreshing(false);
       }
     });
 
