@@ -1,8 +1,5 @@
 package com.example.docchi.fragments;
 
-import android.app.Activity;
-import android.content.Context;
-import android.content.ContextWrapper;
 import android.content.Intent;
 import android.icu.text.SimpleDateFormat;
 import android.net.Uri;
@@ -12,12 +9,10 @@ import android.provider.MediaStore;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,27 +21,25 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.viewpager.widget.ViewPager;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.CircleCrop;
-import com.example.docchi.model.Image;
+import com.example.docchi.AboutActivity;
+import com.example.docchi.HelpActivity;
+import com.example.docchi.LoginActivity;
 import com.example.docchi.MainActivity;
-import com.example.docchi.model.Post;
 import com.example.docchi.R;
+import com.example.docchi.SettingActivity;
 import com.example.docchi.adapters.ViewPagerAdapter;
-import com.github.jjobes.slidedatetimepicker.SlideDateTimeListener;
-import com.github.jjobes.slidedatetimepicker.SlideDateTimePicker;
+import com.example.docchi.model.Image;
+import com.example.docchi.model.Post;
 import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
-
-import org.w3c.dom.Text;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -79,9 +72,42 @@ public class CreatePostFragment extends Fragment {
     private TextView tvName;
 
 
+//    @Override
+//    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+//        super.onCreateOptionsMenu(menu, inflater);
+//
+//    }
+
     @Override
-    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
-        super.onCreateOptionsMenu(menu, inflater);
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.About:
+                Intent intent1 = new Intent(getActivity(), AboutActivity.class);
+                startActivity(intent1);
+                return true;
+            case R.id.Help:
+                Intent intent2 = new Intent(getActivity(), HelpActivity.class);
+                startActivity(intent2);
+                return true;
+            case R.id.Settings:
+                Intent intent3 = new Intent(getActivity(), SettingActivity.class);
+                startActivity(intent3);
+                return true;
+            case R.id.Logout:
+                logout();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+
+    }
+
+    private void logout() {
+        ParseUser.logOut();
+        Intent intent = new Intent(getActivity(), LoginActivity.class);
+        startActivity(intent);
+        ((MainActivity) getActivity()).finish();
+
 
     }
 
