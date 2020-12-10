@@ -8,9 +8,8 @@
     tools:context=".HelpActivity">
 
     <include
-        layout="@layout/customtoolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:id="@+id/toolbar"
+        layout="@layout/customtoolbar" />
 
     <TextView
         android:layout_width="match_parent"
