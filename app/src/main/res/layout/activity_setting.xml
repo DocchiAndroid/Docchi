@@ -23,9 +23,10 @@
             android:id="@+id/ivUsername"
             android:layout_width="50dp"
             android:layout_height="35dp"
-            android:src="@drawable/ic_username_settings"
             android:layout_marginTop="30dp"
+
             />
+        <!--            android:src="@drawable/ic_username_settings"-->
 
         <TextView
             android:id="@+id/tvChangeUsername"
