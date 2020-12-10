@@ -77,7 +77,7 @@
             android:textSize="6pt"
             android:padding="-3dp"
             android:textStyle="bold"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="7dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:gravity="center_vertical"
