@@ -82,6 +82,8 @@
             android:scrollbars="horizontal"
             android:layout_width="match_parent"
             android:layout_marginTop="10dp"
+            android:elevation="15dp"
+            android:padding="10dp"
             android:layout_below="@id/tvDescription"
             android:layout_height="wrap_content"/>
 
