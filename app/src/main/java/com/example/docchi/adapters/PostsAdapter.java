@@ -35,7 +35,7 @@ public class PostsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     private List<Post> posts;
     private String loggedInUser;
     private boolean showHeader;
-    private final int VOTE_POLL = 0, VOTE_IMAGES = 1, HEADER = 2;
+    public static final int VOTE_POLL = 0, VOTE_IMAGES = 1, HEADER = 2;
 
     public PostsAdapter(Context context, List<Post> posts, String loggedInUser, boolean showHeader) {
         this.context = context;
@@ -69,11 +69,18 @@ public class PostsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int position) {
+        if(posts.size() == 0) return;
+
         Post post;
-        if(showHeader && position != 0)
-            post = posts.get(position-1);
+        if(showHeader){
+            if(position == 0)
+                post = posts.get(0);
+            else
+                post = posts.get(position-1);
+        }
         else
             post = posts.get(position);
+
         switch (viewHolder.getItemViewType()) {
             case VOTE_IMAGES:
                 VoteImagesViewHolder vh1 = (VoteImagesViewHolder) viewHolder;
@@ -81,7 +88,7 @@ public class PostsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                 break;
             case HEADER:
                 HeaderViewHolder vh2 = (HeaderViewHolder) viewHolder;
-                vh2.bind();
+                vh2.bind(post);
                 break;
             default:
                 VotePollViewHolder vh3 = (VotePollViewHolder) viewHolder;
@@ -93,6 +100,8 @@ public class PostsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
     @Override
     public int getItemCount() {
+        if(showHeader)
+            return posts.size() + 1;
         return posts.size();
     }
 

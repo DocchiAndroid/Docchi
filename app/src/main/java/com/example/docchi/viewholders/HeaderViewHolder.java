@@ -16,7 +16,7 @@ import com.example.docchi.model.Post;
 import com.parse.ParseFile;
 import com.parse.ParseUser;
 
-public class HeaderViewHolder extends RecyclerView.ViewHolder{
+public class HeaderViewHolder extends RecyclerView.ViewHolder {
     private ImageView ivProfilePic;
     private TextView tvUsername;
     private TextView tvName;
@@ -33,18 +33,20 @@ public class HeaderViewHolder extends RecyclerView.ViewHolder{
         this.context = context;
     }
 
-    public void bind(){
-        String fullname = ParseUser.getCurrentUser().getString("firstname") + " "
-                + ParseUser.getCurrentUser().getString("lastname");
+    public void bind(Post post){
+        ParseUser user = post.getUser();
+        String fullname = user.getString("firstname") + " "
+                + user.getString("lastname");
         tvName.setText(fullname);
-        tvUsername.setText(ParseUser.getCurrentUser().getUsername());
+        tvUsername.setText("@"+user.getUsername());
         int totalPosts = ProfileFragment.allPosts.size();
         String totalPost_String = totalPosts + (totalPosts==1?" Post":" Posts");
         tvNumPosts.setText(totalPost_String);
-        ParseFile file = ParseUser.getCurrentUser().getParseFile("profilePic");
+        ParseFile file = user.getParseFile("profilePic");
         if(file!= null){
             Glide.with(context).load(file.getUrl()).transform(new CircleCrop()).into(ivProfilePic);
+        } else {
+            Glide.with(context).load(R.drawable.default_pic).transform(new CircleCrop()).into(ivProfilePic);
         }
-
     }
 }

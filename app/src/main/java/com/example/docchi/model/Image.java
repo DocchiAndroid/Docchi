@@ -47,6 +47,12 @@ public class Image {
         return false;
     }
 
+    public boolean isVoted(String username){
+        if(who_voted.contains(username))
+            return true;
+        return false;
+    }
+
     public int getCount(){
         return who_voted.size();
     }

@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toolbar;
@@ -99,8 +100,6 @@ public class ProfileFragment extends Fragment {
     Intent intent = new Intent(getActivity(), LoginActivity.class);
     startActivity(intent);
     ((MainActivity) getActivity()).finish();
-
-
   }
 
   @Override
@@ -112,21 +111,14 @@ public class ProfileFragment extends Fragment {
     ActionBar actionBar = ((MainActivity) getContext()).getSupportActionBar();
     actionBar.setTitle("Docchi");
 
-
-//    ((MainActivity)getActivity()).getSupportActionBar().hide();
-
   }
 
   //&oncreaview for the profile
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
                            Bundle savedInstanceState) {
-    // Inflate the layout for this fragment
-
-
 
     View v = inflater.inflate(R.layout.fragment_profile, container, false);
-
     return v;
   }
 
@@ -145,6 +137,7 @@ public class ProfileFragment extends Fragment {
           Log.e(TAG, "Issue with getting posts", e);
           return;
         }
+        allPosts.clear();
         allPosts.addAll(posts);
         adapter.notifyDataSetChanged();
       }
@@ -167,21 +160,5 @@ public class ProfileFragment extends Fragment {
     rvPosts.setLayoutManager(new LinearLayoutManager(getContext()));
     queryPost();
   }
-
-  public void loadImage() {
-      tvName.setText(user.getUsername());
-      ParseFile file = user.getParseFile("profilePic");
-      if(file != null){
-        Glide.with(this).
-                load(file.getUrl()).
-                apply(RequestOptions.circleCropTransform()).
-                into(ivProfilePic);
-      } else {
-        Glide.with(this).
-                load(R.drawable.default_pic).
-                transform(new CircleCrop()).
-                into(ivProfilePic);
-      }
-    }
-  }
+}
 

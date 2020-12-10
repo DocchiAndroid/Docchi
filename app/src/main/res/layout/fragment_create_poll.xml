@@ -83,6 +83,8 @@
             android:id="@+id/Option1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/et_settings"
+            android:padding="10dp"
             android:hint="Option 1..." />
     </LinearLayout>
 

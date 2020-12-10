@@ -3,7 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/blue"
+
+    android:background="@android:color/transparent"
+
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toTopOf="parent"
@@ -14,49 +16,39 @@
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_marginTop="20dp"
-        android:scaleType="centerInside"
-        android:src="@drawable/default_pic"
         android:layout_centerHorizontal="true" />
-
-    <ImageView
-        android:id="@+id/circleBoarder"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_marginTop="20dp"
-        android:scaleType="centerInside"
-        android:src="@drawable/circleborder"
-        android:layout_centerHorizontal="true" />
-
-    <TextView
-        android:id="@+id/tvUsername"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/circleBoarder"
-        android:fontFamily="sans-serif-light"
-        android:layout_centerHorizontal="true"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textColor="@color/white"
-        android:textSize="20sp"
-        tools:text="SMujumdar" />
 
     <TextView
         android:id="@+id/tvName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/tvUsername"
+        android:layout_below="@id/ivProfilePicture"
+        android:fontFamily="sans-serif-light"
+        android:layout_centerHorizontal="true"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        tools:text="Smita Mujumdar" />
+
+    <TextView
+        android:id="@+id/tvUsername"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvName"
         android:layout_centerHorizontal="true"
         android:fontFamily="sans-serif-light"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textColor="@color/white"
         android:textSize="18sp"
         android:textStyle="bold"
-        tools:text="Smita Mujumdar" />
+        tools:text="\@SMujumdar" />
 
     <TextView
         android:id="@+id/tvPosts"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/tvName"
+        android:layout_below="@id/tvUsername"
         android:layout_centerHorizontal="true"
         android:fontFamily="sans-serif-light"
         android:layout_marginBottom="10dp"
