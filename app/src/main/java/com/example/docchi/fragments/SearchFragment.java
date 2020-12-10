@@ -1,8 +1,8 @@
 package com.example.docchi.fragments;
 
-import android.app.Activity;
 import android.app.SearchManager;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -16,17 +16,18 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.docchi.AboutActivity;
+import com.example.docchi.HelpActivity;
+import com.example.docchi.LoginActivity;
 import com.example.docchi.MainActivity;
 import com.example.docchi.R;
+import com.example.docchi.SettingActivity;
 import com.example.docchi.adapters.UsersAdapter;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseQuery;
@@ -116,14 +117,43 @@ public class SearchFragment extends Fragment implements UsersAdapter.UsersAdapte
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+//        int id = item.getItemId();
+//
+//        //noinspection SimplifiableIfStatement
+//        if (id == R.id.action_search) {
+//            return true;
+//        }
+//
+//        return super.onOptionsItemSelected(item);
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_search) {
-            return true;
+        switch (item.getItemId()) {
+            case R.id.About:
+                Intent intent1 = new Intent(getActivity(), AboutActivity.class);
+                startActivity(intent1);
+                return true;
+            case R.id.Help:
+                Intent intent2 = new Intent(getActivity(), HelpActivity.class);
+                startActivity(intent2);
+                return true;
+            case R.id.Settings:
+                Intent intent3 = new Intent(getActivity(), SettingActivity.class);
+                startActivity(intent3);
+                return true;
+            case R.id.Logout:
+                logout();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
+    }
 
-        return super.onOptionsItemSelected(item);
+    private void logout() {
+        ParseUser.logOut();
+        Intent intent = new Intent(getActivity(), LoginActivity.class);
+        startActivity(intent);
+        ((MainActivity) getActivity()).finish();
+
+
     }
 
 
