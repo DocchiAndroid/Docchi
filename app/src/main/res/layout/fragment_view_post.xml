@@ -12,7 +12,7 @@
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:padding="5dp"
+        android:padding="8dp"
         android:background="@drawable/item_background_gradient_rounded">
 
     <RelativeLayout

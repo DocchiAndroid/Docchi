@@ -58,7 +58,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:background="@drawable/item_background_rounded"
+        android:background="@drawable/item_background_border"
         android:layout_below="@id/name">
         <EditText
             android:id="@+id/compose"

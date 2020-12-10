@@ -63,17 +63,14 @@ public class PostImagesAdapter extends RecyclerView.Adapter<PostImagesAdapter.My
     public class MyView extends RecyclerView.ViewHolder {
         ImageView ivImage;
         TextView tvCount;
-        Button vtnButton;
+        ImageView vtnButton;
 
 
         public MyView(@NonNull View itemView) {
             super(itemView);
             ivImage = itemView.findViewById(R.id.ivImage);
-
             tvCount = itemView.findViewById(R.id.tvCount);
             vtnButton = itemView.findViewById(R.id.vtnButton);
-
-
         }
 
         public void bind(int position){

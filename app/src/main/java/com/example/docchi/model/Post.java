@@ -146,6 +146,7 @@ public class Post extends ParseObject {
                 e.printStackTrace();
             }
         }
+        Log.i("getPolls", polls.toString());
         return polls;
     }
 
