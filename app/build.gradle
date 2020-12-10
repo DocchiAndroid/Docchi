@@ -72,7 +72,7 @@ dependencies {
 
     implementation 'com.github.jjobes:slideDateTimePicker:1.0.2'
 
-
+    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.0.0'
 
 
 }

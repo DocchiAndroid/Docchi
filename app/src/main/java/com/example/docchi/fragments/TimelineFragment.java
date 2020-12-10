@@ -14,6 +14,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.docchi.AboutActivity;
 import com.example.docchi.HelpActivity;
@@ -35,14 +36,11 @@ import java.util.List;
 public class TimelineFragment extends Fragment {
 
   public static final String TAG = "TimelineFragment";
-  public static final int VERTICAL_ITEM_SPACE = 20;
   private RecyclerView rvPosts;
   public static PostsAdapter adapter;
   protected List<Post> allPosts;
   private String username;
-
-  private static final int TYPE_HEADER = 0;
-  private static final int TYPE_ITEM = 1;
+  public SwipeRefreshLayout swipeContainer;
 
   public TimelineFragment(String username) {
     // Required empty public constructor
@@ -83,18 +81,11 @@ public class TimelineFragment extends Fragment {
     Intent intent = new Intent(getActivity(), LoginActivity.class);
     startActivity(intent);
     ((MainActivity) getActivity()).finish();
-
-
   }
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
                            Bundle savedInstanceState) {
-
-//      Calendar calendar = Calendar.getInstance();
-//      String currentDate = DateFormat.getDateInstance(DateFormat.FULL).format(calendar.getTime());
-//      TextView textViewDate = View.findViewById(R.id.text_view_date);
-//      textViewDate.setText(currentDate);
 
     // Inflate the layout for this fragment
       View v = inflater.inflate(R.layout.fragment_timeline, container, false);
@@ -121,7 +112,8 @@ public class TimelineFragment extends Fragment {
         for (Post post : posts) {
           Log.i(TAG, "Post: " + post.getDescription() + ", username: " + post.getUser().getUsername());
         }
-        allPosts.addAll(posts);
+        adapter.clear();
+        adapter.addAll(posts);
         adapter.notifyDataSetChanged();
       }
     });
@@ -132,30 +124,25 @@ public class TimelineFragment extends Fragment {
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
 
-
-
-
     rvPosts = view.findViewById(R.id.rvPosts);
     allPosts = new ArrayList<>();
-
     adapter = new PostsAdapter(getContext(), allPosts, username, false);
-
     rvPosts.setAdapter(adapter);
     rvPosts.setLayoutManager(new LinearLayoutManager(getContext()));
-
-
-    //Divider for recyclerview
-//    LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
-//    DividerItemDecoration itemDecorator  = new DividerItemDecoration(getContext(), LinearLayoutManager.VERTICAL);
-//    itemDecorator.setDrawable(ContextCompat.getDrawable(getContext(), R.drawable.border));
-//
-//    rvPosts.setHasFixedSize(true);
-//    rvPosts.setLayoutManager(layoutManager);
-//    rvPosts.addItemDecoration(itemDecorator);
-//    rvPosts.addItemDecoration(new SpacesItemDecoration(VERTICAL_ITEM_SPACE));
-
     if(allPosts.size() == 0) queryPost();
 
-
+    swipeContainer = (SwipeRefreshLayout) view.findViewById(R.id.swipeContainer);
+    // Setup refresh listener which triggers new data loading
+    swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+      @Override
+      public void onRefresh() {
+        queryPost();
+      }
+    });
+    // Configure the refreshing colors
+    swipeContainer.setColorSchemeResources(R.color.blue,
+            R.color.teal_700,
+            R.color.secondary_color);
+    swipeContainer.setRefreshing(false);
   }
 }
