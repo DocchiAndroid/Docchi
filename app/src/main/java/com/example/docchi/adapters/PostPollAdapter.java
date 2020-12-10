@@ -18,6 +18,7 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.CircleCrop;
 import com.example.docchi.fragments.TimelineFragment;
 import com.example.docchi.model.Image;
 import com.example.docchi.model.Poll;
@@ -83,22 +84,30 @@ public class PostPollAdapter extends RecyclerView.Adapter<PostPollAdapter.MyView
             tvCount.setText(Integer.toString(poll.getVotes()));
             tvDescription.setText(poll.getItemDescription());
 
+            if(poll.isVoted(username))
+                Glide.with(context).load(R.drawable.arrowupfilled).transform(new CircleCrop()).into(voteImage);
+
             voteImage.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     int pos = post.previousVotePoll(username);
                     if(pos != -1 && pos != position) {
-                        Toast.makeText(context, "You have already voted " + pos, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, "You have already voted!", Toast.LENGTH_SHORT).show();
                         return;
                     }
                     poll.changeVote(username);
-                    Log.i("HerePostPollAdapter", username);
-                    Log.i("HerePostPollAdapter", poll.getWhoVoted().toString());
                     polls.set(position, poll);
                     post.setPoll(polls);
-                    //update ui
+                    Glide.with(context).load(R.drawable.arrowupfilled).transform(new CircleCrop()).into(voteImage);
                     tvCount.setText(Integer.toString(poll.getVotes()));
-                    TimelineFragment.adapter.notifyDataSetChanged();
+                    Animation shake = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.shake);
+                    voteImage.startAnimation(shake);
+                    voteImage.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            TimelineFragment.adapter.notifyDataSetChanged();
+                        }
+                    }, 650);
                 }
             });
         }
