@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -97,10 +98,13 @@ public class PostPollAdapter extends RecyclerView.Adapter<PostPollAdapter.MyView
                         Toast.makeText(context, "You have already voted!", Toast.LENGTH_SHORT).show();
                         return;
                     }
-                    poll.changeVote(username);
+                    boolean isUp = poll.changeVote(username);
                     polls.set(position, poll);
                     post.setPoll(polls);
-                    Glide.with(context).load(R.drawable.arrowupfilled).transform(new CircleCrop()).into(voteImage);
+                    if(isUp)
+                        Glide.with(context).load(R.drawable.arrowupfilled).transform(new CircleCrop()).into(voteImage);
+                    else
+                        Glide.with(context).load(R.drawable.ic_arrowup).transform(new CircleCrop()).into(voteImage);
                     tvCount.setText(Integer.toString(poll.getVotes()));
                     Animation shake = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.shake);
                     voteImage.startAnimation(shake);
