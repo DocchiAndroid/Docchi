@@ -48,6 +48,9 @@ public class TimelineFragment extends Fragment {
   protected List<Post> allPosts;
   private String username;
 
+  private static final int TYPE_HEADER = 0;
+  private static final int TYPE_ITEM = 1;
+
   public TimelineFragment(String username) {
     // Required empty public constructor
     this.username = username;
@@ -69,24 +72,11 @@ public class TimelineFragment extends Fragment {
 //      textViewDate.setText(currentDate);
 
     // Inflate the layout for this fragment
-     View v = inflater.inflate(R.layout.fragment_timeline, container, false);
+      View v = inflater.inflate(R.layout.fragment_timeline, container, false);
       ActionBar actionBar = ((MainActivity) getContext()).getSupportActionBar();
       actionBar.setTitle("Docchi");
-
-
-
       return v;
-
-
   }
-
-//  @Override
-//  public View onCreateView(LayoutInflater inflater, ViewGroup container,
-//                           Bundle savedInstanceState) {
-//    // Inflate the layout for this fragment
-//    return inflater.inflate(R.layout.fragment_timeline, container, false);
-//
-//  }
 
   protected void queryPost() {
     ParseQuery<Post> query = ParseQuery.getQuery(Post.class);
@@ -122,7 +112,7 @@ public class TimelineFragment extends Fragment {
     rvPosts = view.findViewById(R.id.rvPosts);
     allPosts = new ArrayList<>();
 
-    adapter = new PostsAdapter(getContext(), allPosts, username, true);
+    adapter = new PostsAdapter(getContext(), allPosts, username, false);
 
     rvPosts.setAdapter(adapter);
     rvPosts.setLayoutManager(new LinearLayoutManager(getContext()));

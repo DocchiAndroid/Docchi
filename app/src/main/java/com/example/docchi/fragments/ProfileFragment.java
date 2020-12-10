@@ -50,9 +50,8 @@ import java.util.List;
 public class ProfileFragment extends Fragment {
 
   public static final String TAG = "ProfileFragment";
-  private static final int VERTICAL_ITEM_SPACE = 48;
   protected PostsAdapter adapter;
-  protected List<Post> allPosts;
+  public static List<Post> allPosts;
   private ParseUser user;
   private ImageView ivProfilePic;
   private TextView tvName;
@@ -160,20 +159,9 @@ public class ProfileFragment extends Fragment {
     RecyclerView rvPosts = view.findViewById(R.id.rvPosts);
     ivProfilePic = view.findViewById(R.id.ivProfilePicture);
     tvName = view.findViewById(R.id.tvName);
-    loadImage();
 
     allPosts = new ArrayList<>();
     adapter = new PostsAdapter(getContext(), allPosts, user.getUsername(), true);
-
-    //Divider for recyclerview
-//    LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
-//    DividerItemDecoration itemDecorator  = new DividerItemDecoration(getContext(), LinearLayoutManager.VERTICAL);
-//    itemDecorator.setDrawable(ContextCompat.getDrawable(getContext(), R.drawable.border));
-//
-//    rvPosts.setHasFixedSize(true);
-//    rvPosts.setLayoutManager(layoutManager);
-//    rvPosts.addItemDecoration(itemDecorator);
-//    rvPosts.addItemDecoration(new SpacesItemDecoration(VERTICAL_ITEM_SPACE));
 
     rvPosts.setAdapter(adapter);
     rvPosts.setLayoutManager(new LinearLayoutManager(getContext()));

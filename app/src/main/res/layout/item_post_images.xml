@@ -28,25 +28,22 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginStart="10dp"
         android:layout_toEndOf="@id/ivProfilePicture"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textColor="#000000"
-        android:textSize="15sp"
-        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:textSize="20sp"
         tools:text="Smita Mujumdar" />
 
     <TextView
         android:id="@+id/text_view_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginStart="10dp"
         android:layout_toEndOf="@id/ivProfilePicture"
+        android:layout_below="@id/tvName"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textColor="#000000"
+        android:textColor="#6E6969"
         android:textSize="10sp"
         android:text="Dec 05, 2020" />
 
@@ -58,7 +55,7 @@
         android:layout_marginTop="10dp"
         android:fontFamily="sans-serif"
         android:textColor="#000000"
-        android:textSize="15sp"
+        android:textSize="16sp"
         tools:text="Do you like me or this insect?" />
 
 
@@ -67,26 +64,27 @@
         android:layout_width="match_parent"
         android:layout_below="@id/tvDescription"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="10dp"
         android:elevation="10dp"
         android:nestedScrollingEnabled="false"
         android:padding="10dp" />
 
-    <TextView
-        android:id="@+id/MoreDetails"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/white"
-        android:textSize="5pt"
-        android:textStyle="bold"
-        android:padding="6dp"
-        android:gravity="center_vertical"
-        android:background="@drawable/btn_rounded"
-        android:layout_alignParentTop="true"
-        android:textAllCaps="true"
-        android:layout_alignParentRight="true"
-        android:text=" 10 votes\n 7 comments"
-        app:drawableLeftCompat="@drawable/ic_time_24" />
+        <TextView
+            android:id="@+id/MoreDetails"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="6pt"
+            android:padding="-3dp"
+            android:textStyle="bold"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:gravity="center_vertical"
+            android:background="@drawable/btn_comments_border"
+            android:layout_below="@id/rvPictureContainer"
+            android:layout_alignParentLeft="true"
+            android:text="10 VOTES   7 COMMENTS"/>
 
         </RelativeLayout>
 
