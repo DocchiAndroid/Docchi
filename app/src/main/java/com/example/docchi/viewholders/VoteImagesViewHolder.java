@@ -34,6 +34,7 @@ public class VoteImagesViewHolder extends RecyclerView.ViewHolder{
     private TextView tvMoreDetails;
     private TextView tvDate;
     private PostImagesAdapter adapter;
+    private ImageView chatImg;
 
     private Context context;
     private String loggedInUser;
@@ -46,6 +47,8 @@ public class VoteImagesViewHolder extends RecyclerView.ViewHolder{
         rvImages = itemView.findViewById(R.id.rvPictureContainer);
         tvMoreDetails = itemView.findViewById(R.id.MoreDetails);
         tvDate = itemView.findViewById(R.id.text_view_date);
+        chatImg = itemView.findViewById(R.id.chatImg);
+
 
         this.loggedInUser = loggedInUser;
         this.context = context;
@@ -82,6 +85,7 @@ public class VoteImagesViewHolder extends RecyclerView.ViewHolder{
                 showPostDetails(post);
             }
         });
+
 
         tvDescription.setText(post.getDescription());
         adapter = new PostImagesAdapter(context, post, loggedInUser);

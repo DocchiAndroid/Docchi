@@ -31,7 +31,7 @@
         android:textSize="22sp"
         app:layout_constraintLeft_toRightOf="@id/ivProfilePicture"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="Username" />
+        tools:text="\@Username" />
 
     <TextView
         android:id="@+id/tvName"
