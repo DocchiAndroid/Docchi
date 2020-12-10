@@ -28,6 +28,7 @@ import androidx.viewpager.widget.ViewPager;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.CircleCrop;
 import com.example.docchi.AboutActivity;
+import com.example.docchi.CloseFragmentDialog;
 import com.example.docchi.HelpActivity;
 import com.example.docchi.LoginActivity;
 import com.example.docchi.MainActivity;
@@ -70,6 +71,7 @@ public class CreatePostFragment extends Fragment {
     private ImageView ivProfilePic;
     private TextView tvUsername;
     private TextView tvName;
+    private ImageView ivClose;
 
 
 //    @Override
@@ -176,12 +178,21 @@ public class CreatePostFragment extends Fragment {
         viewPager = view.findViewById(R.id.viewPagerCreatePoll);
         etDescription = view.findViewById(R.id.etDescriptionCreatePoll);
         btnPost = view.findViewById(R.id.btnPostCreatePoll);
+        ivClose = view.findViewById(R.id.ivClose);
+
         photoFiles = new ArrayList<>();
         photos = new ArrayList<>();
 
         //instantiate and set viewpager adapter
         viewPagerAdapter = new ViewPagerAdapter((MainActivity) getContext(), photos);
         viewPager.setAdapter(viewPagerAdapter);
+
+        ivClose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openDialog();
+            }
+        });
 
         fixUI();
         //set user
@@ -248,6 +259,11 @@ public class CreatePostFragment extends Fragment {
             }
         });
 
+    }
+
+    private void openDialog() {
+        CloseFragmentDialog closeFragmentDialog = new CloseFragmentDialog();
+        closeFragmentDialog.show(getFragmentManager(), "Dialog");
     }
 
     //savePost to parse
