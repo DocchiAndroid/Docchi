@@ -4,7 +4,6 @@ import android.content.Context;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -65,7 +64,7 @@ public class VoteImagesViewHolder extends RecyclerView.ViewHolder{
                 BottomNavigationView bnv = (BottomNavigationView) activity.findViewById(R.id.bottomNavigation);
                 bnv.setSelectedItemId(R.id.action_profile);
                 Fragment myFragment = new ProfileFragment(user);
-                activity.getSupportFragmentManager().beginTransaction().replace(R.id.flContainer, myFragment).addToBackStack(null).commit();
+                activity.getSupportFragmentManager().beginTransaction().replace(R.id.fragmentPager, myFragment).addToBackStack(null).commit();
             }
         });
 

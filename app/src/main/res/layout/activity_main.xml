@@ -11,8 +11,8 @@
         android:id="@+id/toolbar"
         layout="@layout/customtoolbar" />
 
-    <FrameLayout
-        android:id="@+id/flContainer"
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/fragmentPager"
         android:layout_marginTop="2dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

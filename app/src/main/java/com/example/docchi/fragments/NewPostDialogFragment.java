@@ -1,6 +1,5 @@
 package com.example.docchi.fragments;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.ContextWrapper;
 import android.graphics.Color;
@@ -14,14 +13,11 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 
-import com.example.docchi.MainActivity;
 import com.example.docchi.R;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 
 public class NewPostDialogFragment extends DialogFragment {
@@ -77,7 +73,7 @@ public class NewPostDialogFragment extends DialogFragment {
             public void onClick(View view) {
                 AppCompatActivity activity = unwrap(view.getContext());
                 Fragment myFragment = new CreatePostFragment();
-                activity.getSupportFragmentManager().beginTransaction().replace(R.id.flContainer, myFragment).addToBackStack(null).commit();
+                activity.getSupportFragmentManager().beginTransaction().replace(R.id.fragmentPager, myFragment).addToBackStack(null).commit();
                 dismiss();
             }
         });
@@ -87,7 +83,7 @@ public class NewPostDialogFragment extends DialogFragment {
             public void onClick(View view) {
                 AppCompatActivity activity = unwrap(view.getContext());
                 Fragment myFragment = new CreatePollFragment();
-                activity.getSupportFragmentManager().beginTransaction().replace(R.id.flContainer, myFragment).addToBackStack(null).commit();
+                activity.getSupportFragmentManager().beginTransaction().replace(R.id.fragmentPager, myFragment).addToBackStack(null).commit();
                 dismiss();
             }
         });
