@@ -36,6 +36,7 @@ public class PostImagesAdapter extends RecyclerView.Adapter<PostImagesAdapter.My
     private ArrayList<Image> images;
     private String username;
     private Post post;
+    private int lastPosition = -1;
 
 
     public PostImagesAdapter(Context context, Post post, String username){

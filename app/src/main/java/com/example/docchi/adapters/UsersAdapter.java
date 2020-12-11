@@ -6,6 +6,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
@@ -54,11 +56,30 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.ViewHolder> 
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         ParseUser user = users.get(position);
         holder.bind(user);
+        setAnimation(holder.itemView, position);
+    }
+
+    private void setAnimation(View viewToAnimate, int position)
+    {
+        Animation animation = AnimationUtils.loadAnimation(context, android.R.anim.slide_in_left);
+        viewToAnimate.startAnimation(animation);
     }
 
     @Override
     public int getItemCount() {
         return users.size();
+    }
+
+    // Clean all elements of the recycler
+    public void clear() {
+        users.clear();
+        notifyDataSetChanged();
+    }
+
+    // Add a list of items -- change to type used
+    public void addAll(List<ParseUser> list) {
+        users.addAll(list);
+        notifyDataSetChanged();
     }
 
 
