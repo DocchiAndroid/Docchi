@@ -1,7 +1,5 @@
 package com.example.docchi.fragments;
 
-import android.app.Dialog;
-import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -11,12 +9,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.Adapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -35,20 +30,13 @@ import com.example.docchi.R;
 import com.example.docchi.adapters.CommentsAdapter;
 import com.example.docchi.adapters.PostImagesAdapter;
 import com.example.docchi.adapters.PostPollAdapter;
-import com.example.docchi.adapters.UsersAdapter;
 import com.example.docchi.model.Comment;
-import com.example.docchi.model.Image;
 import com.example.docchi.model.Post;
 import com.example.docchi.model.SpacesItemDecoration;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.parse.ParseFile;
 import com.parse.ParseUser;
 
-import org.jetbrains.annotations.NotNull;
-
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class ViewPostDialogFragment extends DialogFragment {
@@ -139,7 +127,7 @@ public class ViewPostDialogFragment extends DialogFragment {
                 BottomNavigationView bnv = (BottomNavigationView) activity.findViewById(R.id.bottomNavigation);
                 bnv.setSelectedItemId(R.id.action_profile);
                 Fragment myFragment = new ProfileFragment(user);
-                activity.getSupportFragmentManager().beginTransaction().replace(R.id.flContainer, myFragment).addToBackStack(null).commit();
+                activity.getSupportFragmentManager().beginTransaction().replace(R.id.fragmentPager, myFragment).addToBackStack(null).commit();
             }
         });
 

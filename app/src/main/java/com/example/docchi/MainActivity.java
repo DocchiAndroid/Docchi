@@ -3,28 +3,36 @@ package com.example.docchi;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.WindowManager;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentContainer;
 import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.lifecycle.Lifecycle;
+import androidx.viewpager.widget.ViewPager;
+import androidx.viewpager2.adapter.FragmentStateAdapter;
+import androidx.viewpager2.widget.ViewPager2;
 
+import com.example.docchi.adapters.FragmentAdapter;
+import com.example.docchi.fragments.CreatePollFragment;
 import com.example.docchi.fragments.NewPostDialogFragment;
 import com.example.docchi.fragments.ProfileFragment;
 import com.example.docchi.fragments.SearchFragment;
 import com.example.docchi.fragments.TimelineFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.sql.Time;
+
 public class MainActivity extends AppCompatActivity {
+
     final FragmentManager fragmentManager = getSupportFragmentManager();
+    ViewPager fragmentPager;
+    FragmentAdapter adapter;
     BottomNavigationView bottomNavigationView;
+    MenuItem prevMenuItem = null;
 
 
 
@@ -36,14 +44,22 @@ public class MainActivity extends AppCompatActivity {
 
 
         Toolbar toolbar = findViewById(R.id.toolbar);
-            toolbar.setTitle("Docchi");
-            setSupportActionBar(toolbar);
-
-
+        toolbar.setTitle("Docchi");
+        setSupportActionBar(toolbar);
 
 
         bottomNavigationView = findViewById(R.id.bottomNavigation);
-
+        fragmentPager = findViewById(R.id.fragmentPager);
+        adapter = new FragmentAdapter(fragmentManager);
+        TimelineFragment timelineFragment = new TimelineFragment();
+        SearchFragment searchFragment = new SearchFragment();
+        CreatePollFragment createPollFragment = new CreatePollFragment();
+        ProfileFragment profileFragment = new ProfileFragment();
+        adapter.addFragment(timelineFragment);
+        adapter.addFragment(searchFragment);
+        adapter.addFragment(createPollFragment);
+        adapter.addFragment(profileFragment);
+        fragmentPager.setAdapter(adapter);
 
 
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -52,19 +68,17 @@ public class MainActivity extends AppCompatActivity {
                 Fragment fragment;
                 switch (menuItem.getItemId()) {
                     case R.id.action_home:
-                        fragment = new TimelineFragment(loggedInUser);
-                        fragmentManager.beginTransaction().replace(R.id.flContainer, fragment).commit();
+                        fragmentPager.setCurrentItem(0);
                         break;
                     case R.id.action_search:
-                        fragment = new SearchFragment();
-                        fragmentManager.beginTransaction().replace(R.id.flContainer, fragment).commit();
+                        fragmentPager.setCurrentItem(1);
                         break;
                     case R.id.action_newPoll:
+                        fragmentPager.setCurrentItem(2);
                         showNewPostDialog();
                         break;
                     case R.id.action_profile:
-                        fragment = new ProfileFragment();
-                        fragmentManager.beginTransaction().replace(R.id.flContainer, fragment).commit();
+                        fragmentPager.setCurrentItem(3);
                         break;
                     default:
                         return true;
@@ -73,11 +87,47 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        bottomNavigationView.setSelectedItemId(R.id.action_home);
+        fragmentPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                if(prevMenuItem != null){
+                    prevMenuItem.setChecked(false);
+                }
+                else{
+                    bottomNavigationView.getMenu().getItem(0).setChecked(false);
+                }
+                bottomNavigationView.getMenu().getItem(position).setChecked(true);
+                prevMenuItem = bottomNavigationView.getMenu().getItem(position);
+
+                if(position==0){
+                    toolbar.setTitle("Docchi");
+                }
+                else if(position==1){
+                    toolbar.setTitle("Search");
+                }
+                else if(position==2){
+                    showNewPostDialog();
+                    toolbar.setTitle("New Post");
+                }
+                else if(position==3){
+                    toolbar.setTitle("Docchi");
+                }
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
+
+        fragmentPager.setCurrentItem(0);
 
     }
-
-
 
 
     @Override
@@ -86,12 +136,16 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
+    public FragmentAdapter getFragmentAdapter(){
+        return adapter;
+    }
+
     private void showNewPostDialog() {
         NewPostDialogFragment editNameDialogFragment = NewPostDialogFragment.newInstance("New Post");
         editNameDialogFragment.show(fragmentManager, "fragment_create_post");
     }
 
-    public void setHome(){
+    public void setHome() {
         bottomNavigationView.setSelectedItemId(R.id.action_home);
     }
 }

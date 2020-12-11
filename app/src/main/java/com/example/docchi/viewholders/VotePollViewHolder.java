@@ -3,9 +3,7 @@ package com.example.docchi.viewholders;
 import android.content.Context;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.TableRow;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -18,7 +16,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.CircleCrop;
 import com.example.docchi.R;
-import com.example.docchi.adapters.PostImagesAdapter;
 import com.example.docchi.adapters.PostPollAdapter;
 import com.example.docchi.fragments.ProfileFragment;
 import com.example.docchi.fragments.ViewPostDialogFragment;
@@ -66,7 +63,7 @@ public class VotePollViewHolder extends RecyclerView.ViewHolder{
                 BottomNavigationView bnv = (BottomNavigationView) activity.findViewById(R.id.bottomNavigation);
                 bnv.setSelectedItemId(R.id.action_profile);
                 Fragment myFragment = new ProfileFragment(user);
-                activity.getSupportFragmentManager().beginTransaction().replace(R.id.flContainer, myFragment).addToBackStack(null).commit();
+                activity.getSupportFragmentManager().beginTransaction().replace(R.id.fragmentPager, myFragment).addToBackStack(null).commit();
             }
         });
 
