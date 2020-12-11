@@ -11,7 +11,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -21,6 +20,7 @@ import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.docchi.AboutActivity;
 import com.example.docchi.HelpActivity;
@@ -30,7 +30,6 @@ import com.example.docchi.R;
 import com.example.docchi.SettingActivity;
 import com.example.docchi.adapters.UsersAdapter;
 import com.parse.FindCallback;
-import com.parse.Parse;
 import com.parse.ParseException;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
@@ -48,7 +47,7 @@ public class SearchFragment extends Fragment implements UsersAdapter.UsersAdapte
     protected UsersAdapter adapter;
     protected List<ParseUser> allUsers;
     private SearchView searchView;
-    private TextView tvUsername;
+    public SwipeRefreshLayout swipeContainer;
 
     public SearchFragment() {
         // Required empty public constructor
@@ -57,7 +56,6 @@ public class SearchFragment extends Fragment implements UsersAdapter.UsersAdapte
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_search, container, false);
         ActionBar actionBar = ((MainActivity) getContext()).getSupportActionBar();
@@ -78,9 +76,10 @@ public class SearchFragment extends Fragment implements UsersAdapter.UsersAdapte
                 for (ParseUser user : userObjects) {
                     Log.i(TAG, "User: " + user.getUsername());
                 }
-                allUsers.clear();
-                allUsers.addAll(userObjects);
+                adapter.clear();
+                adapter.addAll(userObjects);
                 adapter.notifyDataSetChanged();
+                swipeContainer.setRefreshing(false);
             }
         });
     }
@@ -118,18 +117,6 @@ public class SearchFragment extends Fragment implements UsersAdapter.UsersAdapte
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-//        int id = item.getItemId();
-//
-//        //noinspection SimplifiableIfStatement
-//        if (id == R.id.action_search) {
-//            return true;
-//        }
-//
-//        return super.onOptionsItemSelected(item);
-
         switch (item.getItemId()) {
             case R.id.About:
                 Intent intent1 = new Intent(getActivity(), AboutActivity.class);
@@ -156,8 +143,6 @@ public class SearchFragment extends Fragment implements UsersAdapter.UsersAdapte
         Intent intent = new Intent(getActivity(), LoginActivity.class);
         startActivity(intent);
         ((MainActivity) getActivity()).finish();
-
-
     }
 
 
@@ -169,18 +154,27 @@ public class SearchFragment extends Fragment implements UsersAdapter.UsersAdapte
 
         adapter = new UsersAdapter(getContext(), allUsers);
 
-        tvUsername = view.findViewById(R.id.tvUsername);
         rvUsers.setAdapter(adapter);
-
-
-
         rvUsers.setLayoutManager(new LinearLayoutManager(getContext()));
         queryUsers();
+
+        swipeContainer = (SwipeRefreshLayout) view.findViewById(R.id.swipeContainer);
+        // Setup refresh listener which triggers new data loading
+        swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                queryUsers();
+            }
+        });
+        // Configure the refreshing colors
+        swipeContainer.setColorSchemeResources(R.color.blue,
+                R.color.teal_700,
+                R.color.secondary_color);
+        swipeContainer.setRefreshing(false);
     }
 
     @Override
     public void onUserSelected(ParseUser user) {
         Toast.makeText(getApplicationContext(), "Selected: " + user.getUsername(), Toast.LENGTH_SHORT).show();
-
     }
 }

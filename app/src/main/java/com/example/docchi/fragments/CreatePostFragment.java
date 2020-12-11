@@ -14,7 +14,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,17 +26,16 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.load.resource.bitmap.CircleCrop;
-import com.example.docchi.adapters.CreatePostAdapter;
-import com.example.docchi.model.Image;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.CircleCrop;
 import com.example.docchi.AboutActivity;
+import com.example.docchi.CloseFragmentDialog;
 import com.example.docchi.HelpActivity;
 import com.example.docchi.LoginActivity;
 import com.example.docchi.MainActivity;
 import com.example.docchi.R;
 import com.example.docchi.SettingActivity;
+import com.example.docchi.adapters.CreatePostAdapter;
 import com.example.docchi.model.Image;
 import com.example.docchi.model.Post;
 import com.parse.ParseException;
@@ -181,7 +179,7 @@ public class CreatePostFragment extends Fragment {
         rvImages = view.findViewById(R.id.rvCreatePost);
         etDescription = view.findViewById(R.id.etDescriptionCreatePoll);
         btnPost = view.findViewById(R.id.btnPostCreatePoll);
-
+        ivClose = view.findViewById(R.id.ivClose);
         photoFiles = new ArrayList<>();
         photos = new ArrayList<>();
 
@@ -193,6 +191,13 @@ public class CreatePostFragment extends Fragment {
         rvImages.setLayoutManager(layoutManager);
         rvImages.setAdapter(rvAdapter);
         fixUI();
+
+        ivClose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openDialog();
+            }
+        });
 
         //set user
         ivProfilePic = view.findViewById(R.id.profilePic);
@@ -257,6 +262,11 @@ public class CreatePostFragment extends Fragment {
             }
         });
 
+    }
+
+    private void openDialog() {
+        CloseFragmentDialog closeFragmentDialog = new CloseFragmentDialog();
+        closeFragmentDialog.show(getFragmentManager(), "dialog");
     }
 
     //savePost to parse
@@ -413,7 +423,6 @@ public class CreatePostFragment extends Fragment {
 //    }
 
     private void moveButtonsDown() {
-        btnPost.setVisibility(View.VISIBLE);
         ViewGroup.LayoutParams rvLayoutParams = rvImages.getLayoutParams();
         rvLayoutParams.height = (int)(250 * getContext().getResources().getDisplayMetrics().density);
     }
@@ -421,7 +430,6 @@ public class CreatePostFragment extends Fragment {
 
     //resize buttons and layout
     private void fixUI() {
-        btnPost.setVisibility(View.INVISIBLE);
         //get display width
         DisplayMetrics displayMetrics = new DisplayMetrics();
         ((MainActivity) getContext()).getWindowManager()

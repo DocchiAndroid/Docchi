@@ -32,6 +32,15 @@
         android:padding="10dp">
 
         <ImageView
+            android:id="@+id/ivClose"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:src="@drawable/ic_close"
+            android:clickable="true"
+            android:layout_alignParentEnd="true"
+            />
+
+        <ImageView
             android:id="@+id/profilePic"
             android:layout_width="70dp"
             android:layout_height="70dp"
@@ -77,18 +86,6 @@
             android:inputType="textShortMessage"
             android:textColor="@color/black" />
 
-        <Button
-            android:id="@+id/btnPostCreatePoll"
-            android:layout_width="250dp"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/btnCaptureImageCreatePoll"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="5dp"
-            android:background="@drawable/btn_rounded"
-            android:text="Post"
-            android:textAllCaps="false"
-            android:textColor="@color/white"
-            android:textSize="16sp" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvCreatePost"
@@ -117,6 +114,19 @@
             android:layout_below="@+id/rvCreatePost"
             android:layout_marginTop="2dp"
             android:src="@drawable/image_gallery" />
+
+        <Button
+            android:id="@+id/btnPostCreatePoll"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/btnCaptureImageCreatePoll"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/btn_rounded"
+            android:text="Post"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
 
     </RelativeLayout>
 

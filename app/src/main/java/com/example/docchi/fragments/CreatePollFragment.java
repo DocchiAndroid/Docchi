@@ -23,6 +23,7 @@ import androidx.fragment.app.Fragment;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.CircleCrop;
 import com.example.docchi.AboutActivity;
+import com.example.docchi.CloseFragmentDialog;
 import com.example.docchi.HelpActivity;
 import com.example.docchi.LoginActivity;
 import com.example.docchi.MainActivity;
@@ -51,6 +52,7 @@ public class CreatePollFragment extends Fragment {
     TextView tvName;
     LinearLayout linearLayout;
     FloatingActionButton btnNewOption;
+    ImageView ivCloseFragment;
 
     public CreatePollFragment() {
         // Required empty public constructor
@@ -113,6 +115,14 @@ public class CreatePollFragment extends Fragment {
         linearLayout = view.findViewById(R.id.linerLayout);
         btnPost = view.findViewById(R.id.createPost);
         btnNewOption = view.findViewById(R.id.floatingActionButton);
+        ivCloseFragment = view.findViewById(R.id.ivCloseFragment);
+
+        ivCloseFragment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openDialog();
+            }
+        });
 
         tvUsername.setText(ParseUser.getCurrentUser().getUsername());
         String fullname = ParseUser.getCurrentUser().getString("firstname") +
@@ -150,6 +160,11 @@ public class CreatePollFragment extends Fragment {
                 options.add(etd);
             }
         });
+    }
+
+    private void openDialog() {
+        CloseFragmentDialog closeFragmentDialog = new CloseFragmentDialog();
+        closeFragmentDialog.show(getFragmentManager(), "dialog");
     }
 
     private void post(){

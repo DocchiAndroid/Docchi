@@ -24,6 +24,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.CircleCrop;
@@ -57,11 +58,9 @@ public class ProfileFragment extends Fragment {
   private ImageView ivProfilePic;
   private TextView tvName;
   protected Toolbar toolbar;
-
-
+  public SwipeRefreshLayout swipeContainer;
 
   public ProfileFragment(ParseUser user) {
-    // Required empty public constructor
     this.user = user;
     Log.d(TAG, "ProfileFragment: " + this.user.getUsername());
   }
@@ -113,7 +112,6 @@ public class ProfileFragment extends Fragment {
 
   }
 
-  //&oncreaview for the profile
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
                            Bundle savedInstanceState) {
@@ -137,9 +135,10 @@ public class ProfileFragment extends Fragment {
           Log.e(TAG, "Issue with getting posts", e);
           return;
         }
-        allPosts.clear();
-        allPosts.addAll(posts);
+        adapter.clear();
+        adapter.addAll(posts);
         adapter.notifyDataSetChanged();
+        swipeContainer.setRefreshing(false);
       }
     });
 
@@ -159,6 +158,20 @@ public class ProfileFragment extends Fragment {
     rvPosts.setAdapter(adapter);
     rvPosts.setLayoutManager(new LinearLayoutManager(getContext()));
     queryPost();
+
+    swipeContainer = (SwipeRefreshLayout) view.findViewById(R.id.swipeContainer);
+    // Setup refresh listener which triggers new data loading
+    swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+      @Override
+      public void onRefresh() {
+        queryPost();
+      }
+    });
+    // Configure the refreshing colors
+    swipeContainer.setColorSchemeResources(R.color.blue,
+            R.color.teal_700,
+            R.color.secondary_color);
+    swipeContainer.setRefreshing(false);
   }
 }
 

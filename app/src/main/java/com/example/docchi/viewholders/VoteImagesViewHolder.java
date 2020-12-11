@@ -1,11 +1,10 @@
 package com.example.docchi.viewholders;
 
-import android.app.Activity;
 import android.content.Context;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;

@@ -37,7 +37,9 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="20dp"
-        android:text="SEND MESSAGE"
+        android:textColor="@color/white"
+        android:background="@drawable/et_rounded"
+        android:text="Send Message"
         />
 
 
