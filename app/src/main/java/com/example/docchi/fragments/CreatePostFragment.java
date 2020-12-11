@@ -423,7 +423,6 @@ public class CreatePostFragment extends Fragment {
 //    }
 
     private void moveButtonsDown() {
-        btnPost.setVisibility(View.VISIBLE);
         ViewGroup.LayoutParams rvLayoutParams = rvImages.getLayoutParams();
         rvLayoutParams.height = (int)(250 * getContext().getResources().getDisplayMetrics().density);
     }
@@ -431,7 +430,6 @@ public class CreatePostFragment extends Fragment {
 
     //resize buttons and layout
     private void fixUI() {
-        btnPost.setVisibility(View.INVISIBLE);
         //get display width
         DisplayMetrics displayMetrics = new DisplayMetrics();
         ((MainActivity) getContext()).getWindowManager()
