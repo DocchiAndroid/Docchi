@@ -437,15 +437,7 @@ public class CreatePostFragment extends Fragment {
                 .getMetrics(displayMetrics);
         int width = displayMetrics.widthPixels;
 
-        //resize camera button to cover half of screen width
-        ViewGroup.LayoutParams btnCaptureImageLayoutParams = btnCaptureImage.getLayoutParams();
-        btnCaptureImageLayoutParams.width = width / 2;
-        btnCaptureImage.setLayoutParams(btnCaptureImageLayoutParams);
 
-        //resize file selector button to cover half of screen width
-        ViewGroup.LayoutParams btnSelectImageLayoutParams = btnSelectImage.getLayoutParams();
-        btnSelectImageLayoutParams.width = width / 2;
-        btnSelectImage.setLayoutParams(btnSelectImageLayoutParams);
     }
 
     //show progress bar while uploading

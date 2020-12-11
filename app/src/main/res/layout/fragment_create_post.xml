@@ -108,30 +108,37 @@
 
                 </androidx.recyclerview.widget.RecyclerView>
 
-                <ImageView
-                    android:id="@+id/btnCaptureImageCreatePoll"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_below="@+id/rvCreatePost"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginTop="2dp"
-                    android:src="@drawable/ic_baseline_photo_camera_24" />
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
-                <ImageView
-                    android:id="@+id/btnSelectImageCreatePoll"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_below="@+id/rvCreatePost"
-                    android:layout_marginStart="2dp"
-                    android:layout_marginTop="2dp"
-                    android:layout_toEndOf="@id/btnCaptureImageCreatePoll"
-                    android:src="@drawable/image_gallery" />
+                    <ImageView
+                        android:id="@+id/btnCaptureImageCreatePoll"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_marginTop="2dp"
+                        android:src="@drawable/ic_baseline_photo_camera_24"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/btnSelectImageCreatePoll"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageView
+                        android:id="@+id/btnSelectImageCreatePoll"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_marginTop="2dp"
+                        android:src="@drawable/image_gallery"
+                        app:layout_constraintEnd_toStartOf="@+id/btnCaptureImageCreatePoll"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <Button
                     android:id="@+id/btnPostCreatePoll"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/btnCaptureImageCreatePoll"
+                    android:layout_below="@+id/constLayout"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="2dp"
                     android:background="@drawable/btn_rounded"
