@@ -19,6 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.CircleCrop;
+import com.example.docchi.MainActivity;
 import com.example.docchi.fragments.ProfileFragment;
 import com.example.docchi.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -149,7 +150,10 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.ViewHolder> 
                     BottomNavigationView bnv = (BottomNavigationView) activity.findViewById(R.id.bottomNavigation);
                     bnv.setSelectedItemId(R.id.action_profile);
                     Fragment myFragment = new ProfileFragment(user);
-                    activity.getSupportFragmentManager().beginTransaction().replace(R.id.fragmentPager, myFragment).addToBackStack(null).commit();
+
+                    FragmentAdapter fragmentAdapter = ((MainActivity) activity).getFragmentAdapter();
+                    fragmentAdapter.replaceFragment(myFragment, 3);
+                    //activity.getSupportFragmentManager().beginTransaction().replace(R.id.fragmentPager, myFragment).addToBackStack(null).commit();
                 }
             });
         }

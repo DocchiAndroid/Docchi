@@ -10,6 +10,7 @@ import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 import com.example.docchi.fragments.CreatePollFragment;
 import com.example.docchi.fragments.CreatePostFragment;
+import com.example.docchi.fragments.ProfileFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,6 +35,7 @@ public class FragmentAdapter extends FragmentStatePagerAdapter {
     @Override
     public int getItemPosition(@NonNull Object object) {
         if(object instanceof CreatePollFragment || object instanceof CreatePostFragment) return POSITION_NONE;
+        else if(object instanceof ProfileFragment) return POSITION_NONE;
         return POSITION_UNCHANGED;
     }
 
