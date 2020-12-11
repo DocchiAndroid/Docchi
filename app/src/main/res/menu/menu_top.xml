@@ -17,7 +17,7 @@
 
         <item
             android:id="@+id/Help"
-            android:title="Help"
+            android:title="Contact Us"
             app:showAsAction="never" />
 
         <item
