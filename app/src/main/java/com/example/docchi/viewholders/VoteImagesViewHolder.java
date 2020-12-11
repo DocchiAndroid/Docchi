@@ -34,6 +34,7 @@ public class VoteImagesViewHolder extends RecyclerView.ViewHolder{
     private TextView tvDate;
     private PostImagesAdapter adapter;
 
+
     private Context context;
     private String loggedInUser;
 
@@ -45,6 +46,7 @@ public class VoteImagesViewHolder extends RecyclerView.ViewHolder{
         rvImages = itemView.findViewById(R.id.rvPictureContainer);
         tvMoreDetails = itemView.findViewById(R.id.MoreDetails);
         tvDate = itemView.findViewById(R.id.text_view_date);
+
 
         this.loggedInUser = loggedInUser;
         this.context = context;
@@ -97,7 +99,7 @@ public class VoteImagesViewHolder extends RecyclerView.ViewHolder{
     public void setVotesComments(Post post) {
         int totalVotes = post.getTotalImagesVotes();
         int totalComments = post.getTotalComments();
-        String moreDetails = totalVotes + (totalVotes==1?" VOTE":" VOTES") + "   " + totalComments + (totalComments==1?" COMMENT":" COMMENTS");
+        String moreDetails = totalVotes + (totalVotes==1?" VOTE":" VOTES") + "   " + totalComments + (totalComments==1?" ":" ");
         tvMoreDetails.setText(moreDetails);
     }
 }
