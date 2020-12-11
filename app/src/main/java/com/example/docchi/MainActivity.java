@@ -104,8 +104,18 @@ public class MainActivity extends AppCompatActivity {
                 bottomNavigationView.getMenu().getItem(position).setChecked(true);
                 prevMenuItem = bottomNavigationView.getMenu().getItem(position);
 
-                if(position==2){
+                if(position==0){
+                    toolbar.setTitle("Docchi");
+                }
+                else if(position==1){
+                    toolbar.setTitle("Search");
+                }
+                else if(position==2){
                     showNewPostDialog();
+                    toolbar.setTitle("New Post");
+                }
+                else if(position==3){
+                    toolbar.setTitle("Docchi");
                 }
             }
 
@@ -115,8 +125,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
-        bottomNavigationView.setSelectedItemId(R.id.action_home);
+        fragmentPager.setCurrentItem(0);
 
     }
 

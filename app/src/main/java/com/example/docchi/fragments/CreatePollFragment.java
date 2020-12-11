@@ -96,8 +96,6 @@ public class CreatePollFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_create_poll, container, false);
-        ActionBar actionBar = ((MainActivity) getContext()).getSupportActionBar();
-        actionBar.setTitle("New Post");
         setHasOptionsMenu(true);
         return v;
     }

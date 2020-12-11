@@ -90,8 +90,7 @@ public class TimelineFragment extends Fragment {
     // Inflate the layout for this fragment
       View v = inflater.inflate(R.layout.fragment_timeline, container, false);
       setHasOptionsMenu(true);
-      ActionBar actionBar = ((MainActivity) getContext()).getSupportActionBar();
-      actionBar.setTitle("Docchi");
+
       return v;
   }
 
