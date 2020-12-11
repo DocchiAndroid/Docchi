@@ -33,8 +33,8 @@ public class FragmentAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public int getItemPosition(@NonNull Object object) {
-
-        return POSITION_NONE;
+        if(object instanceof CreatePollFragment || object instanceof CreatePostFragment) return POSITION_NONE;
+        return POSITION_UNCHANGED;
     }
 
     @NonNull
