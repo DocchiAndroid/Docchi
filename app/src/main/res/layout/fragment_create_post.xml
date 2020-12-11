@@ -86,18 +86,6 @@
             android:inputType="textShortMessage"
             android:textColor="@color/black" />
 
-        <Button
-            android:id="@+id/btnPostCreatePoll"
-            android:layout_width="250dp"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/btnCaptureImageCreatePoll"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="5dp"
-            android:background="@drawable/btn_rounded"
-            android:text="Post"
-            android:textAllCaps="false"
-            android:textColor="@color/white"
-            android:textSize="16sp" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvCreatePost"
@@ -126,6 +114,19 @@
             android:layout_below="@+id/rvCreatePost"
             android:layout_marginTop="2dp"
             android:src="@drawable/image_gallery" />
+
+        <Button
+            android:id="@+id/btnPostCreatePoll"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/btnCaptureImageCreatePoll"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/btn_rounded"
+            android:text="Post"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
 
     </RelativeLayout>
 
