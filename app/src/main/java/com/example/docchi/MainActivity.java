@@ -29,10 +29,10 @@ import java.sql.Time;
 public class MainActivity extends AppCompatActivity {
 
     final FragmentManager fragmentManager = getSupportFragmentManager();
-    ViewPager fragmentPager;
-    FragmentAdapter adapter;
-    BottomNavigationView bottomNavigationView;
-    MenuItem prevMenuItem = null;
+    private ViewPager fragmentPager;
+    private FragmentAdapter adapter;
+    private BottomNavigationView bottomNavigationView;
+    private MenuItem prevMenuItem = null;
 
 
 
@@ -78,6 +78,7 @@ public class MainActivity extends AppCompatActivity {
                         showNewPostDialog();
                         break;
                     case R.id.action_profile:
+                        adapter.replaceFragment(profileFragment, 3);
                         fragmentPager.setCurrentItem(3);
                         break;
                     default:
@@ -115,6 +116,7 @@ public class MainActivity extends AppCompatActivity {
                     toolbar.setTitle("New Post");
                 }
                 else if(position==3){
+                    adapter.replaceFragment(profileFragment, 3);
                     toolbar.setTitle("Docchi");
                 }
             }
