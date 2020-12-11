@@ -71,7 +71,7 @@
 
         <com.github.aakira.compoundicontextview.CompoundIconTextView
             android:id="@+id/MoreDetails"
-            android:drawablePadding="-3dp"
+            android:drawablePadding="0dp"
             android:gravity="center"
             android:textSize="6pt"
             android:textColor="@color/black"

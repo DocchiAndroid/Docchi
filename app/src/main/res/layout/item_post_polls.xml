@@ -76,7 +76,7 @@
 
     <com.github.aakira.compoundicontextview.CompoundIconTextView
         android:id="@+id/MoreDetails"
-        android:drawablePadding="-3dp"
+        android:drawablePadding="0dp"
         android:gravity="center"
         android:textSize="6pt"
         android:textColor="@color/black"
@@ -97,23 +97,6 @@
         app:cit_iconWidth="20dp"
 
         android:text="10"/>
-
-
-
-<!--    android:background="@drawable/btn_comments_border"-->
-
-<!--    <ImageView-->
-<!--        android:id="@+id/chatImg"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:background="@drawable/ic_baseline_chat_bubble_outline_24"-->
-<!--        android:layout_marginTop="10dp"-->
-<!--        android:layout_marginLeft="180dp"-->
-<!--        android:layout_marginRight="10dp"-->
-<!--        android:gravity="center_vertical"-->
-<!--        android:layout_below="@id/rvPolls"-->
-<!--/>-->
-
 
 
 
