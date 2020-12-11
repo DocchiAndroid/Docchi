@@ -69,22 +69,29 @@
         android:nestedScrollingEnabled="false"
         android:padding="10dp" />
 
-        <TextView
+        <com.github.aakira.compoundicontextview.CompoundIconTextView
             android:id="@+id/MoreDetails"
+            android:drawablePadding="-3dp"
+            android:gravity="center"
+            android:textSize="6pt"
+            android:textColor="@color/black"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/black"
-            android:textSize="6pt"
             android:padding="-3dp"
             android:textStyle="bold"
-            android:layout_marginTop="7dp"
+            android:layout_marginTop="10dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:gravity="center_vertical"
-            android:background="@drawable/btn_comments_border"
+
             android:layout_below="@id/rvPictureContainer"
             android:layout_alignParentLeft="true"
-            android:text="10 VOTES   7 COMMENTS"/>
+
+            app:cit_drawableRight="@drawable/ic_baseline_chat_bubble_outline_24"
+            app:cit_iconColor="@color/gray_holo_dark"
+            app:cit_iconHeight="20dp"
+            app:cit_iconWidth="20dp"
+
+            android:text="10"/>
 
         </RelativeLayout>
 

@@ -90,7 +90,7 @@ public class VotePollViewHolder extends RecyclerView.ViewHolder{
     public void setVotesComments(Post post){
         int totalVotes = post.getTotalPollVotes();
         int totalComments = post.getTotalComments();
-        String moreDetails = totalVotes + (totalVotes==1?" VOTE":" VOTES") + "   " + totalComments + (totalComments==1?" COMMENT":" COMMENTS");
+        String moreDetails = totalVotes + (totalVotes==1?" VOTE":" VOTES") + "   " + totalComments + (totalComments==1?" ":" ");
         tvMoreDetails.setText(moreDetails);
     }
 

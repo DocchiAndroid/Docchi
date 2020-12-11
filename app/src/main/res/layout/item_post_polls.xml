@@ -91,7 +91,7 @@
         android:layout_below="@id/rvPolls"
         android:layout_alignParentLeft="true"
 
-        app:cit_drawableLeft="@drawable/ic_baseline_chat_bubble_outline_24"
+        app:cit_drawableRight="@drawable/ic_baseline_chat_bubble_outline_24"
         app:cit_iconColor="@color/gray_holo_dark"
         app:cit_iconHeight="20dp"
         app:cit_iconWidth="20dp"
