@@ -1,6 +1,5 @@
 package com.example.docchi.adapters;
 
-import android.app.Activity;
 import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -16,21 +15,17 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.CircleCrop;
 import com.example.docchi.fragments.ProfileFragment;
-import com.example.docchi.model.Post;
 import com.example.docchi.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.parse.ParseFile;
 import com.parse.ParseUser;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 
 public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.ViewHolder> implements Filterable {
@@ -154,7 +149,7 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.ViewHolder> 
                     BottomNavigationView bnv = (BottomNavigationView) activity.findViewById(R.id.bottomNavigation);
                     bnv.setSelectedItemId(R.id.action_profile);
                     Fragment myFragment = new ProfileFragment(user);
-                    activity.getSupportFragmentManager().beginTransaction().replace(R.id.flContainer, myFragment).addToBackStack(null).commit();
+                    activity.getSupportFragmentManager().beginTransaction().replace(R.id.fragmentPager, myFragment).addToBackStack(null).commit();
                 }
             });
         }

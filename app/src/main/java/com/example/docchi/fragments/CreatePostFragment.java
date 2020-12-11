@@ -437,10 +437,6 @@ public class CreatePostFragment extends Fragment {
                 .getMetrics(displayMetrics);
         int width = displayMetrics.widthPixels;
 
-        //Action bar title
-        ActionBar actionBar = ((MainActivity) getContext()).getSupportActionBar();
-        actionBar.setTitle("New Poll");
-
         //resize camera button to cover half of screen width
         ViewGroup.LayoutParams btnCaptureImageLayoutParams = btnCaptureImage.getLayoutParams();
         btnCaptureImageLayoutParams.width = width / 2;

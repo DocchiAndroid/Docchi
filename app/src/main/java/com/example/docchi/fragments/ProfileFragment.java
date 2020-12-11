@@ -106,9 +106,7 @@ public class ProfileFragment extends Fragment {
     super.onCreate(savedInstanceState);
     setHasOptionsMenu(true);
 
-    //Tool bar title
-    ActionBar actionBar = ((MainActivity) getContext()).getSupportActionBar();
-    actionBar.setTitle("Docchi");
+
 
   }
 

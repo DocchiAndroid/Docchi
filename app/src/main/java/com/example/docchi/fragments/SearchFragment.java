@@ -58,8 +58,7 @@ public class SearchFragment extends Fragment implements UsersAdapter.UsersAdapte
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_search, container, false);
-        ActionBar actionBar = ((MainActivity) getContext()).getSupportActionBar();
-        actionBar.setTitle("Search");
+
         setHasOptionsMenu(true);
         return v;
     }

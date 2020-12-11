@@ -24,7 +24,7 @@ public class CloseFragmentDialog extends AppCompatDialogFragment {
       public void onClick(DialogInterface dialogInterface, int i) {
         AppCompatActivity activity = (AppCompatActivity) getContext();
         Fragment myFragment = new TimelineFragment();
-        activity.getSupportFragmentManager().beginTransaction().replace(R.id.flContainer, myFragment).addToBackStack(null).commit();
+        activity.getSupportFragmentManager().beginTransaction().replace(R.id.fragmentPager, myFragment).addToBackStack(null).commit();
         dismiss();
       }
     });
