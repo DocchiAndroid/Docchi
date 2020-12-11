@@ -11,6 +11,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -29,6 +30,7 @@ import com.example.docchi.R;
 import com.example.docchi.SettingActivity;
 import com.example.docchi.adapters.UsersAdapter;
 import com.parse.FindCallback;
+import com.parse.Parse;
 import com.parse.ParseException;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
@@ -46,6 +48,7 @@ public class SearchFragment extends Fragment implements UsersAdapter.UsersAdapte
     protected UsersAdapter adapter;
     protected List<ParseUser> allUsers;
     private SearchView searchView;
+    private TextView tvUsername;
 
     public SearchFragment() {
         // Required empty public constructor
@@ -54,6 +57,7 @@ public class SearchFragment extends Fragment implements UsersAdapter.UsersAdapte
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_search, container, false);
         ActionBar actionBar = ((MainActivity) getContext()).getSupportActionBar();
@@ -165,7 +169,11 @@ public class SearchFragment extends Fragment implements UsersAdapter.UsersAdapte
 
         adapter = new UsersAdapter(getContext(), allUsers);
 
+        tvUsername = view.findViewById(R.id.tvUsername);
         rvUsers.setAdapter(adapter);
+
+
+
         rvUsers.setLayoutManager(new LinearLayoutManager(getContext()));
         queryUsers();
     }
@@ -173,5 +181,6 @@ public class SearchFragment extends Fragment implements UsersAdapter.UsersAdapte
     @Override
     public void onUserSelected(ParseUser user) {
         Toast.makeText(getApplicationContext(), "Selected: " + user.getUsername(), Toast.LENGTH_SHORT).show();
+
     }
 }
