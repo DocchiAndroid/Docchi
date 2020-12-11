@@ -25,6 +25,7 @@ public class SettingActivity extends AppCompatActivity {
   EditText etNewPassword;
   Button btnUpdateUsername;
   Button btnUpdatePassword;
+  Button btnBack;
   String TAG = "Settings";
 
   @Override
@@ -40,6 +41,7 @@ public class SettingActivity extends AppCompatActivity {
     etNewUsername = findViewById(R.id.etNewUsername);
     etCurrentPassword = findViewById(R.id.etCurrentPassword);
     etNewPassword = findViewById(R.id.etNewPassword);
+    btnBack = findViewById(R.id.btnBack);
 
     btnUpdateUsername = findViewById(R.id.btnUpdateUsername);
     btnUpdatePassword = findViewById(R.id.btnUpdatePassword);
@@ -64,9 +66,6 @@ public class SettingActivity extends AppCompatActivity {
       }
     });
 
-
-
-
     btnUpdatePassword.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
@@ -85,6 +84,16 @@ public class SettingActivity extends AppCompatActivity {
 
       }
     });
+
+    btnBack.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View view) {
+        Log.i("SettingsActivity", "Here");
+        Intent intent = new Intent(SettingActivity.this, MainActivity.class);
+        startActivity(intent);
+      }
+    });
+
   }
 
   @Override
