@@ -17,6 +17,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 
+import com.example.docchi.MainActivity;
 import com.example.docchi.R;
 
 
@@ -71,9 +72,8 @@ public class NewPostDialogFragment extends DialogFragment {
         withImages.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AppCompatActivity activity = unwrap(view.getContext());
                 Fragment myFragment = new CreatePostFragment();
-                activity.getSupportFragmentManager().beginTransaction().replace(R.id.fragmentPager, myFragment).addToBackStack(null).commit();
+                ((MainActivity)getActivity()).getFragmentAdapter().replaceFragment(myFragment, 2);
                 dismiss();
             }
         });
@@ -81,19 +81,11 @@ public class NewPostDialogFragment extends DialogFragment {
         withoutImages.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AppCompatActivity activity = unwrap(view.getContext());
                 Fragment myFragment = new CreatePollFragment();
-                activity.getSupportFragmentManager().beginTransaction().replace(R.id.fragmentPager, myFragment).addToBackStack(null).commit();
+                ((MainActivity)getActivity()).getFragmentAdapter().replaceFragment(myFragment, 2);
                 dismiss();
             }
         });
     }
 
-    private static AppCompatActivity unwrap(Context context) {
-        while (!(context instanceof AppCompatActivity) && context instanceof ContextWrapper) {
-            context = ((ContextWrapper) context).getBaseContext();
-        }
-
-        return (AppCompatActivity) context;
-    }
 }

@@ -8,12 +8,16 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentContainer;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.lifecycle.Lifecycle;
 import androidx.viewpager.widget.ViewPager;
+import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.docchi.adapters.FragmentAdapter;
+import com.example.docchi.fragments.CreatePollFragment;
 import com.example.docchi.fragments.NewPostDialogFragment;
 import com.example.docchi.fragments.ProfileFragment;
 import com.example.docchi.fragments.SearchFragment;
@@ -26,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
 
     final FragmentManager fragmentManager = getSupportFragmentManager();
     ViewPager fragmentPager;
+    FragmentAdapter adapter;
     BottomNavigationView bottomNavigationView;
     MenuItem prevMenuItem = null;
 
@@ -45,12 +50,14 @@ public class MainActivity extends AppCompatActivity {
 
         bottomNavigationView = findViewById(R.id.bottomNavigation);
         fragmentPager = findViewById(R.id.fragmentPager);
-        FragmentAdapter adapter = new FragmentAdapter(getSupportFragmentManager(), FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
+        adapter = new FragmentAdapter(fragmentManager);
         TimelineFragment timelineFragment = new TimelineFragment();
         SearchFragment searchFragment = new SearchFragment();
+        CreatePollFragment createPollFragment = new CreatePollFragment();
         ProfileFragment profileFragment = new ProfileFragment();
         adapter.addFragment(timelineFragment);
         adapter.addFragment(searchFragment);
+        adapter.addFragment(createPollFragment);
         adapter.addFragment(profileFragment);
         fragmentPager.setAdapter(adapter);
 
@@ -67,10 +74,11 @@ public class MainActivity extends AppCompatActivity {
                         fragmentPager.setCurrentItem(1);
                         break;
                     case R.id.action_newPoll:
+                        fragmentPager.setCurrentItem(2);
                         showNewPostDialog();
                         break;
                     case R.id.action_profile:
-                        fragmentPager.setCurrentItem(2);
+                        fragmentPager.setCurrentItem(3);
                         break;
                     default:
                         return true;
@@ -93,9 +101,12 @@ public class MainActivity extends AppCompatActivity {
                 else{
                     bottomNavigationView.getMenu().getItem(0).setChecked(false);
                 }
-
                 bottomNavigationView.getMenu().getItem(position).setChecked(true);
                 prevMenuItem = bottomNavigationView.getMenu().getItem(position);
+
+                if(position==2){
+                    showNewPostDialog();
+                }
             }
 
             @Override
@@ -103,6 +114,7 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
 
         bottomNavigationView.setSelectedItemId(R.id.action_home);
 
@@ -113,6 +125,10 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_top, menu);
         return true;
+    }
+
+    public FragmentAdapter getFragmentAdapter(){
+        return adapter;
     }
 
     private void showNewPostDialog() {
