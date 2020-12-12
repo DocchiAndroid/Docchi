@@ -1,18 +1,17 @@
 package com.example.docchi;
 
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.jaeger.library.StatusBarUtil;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+
+
 import com.parse.LogInCallback;
 import com.parse.ParseException;
 import com.parse.ParseUser;
@@ -27,13 +26,11 @@ public class LoginActivity extends AppCompatActivity {
     private AlertDialog alertDialog;
     private AlertDialog.Builder dialogBuilder;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
-        //hide status bar
-        StatusBarUtil.setTransparent(this);
 
         //if logged in, go to main activity
         checkLogin();
@@ -72,7 +69,8 @@ public class LoginActivity extends AppCompatActivity {
 
     private void checkLogin() {
         if (ParseUser.getCurrentUser() != null) {
-            Intent i = new Intent(this, MainActivity.class);
+            Intent i = new Intent(LoginActivity.this, MainActivity.class);
+            i.putExtra("LoggedInUser", ParseUser.getCurrentUser().getUsername());
             startActivity(i);
             finish();
         }
@@ -98,6 +96,7 @@ public class LoginActivity extends AppCompatActivity {
 
                 //Login success, start main activity
                 Intent i = new Intent(LoginActivity.this, MainActivity.class);
+                i.putExtra("LoggedInUser", username);
                 startActivity(i);
                 finish();
             }
@@ -108,7 +107,7 @@ public class LoginActivity extends AppCompatActivity {
 
         dialogBuilder = new AlertDialog.Builder(LoginActivity.this);
         dialogBuilder.setTitle("");
-        final View v = getLayoutInflater().inflate(R.layout.progress_login, null);
+        final View v = getLayoutInflater().inflate(R.layout.progress_dialog, null);
         dialogBuilder.setView(v);
         dialogBuilder.setCancelable(false);
         alertDialog = dialogBuilder.create();

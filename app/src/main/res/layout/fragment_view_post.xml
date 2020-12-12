@@ -1,0 +1,134 @@
+<!-- fragment_edit_name.xml -->
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:padding="5dp"
+    android:layout_gravity="center"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:padding="8dp"
+        android:background="@drawable/item_background_gradient_rounded">
+
+    <RelativeLayout
+        android:id="@+id/fragment_view_post"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:background="@drawable/item_background_rounded"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/ivProfilePicture"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="10dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/default_pic"/>
+
+        <TextView
+            android:id="@+id/tvName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_toEndOf="@id/ivProfilePicture"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            tools:text="Smita Mujumdar" />
+
+        <ImageView
+            android:id="@+id/btnClose"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_gravity="right"
+            android:clickable="true"
+            android:src="@drawable/ic_close" />
+
+        <TextView
+            android:id="@+id/text_view_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvName"
+            android:layout_toRightOf="@id/ivProfilePicture"
+            android:layout_marginLeft="10dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="#6E6969"
+            android:textSize="14sp"
+            android:text="Dec 05, 2020" />
+
+        <TextView
+            android:id="@+id/tvDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/ivProfilePicture"
+            tools:text="Do you like me or this insect?"
+            android:textSize="16sp"
+            android:layout_marginTop="10dp"
+            android:textColor="#000000"
+            />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvPictureContainer"
+            android:scrollbars="horizontal"
+            android:layout_width="match_parent"
+            android:layout_marginTop="10dp"
+            android:elevation="15dp"
+            android:padding="10dp"
+            android:layout_below="@id/tvDescription"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/commentText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:textColor="@color/blue"
+            android:textSize="7pt"
+            android:textStyle="bold"
+            android:layout_below="@id/rvPictureContainer"
+            android:text="Comments"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvComments"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/commentText"/>
+
+
+        <Button
+            android:id="@+id/btnSend"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="10dp"
+            android:layout_below="@id/rvComments"
+            android:drawableLeft="@drawable/ic_send_24"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/btn_rounded"
+            android:layout_width="50dp"
+            android:layout_height="50dp"/>
+
+        <EditText
+            android:id="@+id/addComment"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="10dp"
+            android:layout_below="@id/rvComments"
+            android:hint="Add a comment..."
+            android:layout_alignParentLeft="true"
+            android:layout_toLeftOf="@id/btnSend"
+            android:layout_centerVertical="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    </RelativeLayout>
+    </RelativeLayout>
+</androidx.core.widget.NestedScrollView>

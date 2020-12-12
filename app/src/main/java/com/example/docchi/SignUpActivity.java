@@ -4,6 +4,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,6 +12,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,6 +33,9 @@ public class SignUpActivity extends AppCompatActivity {
     EditText etEmail;
     EditText etUsername;
     EditText etPassword;
+    TextView btnSignUpToLogin;
+
+
 
 
     @SuppressLint("WrongViewCast")
@@ -39,7 +44,9 @@ public class SignUpActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
         actionBar = getSupportActionBar();
-        actionBar.hide();
+        if (actionBar != null) {
+            actionBar.hide();
+        }
 
 
         etFirstName = findViewById(R.id.etFirstName);
@@ -48,6 +55,19 @@ public class SignUpActivity extends AppCompatActivity {
         etUsername = findViewById(R.id.etUsername);
         etPassword = findViewById(R.id.etPassword);
         btnSignUp = findViewById(R.id.btnSignUp);
+        btnSignUpToLogin = findViewById(R.id.btnSignUpToLogin);
+
+
+
+        //For back to login page from the signup page
+        btnSignUpToLogin.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                        Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+        startActivity(intent);
+
+            }
+        });
 
 
 
@@ -55,24 +75,24 @@ public class SignUpActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                String firstName = etFirstName.getText().toString();
-                String lastName = etLastName.getText().toString();
+                String firstname = etFirstName.getText().toString();
+                String lastname = etLastName.getText().toString();
                 String email = etEmail.getText().toString();
                 String username = etUsername.getText().toString();
                 String password = etPassword.getText().toString();
-//        userSignup(firstName, lastName,email,username,password);
+
 
 
                 //Creating a new user account is the process of constructing a ParseUser object and calling signUpInBackground:
-                if (firstName.isEmpty() || lastName.isEmpty() || email.isEmpty() || username.isEmpty() || password.isEmpty()) {
+                if (firstname.isEmpty() || lastname.isEmpty() || email.isEmpty() || username.isEmpty() || password.isEmpty()) {
                     Toast.makeText(SignUpActivity.this, "Field cannot be empty", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
 
                 ParseUser user = new ParseUser();
-                user.put("firstName", etFirstName.getText().toString());
-                user.put("lastName", etLastName.getText().toString());
+                user.put("firstname", etFirstName.getText().toString());
+                user.put("lastname", etLastName.getText().toString());
                 user.setEmail(etEmail.getText().toString());
                 user.setUsername(etUsername.getText().toString());
                 user.setPassword(etPassword.getText().toString());
@@ -83,7 +103,7 @@ public class SignUpActivity extends AppCompatActivity {
                     public void done(ParseException e) {
                         if (e.getMessage()  == null) {
                             Log.d("SignUpActivity", "successfully registered");
-                            userSignup(firstName, lastName, email, username, password);
+
 
 
                         } else {
@@ -99,8 +119,8 @@ public class SignUpActivity extends AppCompatActivity {
                 });
             }
 
-            private void userSignup(String firstName, String lastName, String username, String email, String password) {
-                Log.i(TAG, "create account" + firstName + lastName + username + email + password);
+            private void userSignup(String firstname, String lastname, String username, String email, String password) {
+                Log.i(TAG, "create account" + firstname + lastname + username + email + password);
 
 //                      Intent intent = new Intent(getApplicationContext(), MainActivity.class);
 //            startActivity(intent);
@@ -112,13 +132,7 @@ public class SignUpActivity extends AppCompatActivity {
     }
 }
 
-//  private void userSignUp(String firstName, String lastName, String email, String username, String password) {
 
-// store these values to parse
-
-//        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-//        startActivity(intent);
-//.       finish();
 
 
 

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="10dp"
+    android:layout_margin="8dp"
+    android:background="@drawable/item_background_rounded"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <ImageView
+        android:id="@+id/ivProfilePicture"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/default_pic"/>
+
+    <TextView
+        android:id="@+id/tvName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_toEndOf="@id/ivProfilePicture"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        tools:text="Smita Mujumdar" />
+
+    <TextView
+        android:id="@+id/text_view_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_below="@id/tvName"
+        android:layout_toEndOf="@id/ivProfilePicture"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="#6E6969"
+        android:textSize="10sp"
+        android:text="Dec 05, 2020" />
+
+    <TextView
+        android:id="@+id/tvDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ivProfilePicture"
+        tools:text="Do you like me or this insect?"
+        android:fontFamily="sans-serif"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        android:layout_marginTop="10dp"
+        />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvPolls"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvDescription">
+    </androidx.recyclerview.widget.RecyclerView>
+
+<!--    <TextView-->
+<!--        android:id="@+id/MoreDetails"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:textColor="@color/blue"-->
+<!--        android:textSize="6pt"-->
+<!--        android:padding="-3dp"-->
+<!--        android:textStyle="bold"-->
+<!--        android:layout_marginTop="10dp"-->
+<!--        android:layout_marginLeft="10dp"-->
+<!--        android:layout_marginRight="10dp"-->
+<!--        android:gravity="center_vertical"-->
+<!--        android:layout_below="@id/rvPolls"-->
+<!--        android:layout_alignParentLeft="true"-->
+<!--        android:text="10"-->
+<!--        />-->
+
+    <com.github.aakira.compoundicontextview.CompoundIconTextView
+        android:id="@+id/MoreDetails"
+        android:drawablePadding="0dp"
+        android:gravity="center"
+        android:textSize="6pt"
+        android:textColor="@color/black"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="-3dp"
+        android:textStyle="bold"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+
+        android:layout_below="@id/rvPolls"
+        android:layout_alignParentLeft="true"
+
+        app:cit_drawableRight="@drawable/ic_baseline_chat_bubble_outline_24"
+        app:cit_iconColor="@color/gray_holo_dark"
+        app:cit_iconHeight="20dp"
+        app:cit_iconWidth="20dp"
+
+        android:text="10"/>
+
+
+
+</RelativeLayout>
