@@ -26,9 +26,9 @@ Docchi is a voting app that lets users to create public polls. It will let users
 - [x] User can view their timeline
 - [x] User can scroll through the posts (infinite scroll)
 - [X] User can create a post
-- [ ] User can vote
+- [X] User can vote
 - [X] User can view their own posts 
-- [ ] User can view profile details by clicking on profile picture.
+- [X] User can view profile details by clicking on profile picture.
 - [X] User can change their personal information
 - [X] User can view help screen
 - [X] User can view about screen
@@ -92,11 +92,8 @@ Optional:
 ### [BONUS] Interactive Prototype
 <img src="https://github.com/DocchiAndroid/Docchi/blob/main/DocchiDigitalWireframeWalkthrough.gif" height=500>
 
-### Walkthrough Updated
-<img src="https://github.com/DocchiAndroid/Docchi/blob/main/ProgessWalkthroughUpdated.gif" height=500>
-
-### Walkthrough
-<img src="https://github.com/DocchiAndroid/Docchi/blob/main/progresswalkthrough.gif" height=500>
+### Final Workthrough
+<img src="https://github.com/DocchiAndroid/Docchi/blob/main/docchi_final_walkthrough.gif" height=500>
 
 #### Post
 
