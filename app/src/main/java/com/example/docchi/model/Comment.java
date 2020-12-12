@@ -83,7 +83,7 @@ public class Comment {
                     return getTime().substring(0, 10);
                 return days + " days ago";
             } else if(hours != 0){
-                if(hours == 19)
+                if(hours == 12)
                     return "Just now";
                 return hours + " hours ago";
             }
