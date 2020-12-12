@@ -88,7 +88,7 @@ public class Comment {
                 return hours + " hours ago";
             }
 
-            if(hours == 1)
+            if(minutes == 1)
                 return "1 min ago";
             return minutes + " mins ago";
 

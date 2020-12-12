@@ -23,6 +23,7 @@ import com.example.docchi.fragments.ProfileFragment;
 import com.example.docchi.fragments.SearchFragment;
 import com.example.docchi.fragments.TimelineFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.parse.ParseUser;
 
 import java.sql.Time;
 
@@ -51,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
         bottomNavigationView = findViewById(R.id.bottomNavigation);
         fragmentPager = findViewById(R.id.fragmentPager);
         adapter = new FragmentAdapter(fragmentManager);
-        TimelineFragment timelineFragment = new TimelineFragment();
+        TimelineFragment timelineFragment = new TimelineFragment(loggedInUser);
         SearchFragment searchFragment = new SearchFragment();
         CreatePollFragment createPollFragment = new CreatePollFragment();
         ProfileFragment profileFragment = new ProfileFragment();

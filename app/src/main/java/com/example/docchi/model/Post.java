@@ -252,7 +252,7 @@ public class Post extends ParseObject {
 
             Calendar calendar = Calendar.getInstance();
             TimeZone fromTimeZone = calendar.getTimeZone();
-            TimeZone toTimeZone = TimeZone.getTimeZone("MST");
+            TimeZone toTimeZone = TimeZone.getTimeZone("UTC");
 
             calendar.setTimeZone(fromTimeZone);
             calendar.add(Calendar.MILLISECOND, fromTimeZone.getRawOffset() * -1);
@@ -295,7 +295,7 @@ public class Post extends ParseObject {
                 return hours + " hours ago";
             }
 
-            if(hours == 1)
+            if(minutes == 1)
                 return "1 min ago";
             return minutes + " mins ago";
 
