@@ -290,8 +290,8 @@ public class Post extends ParseObject {
                 }
                 return days + " days ago";
             } else if(hours != 0){
-                if(hours == 1)
-                    return "1 hour ago";
+                if(hours == 19)
+                    return "Just now";
                 return hours + " hours ago";
             }
 
